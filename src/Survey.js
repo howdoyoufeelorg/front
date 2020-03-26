@@ -33,7 +33,10 @@ const surveyStyles = makeStyles({
         fontSize: 30,
     },
     surveyContent: {
-        paddingTop: 40
+        padding: 40
+    },
+    surveyActions: {
+        padding: [[20,20]]
     },
     question: {
         display: 'flex',
@@ -103,7 +106,7 @@ export function Survey()
                 </div>
                 <div className={classes.strecher}>&nbsp;</div>
             </DialogContent>
-            <DialogActions>
+            <DialogActions className={classes.surveyActions}>
                 <Button type="button" onClick={() => submitSurvey(questions, answers)} className={classes.submitButton} variant={"contained"} size={"large"}>SUBMIT</Button>
             </DialogActions>
         </Dialog>

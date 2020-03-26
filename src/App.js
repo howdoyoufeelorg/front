@@ -12,6 +12,7 @@ import AjaxFailureDialog from "./Dialogs/AjaxFailureDialog";
 import {action} from './sagas';
 import {hot} from "react-hot-loader";
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
+import './faIcons';
 import {Loading} from "./Components/Loading";
 import {Survey} from "./Survey";
 
