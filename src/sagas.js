@@ -45,8 +45,9 @@ function* postSurvey() {
     try {
         const answers = yield select(state => state.answers );
         const hash = yield select(state => state.hash );
+        const geolocation = yield select(state => state.geolocation );
         const result = yield all([
-            call(api.postSurvey, {hash, answers})
+            call(api.postSurvey, {hash, answers, geolocation})
         ]);
         // Hide spinner
         yield put({ type: 'AJAX_SUCCESS' })

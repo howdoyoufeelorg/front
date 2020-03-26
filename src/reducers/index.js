@@ -4,6 +4,10 @@ import { reducer as formReducer } from 'redux-form'
 const initialState = {
     hash: localStorage.getItem('hash'),
     language: 'en',
+    geolocation: {
+        latitude: null,
+        longitude: null
+    },
     questions: [],
     answers: {
         country: {value: 'US'},
@@ -28,7 +32,7 @@ const hashReducer = (state = initialState.hash, action) => {
         case 'HASH_RECEIVED':
             const {hash} = action.result;
             localStorage.setItem('hash', hash);
-            return Object.assign({}, state, { hash });
+            return hash;
         default:
             return state;
     }
@@ -43,6 +47,15 @@ const languageReducer = (state = initialState.language, action) => {
                 case 'ES': language = 'es'; break;
             }
             return language;
+        default:
+            return state;
+    }
+};
+
+const geolocationReducer = (state = initialState.geolocation, action) => {
+    switch(action.type) {
+        case 'GEOLOCATION_SET':
+            return Object.assign({}, state, action.data);
         default:
             return state;
     }
@@ -64,7 +77,7 @@ const answersReducer = (state = initialState.answers, action) => {
             const questions = action.result;
             questions.forEach((question) => {
                 if (question.type === 'slider') {
-                    Object.assign(defaultAnswers, {[question.id] : 10})
+                    Object.assign(defaultAnswers, {[question.id] : {answer: 6}})
                 }
             });
             return Object.assign({}, state, defaultAnswers);
@@ -150,6 +163,7 @@ export default combineReducers({
     form: formReducer,
     hash: hashReducer,
     language: languageReducer,
+    geolocation: geolocationReducer,
     questions: questionsReducer,
     answers: answersReducer,
     instructions: instructionsReducer,

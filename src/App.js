@@ -16,6 +16,20 @@ import './faIcons';
 import {Loading} from "./Components/Loading";
 import {Survey} from "./Survey";
 
+const getGeolocation = () => {
+    if(navigator.geolocation) {
+        function success(position) {
+            const latitude  = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            action('GEOLOCATION_SET', {latitude, longitude});
+        }
+        function error() {}
+        navigator.geolocation.getCurrentPosition(success, error);
+    }
+};
+
+getGeolocation();
+
 function App(props) {
     const hash = useSelector(state => state.hash);
     const questions = useSelector(state => state.questions);
