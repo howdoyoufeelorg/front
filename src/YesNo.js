@@ -1,4 +1,5 @@
 import React, {useState, useEffect}  from 'react';
+import {useSelector} from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import Button from "@material-ui/core/Button";
@@ -20,11 +21,17 @@ function NoButton(props)
 {
     const classes = useNoStyles();
     const {state, onClick} = props;
+    const language = useSelector(state => state.language);
+    let label;
+    switch (language) {
+        case 'en': label = 'NO'; break;
+        case 'es': label = 'NO'; break;
+    }
     return (
         <Button variant="contained" onClick={() => onClick()} className={classNames(classes.root, {
             [classes.selected]: state === false,
         })} >
-            No
+            {label}
         </Button>
     )
 }
@@ -44,11 +51,17 @@ function YesButton(props)
 {
     const classes = useYesStyles();
     const {state, onClick} = props;
+    const language = useSelector(state => state.language);
+    let label;
+    switch (language) {
+        case 'en': label = 'YES'; break;
+        case 'es': label = 'SI'; break;
+    }
     return (
         <Button variant="contained" onClick={() => onClick()} className={classNames(classes.root, {
             [classes.selected]: state === true,
         })} >
-            Yes
+            {label}
         </Button>
     )
 }
@@ -67,6 +80,7 @@ const useStyles = makeStyles({
 export function YesNo(props) {
     const {question} = props;
     const [state, setState] = useState(null);
+    const language = useSelector(state => state.language);
     const classes = useStyles();
     let additionalDataInput;
     if (question.additionalDataType === 'slider') {
@@ -81,7 +95,7 @@ export function YesNo(props) {
     return (
         <>
             <div className={classes.mainQuestion}>
-                <div className={classes.questionTitle}>{question.label}</div>
+                <div className={classes.questionTitle}>{question.labels[language]}</div>
                 <NoButton onClick={() => {
                     action('ANSWER_SET', {questionId: question.id, data: {answer: 'NO'} });
                     setState(false);
@@ -94,7 +108,7 @@ export function YesNo(props) {
             {
                 state && question.requiresAdditionalData ?
                     <div className={classes.additionalData}>
-                        <div className={classes.questionTitle}>{question.additionalDataLabel}</div>
+                        <div className={classes.questionTitle}>{question.additionalDataLabels[language]}</div>
                         { additionalDataInput }
                     </div>
                     :

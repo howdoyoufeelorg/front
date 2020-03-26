@@ -85,7 +85,7 @@ export function Survey()
                 <ReactFlagsSelect defaultCountry="US" searchable={true} searchPlaceholder="Search for Language"
                                   selectedSize={18} optionsSize={18} countries={['US', 'ES']}
                                   customLabels={{"US": "US English", "ES": "Spanish"}}
-                                  onSelect={(value) => console.log(value)} />
+                                  onSelect={(value) => action('LANGUAGE_SET', {language: value})} />
             </DialogTitle>
             <DialogContent className={classes.surveyContent}>
                 {

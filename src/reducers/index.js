@@ -3,6 +3,7 @@ import { reducer as formReducer } from 'redux-form'
 
 const initialState = {
     hash: localStorage.getItem('hash'),
+    language: 'en',
     questions: [],
     answers: {
         country: {value: 'US'},
@@ -28,6 +29,20 @@ const hashReducer = (state = initialState.hash, action) => {
             const {hash} = action.result;
             localStorage.setItem('hash', hash);
             return Object.assign({}, state, { hash });
+        default:
+            return state;
+    }
+};
+
+const languageReducer = (state = initialState.language, action) => {
+    switch(action.type) {
+        case 'LANGUAGE_SET':
+            let {language} = action.data;
+            switch(language) {
+                case 'US': language = 'en'; break;
+                case 'ES': language = 'es'; break;
+            }
+            return language;
         default:
             return state;
     }
@@ -134,6 +149,7 @@ const hashReadyReducer = (state = initialState.hashReady, action) => {
 export default combineReducers({
     form: formReducer,
     hash: hashReducer,
+    language: languageReducer,
     questions: questionsReducer,
     answers: answersReducer,
     instructions: instructionsReducer,

@@ -1,4 +1,5 @@
 import React, {useState, useEffect}  from 'react';
+import {useSelector} from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import {Slider as MaterialSlider} from "@material-ui/core";
@@ -19,6 +20,7 @@ const useStyles = makeStyles({
 export function Slider(props)
 {
     const { question } = props;
+    const language = useSelector(state => state.language);
     const classes = useStyles();
     const defaultValue = 10;
     return (
@@ -27,7 +29,7 @@ export function Slider(props)
                             onChange={
                                 (event, value) => action('ANSWER_SET', {questionId: question.id, data: {answer: value} })
                             }/>
-            <Typography className={classes.questionTitle}>{question.label}</Typography>
+            <Typography className={classes.questionTitle}>{question.labels[language]}</Typography>
         </div>
     )
 }
