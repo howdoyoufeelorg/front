@@ -50,6 +50,14 @@ const surveyStyles = makeStyles({
     },
     strecher: {
         height: 160
+    },
+    flagDropdown: {
+        '& img.flag-select__option__icon': {
+            fontSize: 20
+        },
+        '& span.flag-select__option__label': {
+            fontSize: '1.2em'
+        }
     }
 });
 
@@ -88,7 +96,7 @@ export function Survey()
             <DialogTitle className={classes.surveyTitle} disableTypography>
                 <div className={classes.surveyTitleText}>How Do You Feel?</div>
                 <ReactFlagsSelect defaultCountry="US" searchable={true} searchPlaceholder="Search for Language"
-                                  selectedSize={18} optionsSize={18} countries={['US', 'ES']}
+                                  countries={['US', 'ES']} className={classes.flagDropdown}
                                   customLabels={{"US": "US English", "ES": "Spanish"}}
                                   onSelect={(value) => action('LANGUAGE_SET', {language: value})} />
             </DialogTitle>
@@ -100,7 +108,8 @@ export function Survey()
                         </div>
                     ))
                 }
-                <ReactFlagsSelect defaultCountry="US" searchable={true} searchPlaceholder="Search for a country" selectedSize={18} optionsSize={18}
+                <ReactFlagsSelect defaultCountry="US" searchable={true} searchPlaceholder="Search for a country"
+                                  className={classes.flagDropdown}
                                   onSelect={(value) => action('ANSWER_SET', {questionId: "country", data: {value: value}})}
                 />
                 <div>
