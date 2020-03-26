@@ -1,6 +1,6 @@
 import React, {useState, useEffect}  from 'react';
 import {useSelector} from "react-redux";
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import {Slider as MaterialSlider} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
@@ -37,6 +37,36 @@ const marks = [
     },
 ];
 
+const PrettoSlider = withStyles({
+    root: {
+        color: '#000000',
+        height: 8,
+    },
+    thumb: {
+        height: 24,
+        width: 24,
+        backgroundColor: '#fff',
+        border: '2px solid currentColor',
+        marginTop: -8,
+        marginLeft: -12,
+        '&:focus, &:hover, &$active': {
+            boxShadow: 'inherit',
+        },
+    },
+    active: {},
+    valueLabel: {
+        left: 'calc(-50% + 4px)',
+    },
+    track: {
+        height: 8,
+        borderRadius: 4,
+    },
+    rail: {
+        height: 8,
+        borderRadius: 4,
+    },
+})(MaterialSlider);
+
 export function Slider(props)
 {
     const { question } = props;
@@ -45,7 +75,7 @@ export function Slider(props)
     const defaultValue = 6;
     return (
         <div className={classes.mainQuestion}>
-            <MaterialSlider min={1} max={10} defaultValue={defaultValue} valueLabelDisplay="auto" marks={marks}
+            <PrettoSlider min={1} max={10} defaultValue={defaultValue} valueLabelDisplay="auto" marks={marks}
                             onChange={
                                 (event, value) => action('ANSWER_SET', {questionId: question.id, data: {answer: value} })
                             }/>

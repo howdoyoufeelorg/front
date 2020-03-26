@@ -56,14 +56,16 @@ const surveyStyles = makeStyles({
 const submitSurvey = (questions, answers) => {
     let required = questions.filter((question) => question.required === true);
     Object.keys(answers).forEach((key) => {
-        const question = required.find((question) => question.id === parseInt(key));
-        if(question && question.requiresAdditionalData) {
-            if(answers[key].answer === 'NO' || (typeof(answers[key].additionalData) !== 'undefined' && answers[key].additionalData!=='') ) {
-                required = required.filter((question) => question.id !== parseInt(key));
-            }
-        } else {
-            required = required.filter((question) => question.id !== parseInt(key));
-        }
+        required = required.filter((question) => question.id !== parseInt(key));
+        // The code below was able to monitor Additional Data - in case it ever becomes Required
+        // const question = required.find((question) => question.id === parseInt(key));
+        // if(question && question.requiresAdditionalData) {
+        //     if(answers[key].answer === 'NO' || (typeof(answers[key].additionalData) !== 'undefined' && answers[key].additionalData!=='') ) {
+        //         required = required.filter((question) => question.id !== parseInt(key));
+        //     }
+        // } else {
+        //     required = required.filter((question) => question.id !== parseInt(key));
+        // }
     });
     if(required.length) {
         alert('You have to give answers to all required questions!')
