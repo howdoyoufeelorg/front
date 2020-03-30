@@ -1,3 +1,10 @@
+HowDoYouFeel.org - FRONT component
+=========================
+
+Front for HowDoYouFeel.org - works in conjunction with other components of the project, 
+but it can be developed and used on it's own. Based on React, Redux, Saga, and Redux-Form. 
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
