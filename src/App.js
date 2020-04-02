@@ -15,6 +15,10 @@ import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import './faIcons';
 import {Loading} from "./Components/Loading";
 import {Survey} from "./Survey";
+import {Disclaimer} from "./Disclaimer";
+import {Emergency} from "./Emergency";
+import {Instructions} from "./Instructions";
+import {Call911} from "./Call911";
 
 const getGeolocation = () => {
     if(navigator.geolocation) {
@@ -31,8 +35,21 @@ const getGeolocation = () => {
 getGeolocation();
 
 function App(props) {
+    const {classes} = props;
     const hash = useSelector(state => state.hash);
     const questions = useSelector(state => state.questions);
+
+    const [stage, setStage] = useState(0);
+    const renderStage = (stage) => {
+        switch(stage) {
+            case 0: return <Disclaimer onClose={() => setStage(1)}/>;
+            case 1: return <Emergency onClose={(response) => response === true ? setStage(9) : setStage(2)}/>;
+            case 2: return <Survey onClose={() => setStage(3)}/>;
+            case 3: return <Instructions />;
+            case 9: return <Call911 />;
+        }
+    };
+
     useEffect(() => {
             if (!hash) {
                 action('GET_HASH');
@@ -42,7 +59,7 @@ function App(props) {
     if (hash == null || questions === []) {
         return (<Loading/>)
     }
-    const {classes} = props;
+
     return (
         <>
             <CssBaseline/>
@@ -62,7 +79,7 @@ function App(props) {
             </AppBar>
             <div className={classes.appWrapper}>
             </div>
-            <Survey className={classes.Survey}/>
+            { renderStage(stage) }
             <AjaxInProgressDialog/>
             <AjaxFailureDialog/>
         </>

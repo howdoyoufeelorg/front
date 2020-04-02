@@ -47,8 +47,5 @@ export const styles = theme => ({
     },
     Spread: {
         flexGrow: 1
-    },
-    Survey: {
-
     }
 });

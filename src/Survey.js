@@ -86,13 +86,20 @@ const submitSurvey = (questions, answers) => {
     }
 };
 
-export function Survey()
+export function Survey(props)
 {
     const classes = surveyStyles();
     const questions = useSelector(state => state.questions);
     const answers = useSelector(state => state.answers);
+    const [open, setOpen] = useState(true);
+    const { onClose } = props;
+    const onButtonClick = () => {
+        submitSurvey(questions, answers);
+        setOpen(false);
+        onClose();
+    };
     return (
-        <Dialog open={true} fullWidth={true} maxWidth={"md"} disableBackdropClick >
+        <Dialog open={open} fullWidth={true} maxWidth={"md"} disableBackdropClick >
             <DialogTitle className={classes.surveyTitle} disableTypography>
                 <div className={classes.surveyTitleText}>How Do You Feel?</div>
                 <ReactFlagsSelect defaultCountry="US" searchable={true} searchPlaceholder="Search for Language"
@@ -118,7 +125,7 @@ export function Survey()
                 <div className={classes.strecher}>&nbsp;</div>
             </DialogContent>
             <DialogActions className={classes.surveyActions}>
-                <Button type="button" onClick={() => submitSurvey(questions, answers)} className={classes.submitButton} variant={"contained"} size={"large"}>SUBMIT</Button>
+                <Button type="button" onClick={() => onButtonClick()} className={classes.submitButton} variant={"contained"} size={"large"}>SUBMIT</Button>
             </DialogActions>
         </Dialog>
     );
