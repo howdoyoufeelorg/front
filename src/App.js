@@ -99,7 +99,7 @@ function App(props) {
                     </Layer>
                 </Map>;
             </div>
-            {/*{ renderStage(stage) }*/}
+            { renderStage(stage) }
             <AjaxInProgressDialog/>
             <AjaxFailureDialog/>
         </>

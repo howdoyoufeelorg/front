@@ -30,5 +30,5 @@ export const theme = createMuiTheme({
     loginGrey: '#56585A',
     contextMenuGrey: 'rgb(209,209,209)',
     globalRadius: 12,
-    appBarHeight: 110,
+    appBarHeight: 64,
 });
