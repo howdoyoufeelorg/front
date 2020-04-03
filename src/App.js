@@ -19,6 +19,12 @@ import {Disclaimer} from "./Disclaimer";
 import {Emergency} from "./Emergency";
 import {Instructions} from "./Instructions";
 import {Call911} from "./Call911";
+import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+
+const Map = ReactMapboxGl({
+    accessToken:
+        'pk.eyJ1Ijoidmtvc3QiLCJhIjoiY2s4and4M3pwMDAxZzNybW42Y25ieGc0cCJ9.f6HBCu8LQjhxik2EN7E4pg'
+});
 
 const getGeolocation = () => {
     if(navigator.geolocation) {
@@ -56,6 +62,7 @@ function App(props) {
             }
             action('QUESTIONS_LOAD');
         }, []);
+
     if (hash == null || questions === []) {
         return (<Loading/>)
     }
@@ -78,8 +85,21 @@ function App(props) {
                 </Toolbar>
             </AppBar>
             <div className={classes.appWrapper}>
+                <Map
+                    style="mapbox://styles/mapbox/streets-v9"
+                    containerStyle={{
+                        height: '100vh',
+                        width: '100vw'
+                    }}
+                    center={[0,0]}
+                    zoom={[1]}
+                >
+                    <Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-15' }}>
+                        <Feature coordinates={[-0.481747846041145, 51.3233379650232]} />
+                    </Layer>
+                </Map>;
             </div>
-            { renderStage(stage) }
+            {/*{ renderStage(stage) }*/}
             <AjaxInProgressDialog/>
             <AjaxFailureDialog/>
         </>

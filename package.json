@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "13.x",
+    "node": "12.x",
     "yarn": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
@@ -17,11 +17,13 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "classnames": "^2.2.6",
+    "mapbox-gl": "^1.9.1",
     "node-sass": "^4.13.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-flags-select": "^1.1.12",
     "react-hot-loader": "^4.12.20",
+    "react-mapbox-gl": "^4.8.3",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
