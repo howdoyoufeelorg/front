@@ -80,7 +80,7 @@ function App(props) {
                         How Do You Feel?
                     </Typography>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon fontSize={"2.5rem"} />
+                        <MenuIcon />
                     </IconButton>
                 </Toolbar>
             </AppBar>
