@@ -45,7 +45,9 @@ function App(props) {
     const hash = useSelector(state => state.hash);
     const questions = useSelector(state => state.questions);
 
-    const [stage, setStage] = useState(0);
+    const initialStage = parseInt(process.env.REACT_APP_INITIAL_STAGE) || 0;
+
+    const [stage, setStage] = useState(initialStage);
     const renderStage = (stage) => {
         switch(stage) {
             case 0: return <Disclaimer onClose={() => setStage(1)}/>;

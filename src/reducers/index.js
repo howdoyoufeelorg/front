@@ -2,7 +2,7 @@ import {combineReducers} from "redux";
 import { reducer as formReducer } from 'redux-form'
 
 const initialState = {
-    hash: localStorage.getItem('hash'),
+    hash: localStorage.getItem('hdyf_hash'),
     language: 'en',
     geolocation: {
         latitude: null,
@@ -14,10 +14,11 @@ const initialState = {
         zipcode: {value: ''}
     },
     instructions: [],
+    resources: {},
     ajax: {
         ajaxInProgress: false,
         ajaxFailed: false,
-        ajaxError: ''
+        ajaxError: '',
     },
     dialogs: {
         someDialogOpen: false,
@@ -31,7 +32,7 @@ const hashReducer = (state = initialState.hash, action) => {
     switch(action.type) {
         case 'HASH_RECEIVED':
             const {hash} = action.result;
-            localStorage.setItem('hash', hash);
+            localStorage.setItem('hdyf_hash', hash);
             return hash;
         default:
             return state;
@@ -102,6 +103,15 @@ const instructionsReducer = (state = initialState.instructions, action) => {
     }
 };
 
+const resourcesReducer = (state = initialState.resources, action) => {
+    switch(action.type) {
+        case 'RESOURCES_RECEIVED':
+            return Object.assign({}, state, action.result);
+        default:
+            return state;
+    }
+};
+
 const ajaxReducer = (state = initialState.ajax, action) => {
     switch(action.type) {
         case 'AJAX_START':
@@ -167,6 +177,7 @@ export default combineReducers({
     questions: questionsReducer,
     answers: answersReducer,
     instructions: instructionsReducer,
+    resources: resourcesReducer,
     ajax: ajaxReducer,
     dialogs: dialogsReducer,
     error: errorReducer,

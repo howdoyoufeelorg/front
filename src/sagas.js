@@ -87,7 +87,7 @@ function* questionsLoadSilently({data}) {
 
 function* instructionsLoad({data}) {
     yield put({ type: 'AJAX_START' });
-    yield put({type: 'INSTRUCTIONS_LOAD_SILENTLY'});
+    yield put({type: 'INSTRUCTIONS_LOAD_SILENTLY', });
     yield delay(10000);
     const ajax = yield select(state => state.ajax );
     if(ajax.ajaxFailed !== false) yield put({ type: 'AJAX_END' });
@@ -95,12 +95,14 @@ function* instructionsLoad({data}) {
 
 function* instructionsLoadSilently({data}) {
     try {
+        const hash = yield select(state => state.hash );
         yield put({type: 'DATA_NOT_READY'});
-        const [instructions] = yield all([
-            call(api.getInstructions, data),
+        const [data] = yield all([
+            call(api.getInstructions, {hash}),
         ]);
         yield all([
-            put({ type:'INSTRUCTIONS_RECEIVED', result: instructions}),
+            put({ type:'INSTRUCTIONS_RECEIVED', result: data.instructions}),
+            put({ type:'RESOURCES_RECEIVED', result: data.resources}),
         ]);
         yield put({type: 'DATA_READY'});
         yield put({ type: 'AJAX_SUCCESS' });

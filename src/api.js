@@ -150,5 +150,5 @@ export const api = {
     getHash: () => vkGet('/get-hash'),
     postSurvey: (data) => vkPost('/post-survey', data),
     getQuestions: () => vkGet('/get-questions'),
-    getInstructions: () => vkGet('/get-instructions'),
+    getInstructions: (data) => vkPost('/get-instructions', data),
 };
