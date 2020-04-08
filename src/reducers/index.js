@@ -1,6 +1,8 @@
 import {combineReducers} from "redux";
 import { reducer as formReducer } from 'redux-form'
 
+import {elements} from '../translations';
+
 const initialState = {
     hash: localStorage.getItem('hdyf_hash'),
     language: 'en',
@@ -26,6 +28,8 @@ const initialState = {
     error: {},
     dataReady: false,
     hashReady: false,
+    elementsReady: false,
+    elements: elements
 };
 
 const hashReducer = (state = initialState.hash, action) => {
@@ -169,6 +173,28 @@ const hashReadyReducer = (state = initialState.hashReady, action) => {
     }
 };
 
+// Not being used at the moment - the element translations are hardcoded into the app (see translations.js)
+const elementsReadyReducer = (state = initialState.elementsReady, action) => {
+    switch(action.type) {
+        case 'ELEMENTS_READY':
+            return true;
+        case 'ELEMENTS_NOT_READY':
+            return false;
+        default:
+            return state;
+    }
+};
+
+// Not being used at the moment - the element translations are hardcoded into the app (see translations.js)
+const elementsReducer = (state = initialState.elements, action) => {
+    switch(action.type) {
+        case 'ELEMENTS_RECEIVED':
+            return action.result;
+        default:
+            return state;
+    }
+};
+
 export default combineReducers({
     form: formReducer,
     hash: hashReducer,
@@ -183,4 +209,6 @@ export default combineReducers({
     error: errorReducer,
     dataReady: dataReadyReducer,
     hashReady: hashReadyReducer,
+    elementsReady: elementsReadyReducer,
+    elements: elementsReducer,
 });

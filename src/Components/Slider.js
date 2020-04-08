@@ -1,11 +1,10 @@
-import React, {useState, useEffect}  from 'react';
+import React  from 'react';
 import {useSelector} from "react-redux";
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
 import {Slider as MaterialSlider} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import {action} from "./sagas";
-import {EmojiFrownIcon, EmojiGrinIcon, EmojiMehIcon, EmojiSmileIcon} from "./icons";
+import {action} from "../sagas";
+import {EmojiFrownIcon, EmojiGrinIcon, EmojiMehIcon, EmojiSmileIcon} from "../icons";
 
 const useStyles = makeStyles({
     mainQuestion: {

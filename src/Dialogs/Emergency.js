@@ -1,11 +1,10 @@
-import React, {useState, useEffect}  from 'react';
+import React, {useState}  from 'react';
 import {useSelector} from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from "@material-ui/core/Dialog";
 import {DialogTitle, DialogContent, DialogActions} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import ReactFlagsSelect from 'react-flags-select';
-import {action} from "./sagas";
+import {LanguageSelector} from "../Components/LanguageSelector";
 
 const surveyStyles = makeStyles({
     root: {
@@ -48,25 +47,29 @@ const surveyStyles = makeStyles({
 });
 
 
-export function Call911(props)
+export function Emergency(props)
 {
     const classes = surveyStyles();
     const [open, setOpen] = useState(true);
+    const { onClose } = props;
+    const onButtonClick = (response) => {
+        setOpen(false);
+        onClose(response);
+    };
+    const {dialog_emergency_title, dialog_emergency_content, button_yes, button_no} = useSelector(state => state.elements);
+    const language = useSelector(state => state.language);
     return (
         <Dialog open={open} fullWidth={true} maxWidth={"md"} disableBackdropClick >
             <DialogTitle className={classes.surveyTitle} disableTypography>
-                <div className={classes.surveyTitleText}>How Do You Feel?</div>
-                <ReactFlagsSelect defaultCountry="US" searchable={true} searchPlaceholder="Search for Language"
-                                  countries={['US', 'ES']} className={classes.flagDropdown}
-                                  customLabels={{"US": "US English", "ES": "Spanish"}}
-                                  onSelect={(value) => action('LANGUAGE_SET', {language: value})} />
+                <div className={classes.surveyTitleText}>{dialog_emergency_title[language]}</div>
+                <LanguageSelector/>
             </DialogTitle>
             <DialogContent className={classes.surveyContent}>
-                CALL 911 RIGHT NOW
-                This needs to be loaded from the backend so we can supply translated texts
+                {dialog_emergency_content[language]}
             </DialogContent>
             <DialogActions className={classes.surveyActions}>
-                <Button type="button" onClick={() => setOpen(false)} className={classes.submitButton} variant={"contained"} size={"large"}>CLOSE</Button>
+                <Button type="button" onClick={() => onButtonClick(true)} className={classes.submitButton} variant={"contained"} size={"large"}>{button_yes[language]}</Button>
+                <Button type="button" onClick={() => onButtonClick(false)} className={classes.submitButton} variant={"contained"} size={"large"}>{button_no[language]}</Button>
             </DialogActions>
         </Dialog>
     );

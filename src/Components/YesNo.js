@@ -1,11 +1,11 @@
-import React, {useState, useEffect}  from 'react';
+import React, {useState}  from 'react';
 import {useSelector} from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import Button from "@material-ui/core/Button";
 import {Slider} from "./Slider";
 import {TextField} from "@material-ui/core";
-import {action} from "./sagas";
+import {action} from "../sagas";
 
 const useNoStyles = makeStyles({
     root: {

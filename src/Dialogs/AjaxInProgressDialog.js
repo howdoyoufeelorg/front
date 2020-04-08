@@ -2,7 +2,7 @@ import React from "react";
 import { Dialog, makeStyles } from "@material-ui/core";
 import {CircularProgress} from "@material-ui/core";
 import {connect} from "react-redux"
-import { styles } from "./SSDialog_Styles"
+import { styles } from "./AjaxDialogCommonStyles"
 
 const useStyles = makeStyles((theme) => ({
     ...styles(theme),

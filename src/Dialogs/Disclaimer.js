@@ -1,11 +1,10 @@
-import React, {useState, useEffect}  from 'react';
+import React, {useState}  from 'react';
 import {useSelector} from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from "@material-ui/core/Dialog";
 import {DialogTitle, DialogContent, DialogActions} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import ReactFlagsSelect from 'react-flags-select';
-import {action} from "./sagas";
+import {LanguageSelector} from "../Components/LanguageSelector";
 
 const surveyStyles = makeStyles({
     root: {
@@ -57,21 +56,19 @@ export function Disclaimer(props)
         setOpen(false);
         onClose();
     };
+    const {dialog_disclaimer_title, dialog_disclaimer_content, button_start} = useSelector(state => state.elements);
+    const language = useSelector(state => state.language);
     return (
         <Dialog open={open} fullWidth={true} maxWidth={"md"} disableBackdropClick >
             <DialogTitle className={classes.surveyTitle} disableTypography>
-                <div className={classes.surveyTitleText}>How Do You Feel?</div>
-                <ReactFlagsSelect defaultCountry="US" searchable={true} searchPlaceholder="Search for Language"
-                                  countries={['US', 'ES']} className={classes.flagDropdown}
-                                  customLabels={{"US": "US English", "ES": "Spanish"}}
-                                  onSelect={(value) => action('LANGUAGE_SET', {language: value})} />
+                <div className={classes.surveyTitleText}>{dialog_disclaimer_title[language]}</div>
+                <LanguageSelector/>
             </DialogTitle>
             <DialogContent className={classes.surveyContent}>
-                DISCLAIMER: By using this tool... etc etc
-                This needs to be loaded from the backend so we can supply translated texts
+                {dialog_disclaimer_content[language]}
             </DialogContent>
             <DialogActions className={classes.surveyActions}>
-                <Button type="button" onClick={() => onButtonClick()} className={classes.submitButton} variant={"contained"} size={"large"}>START</Button>
+                <Button type="button" onClick={() => onButtonClick()} className={classes.submitButton} variant={"contained"} size={"large"}>{button_start[language]}</Button>
             </DialogActions>
         </Dialog>
     );

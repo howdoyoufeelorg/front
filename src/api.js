@@ -149,6 +149,7 @@ export const api = {
     test: () => vkGet('/test'),
     getHash: () => vkGet('/get-hash'),
     postSurvey: (data) => vkPost('/post-survey', data),
+    getElements: () => vkGet('/get-elements'),
     getQuestions: () => vkGet('/get-questions'),
     getInstructions: (data) => vkPost('/get-instructions', data),
 };

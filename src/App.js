@@ -1,5 +1,4 @@
 import React, {useState, useEffect}  from 'react';
-import classNames from 'classnames';
 import {styles} from './App_Styles';
 import {
     withStyles,
@@ -11,14 +10,14 @@ import AjaxInProgressDialog from "./Dialogs/AjaxInProgressDialog";
 import AjaxFailureDialog from "./Dialogs/AjaxFailureDialog";
 import {action} from './sagas';
 import {hot} from "react-hot-loader";
-import { shallowEqual, useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import './faIcons';
 import {Loading} from "./Components/Loading";
-import {Survey} from "./Survey";
-import {Disclaimer} from "./Disclaimer";
-import {Emergency} from "./Emergency";
-import {Instructions} from "./Instructions";
-import {Call911} from "./Call911";
+import {Survey} from "./Dialogs/Survey";
+import {Disclaimer} from "./Dialogs/Disclaimer";
+import {Emergency} from "./Dialogs/Emergency";
+import {Instructions} from "./Dialogs/Instructions";
+import {Call911} from "./Dialogs/Call911";
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 
 const Map = ReactMapboxGl({
@@ -59,13 +58,15 @@ function App(props) {
     };
 
     useEffect(() => {
-            if (!hash) {
-                action('GET_HASH');
-            }
-            action('QUESTIONS_LOAD');
-        }, []);
+        if (!hash) {
+            action('GET_HASH');
+        }
+        // Enable this if you decide to load translations from the backend -
+        // currently they're hardcoded in translations.js
+        // action('ELEMENTS_LOAD');
+    }, []);
 
-    if (hash == null || questions === []) {
+    if (hash == null) {
         return (<Loading/>)
     }
 

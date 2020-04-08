@@ -2,11 +2,8 @@ import { put, takeEvery, all, call, select } from 'redux-saga/effects'
 import store from "./store";
 import {api} from './api';
 import AjaxError from "./errors/AjaxError";
-import {getHydraItemByName} from "./utils";
 
 const delay = (ms) => new Promise(res => setTimeout(res, ms));
-
-const sagaDebug = false;
 
 function* handleAjaxError({e})  {
     if(e instanceof AjaxError && e.httpErrorCode === 401) {
@@ -60,6 +57,21 @@ function* postSurvey() {
     if(ajax.ajaxFailed !== false) yield put({ type: 'AJAX_END' });
 }
 
+function* elementsLoad({data}) {
+    try {
+        yield put({type: 'ELEMENTS_NOT_READY'});
+        const [elements] = yield all([
+            call(api.getElements, data),
+        ]);
+        yield all([
+            put({ type: 'ELEMENTS_RECEIVED', result: elements}),
+        ]);
+        yield put({type: 'ELEMENTS_READY'});
+        yield put({ type: 'AJAX_SUCCESS' });
+    } catch (e) {
+        yield put({type: 'HANDLE_AJAX_ERROR', e});
+    }
+}
 
 function* questionsLoad({data}) {
     yield put({ type: 'AJAX_START' });
@@ -112,10 +124,11 @@ function* instructionsLoadSilently({data}) {
     }
 }
 
-function* watchSurveyActions() {
+function* watchActions() {
     yield takeEvery('GET_HASH', getHash);
     yield takeEvery('GET_HASH_SILENTLY', getHashSilently);
     yield takeEvery('POST_SURVEY', postSurvey);
+    yield takeEvery('ELEMENTS_LOAD', elementsLoad);
     yield takeEvery('QUESTIONS_LOAD', questionsLoad);
     yield takeEvery('QUESTIONS_LOAD_SILENTLY', questionsLoadSilently);
     yield takeEvery('INSTRUCTIONS_LOAD', instructionsLoad);
@@ -126,7 +139,7 @@ function* watchSurveyActions() {
 
 export function* rootSaga() {
     yield all([
-        watchSurveyActions(),
+        watchActions(),
         // Add more as needed
     ])
 }
