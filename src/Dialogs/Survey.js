@@ -11,6 +11,8 @@ import TextField from "@material-ui/core/TextField";
 import {action} from "../sagas";
 import {LanguageSelector} from "../Components/LanguageSelector";
 import AjaxInProgressDialog from "./AjaxInProgressDialog";
+import {styles} from "./HdyfDialogCommonStyles"
+
 
 function Question(props)
 {
@@ -23,29 +25,11 @@ function Question(props)
     }
 }
 
-const surveyStyles = makeStyles({
-    root: {
+const useStyles = makeStyles(Object.assign({}, styles, {
 
-    },
-    surveyTitle: {
-        display: 'flex',
-        justifyContent: 'space-between'
-    },
-    surveyTitleText: {
-        fontSize: 30,
-    },
-    surveyContent: {
-        padding: 40
-    },
-    surveyActions: {
-        padding: [[20,20]]
-    },
     question: {
         display: 'flex',
         marginBottom: 25
-    },
-    submitButton: {
-        width: "50%"
     },
     zipCode: {
         fontSize: "1.6rem"
@@ -61,11 +45,11 @@ const surveyStyles = makeStyles({
             fontSize: '1.2em'
         }
     }
-});
+}));
 
 export function Survey(props)
 {
-    const classes = surveyStyles();
+    const classes = useStyles();
     const questions = useSelector(state => state.questions);
     const answers = useSelector(state => state.answers);
     const [open, setOpen] = useState(true);
@@ -110,11 +94,11 @@ export function Survey(props)
 
     return (
         <Dialog open={open} fullWidth={true} maxWidth={"md"} disableBackdropClick >
-            <DialogTitle className={classes.surveyTitle} disableTypography>
-                <div className={classes.surveyTitleText}>{dialog_survey_title[language]}</div>
+            <DialogTitle className={classes.title} disableTypography>
+                <div className={classes.titleText}>{dialog_survey_title[language]}</div>
                 <LanguageSelector/>
             </DialogTitle>
-            <DialogContent className={classes.surveyContent}>
+            <DialogContent className={classes.content}>
                 {
                     questions.map((question, index) => (
                         <div className={classes.question} key={index}>
@@ -131,7 +115,7 @@ export function Survey(props)
                 </div>
                 <div className={classes.strecher}>&nbsp;</div>
             </DialogContent>
-            <DialogActions className={classes.surveyActions}>
+            <DialogActions className={classes.actions}>
                 <Button type="button" onClick={() => onButtonClick()} className={classes.submitButton} variant={"contained"} size={"large"}>{button_submit[language]}</Button>
             </DialogActions>
         </Dialog>

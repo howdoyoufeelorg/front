@@ -9,51 +9,14 @@ import AjaxInProgressDialog from "../Dialogs/AjaxInProgressDialog";
 import {Instruction} from "../Components/Instruction";
 import {TwitterResource} from "../Components/TwitterResource";
 import {LanguageSelector} from "../Components/LanguageSelector";
+import {styles} from "./HdyfDialogCommonStyles"
 
-const surveyStyles = makeStyles({
-    root: {
-
-    },
-    surveyTitle: {
-        display: 'flex',
-        justifyContent: 'space-between'
-    },
-    surveyTitleText: {
-        fontSize: 30,
-    },
-    surveyContent: {
-        padding: 40
-    },
-    surveyActions: {
-        padding: [[20,20]]
-    },
-    question: {
-        display: 'flex',
-        marginBottom: 25
-    },
-    submitButton: {
-        width: "50%"
-    },
-    zipCode: {
-        fontSize: "1.6rem"
-    },
-    strecher: {
-        height: 160
-    },
-    flagDropdown: {
-        '& img.flag-select__option__icon': {
-            fontSize: 20
-        },
-        '& span.flag-select__option__label': {
-            fontSize: '1.2em'
-        }
-    }
-});
+const useStyles = makeStyles(styles);
 
 
 export function Instructions()
 {
-    const classes = surveyStyles();
+    const classes = useStyles();
     const ajaxInProgress = useSelector(state => state.ajax.ajaxInProgress);
     const instructions = useSelector(state => state.instructions);
     const resources = useSelector(state => state.resources);
@@ -73,11 +36,11 @@ export function Instructions()
 
     return (
         <Dialog open={open} fullWidth={true} maxWidth={"md"} disableBackdropClick >
-            <DialogTitle className={classes.surveyTitle} disableTypography>
-                <div className={classes.surveyTitleText}>{dialog_instructions_title[language]}</div>
+            <DialogTitle className={classes.title} disableTypography>
+                <div className={classes.titleText}>{dialog_instructions_title[language]}</div>
                 <LanguageSelector/>
             </DialogTitle>
-            <DialogContent className={classes.surveyContent}>
+            <DialogContent className={classes.content}>
                 INSTRUCTIONS FOR YOUR AREA
                 <hr/>
                 {instructions.map((instruction, index) => <Instruction data={instruction} key={index} />)}
@@ -103,7 +66,7 @@ export function Instructions()
                 }
 
             </DialogContent>
-            <DialogActions className={classes.surveyActions}>
+            <DialogActions className={classes.actions}>
                 <Button type="button" onClick={() => setOpen(false)} className={classes.submitButton} variant={"contained"} size={"large"}>{button_close[language]}</Button>
             </DialogActions>
         </Dialog>
