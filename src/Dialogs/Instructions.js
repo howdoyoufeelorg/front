@@ -50,7 +50,7 @@ export function Instructions()
                     resources.area && resources.area.twitterResources.length ? <>
                         LATEST TWITTER POSTS FOR YOUR AREA
                         <hr/>
-                            {resources.area.twitterResources.map((profile, index) => <TwitterResource profile={profile} key={index} />)}
+                            {resources.area.twitterResources.map((data, index) => <TwitterResource profile={data.value} key={index} />)}
                         </>
                         :
                         ""
@@ -59,7 +59,7 @@ export function Instructions()
                     resources.state && resources.state.twitterResources.length ? <>
                             LATEST TWITTER POSTS FOR YOUR STATE
                             <hr/>
-                            {resources.state.twitterResources.map((profile, index) => <TwitterResource profile={profile} key={index} />)}
+                            {resources.state.twitterResources.map((data, index) => <TwitterResource profile={data.value} key={index} />)}
                         </>
                         :
                         ""
