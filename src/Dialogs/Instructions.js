@@ -13,6 +13,21 @@ import {styles} from "./HdyfDialogCommonStyles"
 
 const useStyles = makeStyles(styles);
 
+const hasResources = (resources) => {
+    let has = false;
+    Object.keys(resources).some((level) => {
+            Object.keys(level).some((resourceItem) => {
+                    if (resourceItem.length) {
+                        has = true;
+                    }
+                    return has;
+                }
+            )
+            return has;
+        }
+    )
+    return has;
+}
 
 export function Instructions()
 {
@@ -30,7 +45,7 @@ export function Instructions()
         }
     }, [ajaxInProgress]);
 
-    if (!instructions.length && !resources.length) {
+    if (!instructions.length && !hasResources(resources)) {
         return (<AjaxInProgressDialog/>)
     }
 
