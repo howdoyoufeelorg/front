@@ -6,6 +6,7 @@ import {DialogTitle, DialogContent, DialogActions} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import {LanguageSelector} from "../Components/LanguageSelector";
 import {styles} from "./HdyfDialogCommonStyles"
+import {useIsMobile} from "../Hooks/useIsMobile"
 
 const useStyles = makeStyles(styles);
 
@@ -14,6 +15,7 @@ export function Disclaimer(props)
 {
     const classes = useStyles();
     const [open, setOpen] = useState(true);
+    const isMobile = useIsMobile();
     const { onClose } = props;
     const onButtonClick = () => {
         setOpen(false);
@@ -24,7 +26,7 @@ export function Disclaimer(props)
     return (
         <Dialog open={open} fullWidth={true} maxWidth={"md"} disableBackdropClick >
             <DialogTitle className={classes.title} disableTypography>
-                <div className={classes.titleText}>{dialog_disclaimer_title[language]}</div>
+                <div className={classes.titleText}>{dialog_disclaimer_title[language]}{isMobile ? ' M' : ''}</div>
                 <LanguageSelector/>
             </DialogTitle>
             <DialogContent className={classes.content}>
