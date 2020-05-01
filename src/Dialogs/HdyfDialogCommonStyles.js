@@ -1,4 +1,4 @@
-export const styles = {
+export const styles = theme => ({
     root: {
 
     },
@@ -15,7 +15,21 @@ export const styles = {
     actions: {
         padding: [[20,20]]
     },
-    submitButton: {
-        width: "50%"
+    question: {
+        marginBottom: 25
     },
-}
+    zipCode: {
+        fontSize: "1.6rem"
+    },
+    strecher: {
+        height: 160
+    },
+    flagDropdown: {
+        '& img.flag-select__option__icon': {
+            fontSize: 20
+        },
+        '& span.flag-select__option__label': {
+            fontSize: '1.2em'
+        }
+    }
+})

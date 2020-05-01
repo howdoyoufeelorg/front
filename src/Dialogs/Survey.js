@@ -6,13 +6,13 @@ import {Entry} from "../Components/Entry";
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from "@material-ui/core/Dialog";
 import {DialogTitle, DialogContent, DialogActions} from "@material-ui/core";
-import Button from "@material-ui/core/Button";
 import ReactFlagsSelect from 'react-flags-select';
 import TextField from "@material-ui/core/TextField";
 import {action} from "../sagas";
 import {LanguageSelector} from "../Components/LanguageSelector";
 import AjaxInProgressDialog from "./AjaxInProgressDialog";
 import {styles} from "./HdyfDialogCommonStyles"
+import BlueButton from "../Components/BlueButton"
 
 
 function Question(props)
@@ -30,27 +30,7 @@ function Question(props)
     return null;
 }
 
-const useStyles = makeStyles(Object.assign({}, styles, {
-
-    question: {
-        display: 'flex',
-        marginBottom: 25
-    },
-    zipCode: {
-        fontSize: "1.6rem"
-    },
-    strecher: {
-        height: 160
-    },
-    flagDropdown: {
-        '& img.flag-select__option__icon': {
-            fontSize: 20
-        },
-        '& span.flag-select__option__label': {
-            fontSize: '1.2em'
-        }
-    }
-}));
+const useStyles = makeStyles(styles);
 
 export function Survey(props)
 {
@@ -121,7 +101,7 @@ export function Survey(props)
                 <div className={classes.strecher}>&nbsp;</div>
             </DialogContent>
             <DialogActions className={classes.actions}>
-                <Button type="button" onClick={() => onButtonClick()} className={classes.submitButton} variant={"contained"} size={"large"}>{button_submit[language]}</Button>
+                <BlueButton variant="default" onClick={() => onButtonClick()} size={"large"}>{button_submit[language]}</BlueButton>
             </DialogActions>
         </Dialog>
     );

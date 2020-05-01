@@ -1,29 +1,28 @@
 import React, {useState, useEffect}  from 'react';
-import {styles} from './App_Styles';
-import {
-    withStyles,
-    CssBaseline,
-    AppBar, Toolbar, IconButton, Typography
-} from "@material-ui/core";
+import {CssBaseline, AppBar, Toolbar, IconButton, Typography} from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
-import AjaxInProgressDialog from "./Dialogs/AjaxInProgressDialog";
-import AjaxFailureDialog from "./Dialogs/AjaxFailureDialog";
 import {action} from './sagas';
-import {hot} from "react-hot-loader";
 import { useSelector } from 'react-redux'
 import './faIcons';
+import AjaxInProgressDialog from "./Dialogs/AjaxInProgressDialog";
+import AjaxFailureDialog from "./Dialogs/AjaxFailureDialog";
 import {Loading} from "./Components/Loading";
 import {Survey} from "./Dialogs/Survey";
 import {Disclaimer} from "./Dialogs/Disclaimer";
 import {Emergency} from "./Dialogs/Emergency";
 import {Instructions} from "./Dialogs/Instructions";
 import {Call911} from "./Dialogs/Call911";
-import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
-
-const Map = ReactMapboxGl({
-    accessToken:
-        'pk.eyJ1Ijoidmtvc3QiLCJhIjoiY2s4and4M3pwMDAxZzNybW42Y25ieGc0cCJ9.f6HBCu8LQjhxik2EN7E4pg'
-});
+import {makeStyles} from "@material-ui/core/styles"
+import {useGetHash} from "./Hooks/useGetHash"
+import {useIsMobile} from "./Hooks/useIsMobile"
+import {MobileDisclaimer} from "./Dialogs/Mobile/MobileDisclaimer"
+import {MobileEmergency} from "./Dialogs/Mobile/MobileEmergency"
+import {MobileCall911} from "./Dialogs/Mobile/MobileCall911"
+import {MobileSurvey} from "./Dialogs/Mobile/MobileSurvey"
+import {MobileMap} from "./Dialogs/Mobile/MobileMap"
+import {HDYFMap} from "./Components/HDYFMap"
+import {MobileInstructions} from "./Dialogs/Mobile/MobileInstructions"
+import clsx from "clsx"
 
 const getGeolocation = () => {
     if(navigator.geolocation) {
@@ -39,32 +38,71 @@ const getGeolocation = () => {
 
 getGeolocation();
 
+const styles = theme => ({
+    root: {
+        flexGrow: 1,
+    },
+    offset: theme.mixins.toolbar,
+    mainBar: {
+        background: theme.backgroundBlue,
+        padding: [[0,20]],
+    },
+    mainBarDesktop: {
+        height: 64,
+    },
+    toolbarDesktop: {
+        justifyContent: "space-between"
+    },
+    menuButton: {
+        marginLeft: 12,
+        padding: 0
+    },
+    logoDesktop: {
+        height: 36
+    }
+})
+
+const useStyles = makeStyles(styles);
+
 function App(props) {
-    const {classes} = props;
-    const hash = useSelector(state => state.hash);
-    const questions = useSelector(state => state.questions);
-
-    const initialStage = parseInt(process.env.REACT_APP_INITIAL_STAGE) || 0;
-
-    const [stage, setStage] = useState(initialStage);
-    const renderStage = (stage) => {
-        switch(stage) {
-            case 0: return <Disclaimer onClose={() => setStage(1)}/>;
-            case 1: return <Emergency onClose={(response) => response === true ? setStage(9) : setStage(2)}/>;
-            case 2: return <Survey onClose={() => setStage(3)}/>;
-            case 3: return <Instructions />;
-            case 9: return <Call911 />;
-        }
-    };
-
+    const classes = useStyles();
+    const hash = useGetHash();
+    const isMobile = useIsMobile();
     useEffect(() => {
-        if (!hash) {
-            action('GET_HASH');
-        }
         // Enable this if you decide to load translations from the backend -
         // currently they're hardcoded in translations.js
         // action('ELEMENTS_LOAD');
     }, []);
+
+    const initialStage = parseInt(process.env.REACT_APP_INITIAL_STAGE) || 0;
+    const [stage, setStage] = useState(initialStage);
+    const renderStage = (stage) => {
+        switch(stage) {
+            case 0: return <Disclaimer onClose={() => setStage(stage+1)}/>;
+            case 1: return <Emergency onClose={(response) => response === true ? setStage(100) : setStage(stage+1)}/>;
+            //case 2: return <Survey onClose={() => setStage(stage+1)}/>;
+            case 99: return <Instructions />;
+            case 100: return <Call911 />;
+            default: return <Survey onClose={() => setStage(stage+1)}/>;
+        }
+    };
+    const renderMobileStage = (stage) => {
+        switch(stage) {
+            case 0: return <MobileDisclaimer onClose={() => setStage(stage+1)}/>;
+            case 1: return <MobileEmergency onClose={(response) => response === true ? setStage(100) : setStage(stage+1)}/>;
+            // case 2: return <MobileBasicInfo onClose={() => setStage(stage+1)}/>;
+            //case 2: return <MobileSurvey onClose={() => setStage(stage+1)}/>;
+            case 99: return <MobileInstructions />;
+            case 100: return <MobileCall911 onClose={() => setStage(stage+1)}/>;
+            case 101: return <MobileMap />
+            default: return <MobileSurvey
+                step={stage-1}
+                onNext={() => setStage(stage+1)}
+                onPrevious={() => setStage(stage-1)}
+                onClose={() => setStage(99)}
+            />;
+        }
+    }
 
     if (hash == null) {
         return (<Loading/>)
@@ -74,39 +112,28 @@ function App(props) {
         <>
             <CssBaseline/>
             <AppBar
+                className={clsx(classes.mainBar, !isMobile && classes.mainBarDesktop)}
                 position="fixed"
-                color="secondary"
                 elevation={0}
             >
-                <Toolbar disableGutters={true}>
-                    <Typography variant="h4" className={classes.title}>
-                        How Do You Feel?
-                    </Typography>
+                <Toolbar className={clsx(!isMobile && classes.toolbarDesktop)} disableGutters={true}>
+                    <img className={clsx(!isMobile && classes.logoDesktop)} src="HDYFLogoWhite@2x.png" alt="HowDoYouFeel?org"/>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon />
+                        <MenuIcon fontSize="large" />
                     </IconButton>
                 </Toolbar>
             </AppBar>
-            <div className={classes.appWrapper}>
-                <Map
-                    style="mapbox://styles/mapbox/streets-v9"
-                    containerStyle={{
-                        height: '100vh',
-                        width: '100vw'
-                    }}
-                    center={[0,0]}
-                    zoom={[1]}
-                >
-                    <Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-15' }}>
-                        <Feature coordinates={[-0.481747846041145, 51.3233379650232]} />
-                    </Layer>
-                </Map>;
-            </div>
-            { renderStage(stage) }
+            <div className={classes.offset} />
+            {!isMobile &&
+                <div className={classes.appWrapper}>
+                    <HDYFMap />
+                </div>
+            }
+            { isMobile ? renderMobileStage(stage) : renderStage(stage) }
             <AjaxInProgressDialog/>
             <AjaxFailureDialog/>
         </>
     );
 }
 
-export default hot(module)(withStyles(styles)(App));
+export default App;

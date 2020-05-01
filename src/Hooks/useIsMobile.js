@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
 
+const mobileCondition = () => {
+    // CSS-like conditions can be made using window.matchMedia, if needed
+    return window.innerWidth <= 500;
+}
+
 export const useIsMobile = () => {
-    const [isMobile, setIsMobile] = useState(null);
+    const [isMobile, setIsMobile] = useState(mobileCondition());
 
     const handleWindowSizeChange = () => {
-        // CSS-like conditions can be made using window.matchMedia, if needed
-        window.innerWidth <= 500 ? setIsMobile(true) : setIsMobile(false)
+        mobileCondition() ? setIsMobile(true) : setIsMobile(false)
     }
 
     useEffect(() => {

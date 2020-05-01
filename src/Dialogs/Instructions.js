@@ -3,13 +3,13 @@ import {useSelector} from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from "@material-ui/core/Dialog";
 import {DialogTitle, DialogContent, DialogActions} from "@material-ui/core";
-import Button from "@material-ui/core/Button";
 import {action} from "../sagas";
 import AjaxInProgressDialog from "../Dialogs/AjaxInProgressDialog";
 import {Instruction} from "../Components/Instruction";
 import {TwitterResource} from "../Components/TwitterResource";
 import {LanguageSelector} from "../Components/LanguageSelector";
 import {styles} from "./HdyfDialogCommonStyles"
+import BlueButton from "../Components/BlueButton"
 
 const useStyles = makeStyles(styles);
 
@@ -82,7 +82,7 @@ export function Instructions()
 
             </DialogContent>
             <DialogActions className={classes.actions}>
-                <Button type="button" onClick={() => setOpen(false)} className={classes.submitButton} variant={"contained"} size={"large"}>{button_close[language]}</Button>
+                <BlueButton variant="default" onClick={() => setOpen(false)} size={"large"}>{button_close[language]}</BlueButton>
             </DialogActions>
         </Dialog>
     );

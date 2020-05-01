@@ -2,6 +2,8 @@ export const elements = {
     "button_ok": {"en": "OK", "es": "OK"},
     "button_cancel": {"en": "Cancel", "es": "Cancelar"},
     "button_submit": {"en": "Submit", "es": "Enviar"},
+    "button_back": {"en": "Back", "es": "Previo"},
+    "button_next": {"en": "Next", "es": "Siguiente"},
     "button_yes": {"en": "Yes", "es": "Si"},
     "button_no": {"en": "No", "es": "No"},
     "button_close": {"en": "Close", "es": "Cerca"},

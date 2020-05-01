@@ -87,7 +87,6 @@ const answersReducer = (state = initialState.answers, action) => {
             });
             return Object.assign({}, state, defaultAnswers);
         case 'SET_LOCATION':
-            console.log(action.data);
             return state;
         case 'ANSWER_SET':
             const {questionId, data} = action.data;

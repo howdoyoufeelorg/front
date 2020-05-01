@@ -3,9 +3,9 @@ import {useSelector} from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from "@material-ui/core/Dialog";
 import {DialogTitle, DialogContent, DialogActions} from "@material-ui/core";
-import Button from "@material-ui/core/Button";
 import {LanguageSelector} from "../Components/LanguageSelector";
 import {styles} from "./HdyfDialogCommonStyles"
+import BlueButton from "../Components/BlueButton"
 
 const useStyles = makeStyles(styles);
 
@@ -31,8 +31,8 @@ export function Emergency(props)
                 {dialog_emergency_content[language]}
             </DialogContent>
             <DialogActions className={classes.actions}>
-                <Button type="button" onClick={() => onButtonClick(true)} className={classes.submitButton} variant={"contained"} size={"large"}>{button_yes[language]}</Button>
-                <Button type="button" onClick={() => onButtonClick(false)} className={classes.submitButton} variant={"contained"} size={"large"}>{button_no[language]}</Button>
+                <BlueButton variant="noShadow" onClick={() => onButtonClick(true)} size={"large"}>{button_yes[language]}</BlueButton>
+                <BlueButton variant="default" onClick={() => onButtonClick(false)} size={"large"}>{button_no[language]}</BlueButton>
             </DialogActions>
         </Dialog>
     );
