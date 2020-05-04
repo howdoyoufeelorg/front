@@ -13,7 +13,10 @@ const initialState = {
     questions: [],
     answers: {
         country: {value: 'US'},
-        zipcode: {value: ''}
+        zipcode: {value: ''},
+        age: {value: null},
+        gender: {value: null},
+        race: {value: null},
     },
     instructions: [],
     resources: {},

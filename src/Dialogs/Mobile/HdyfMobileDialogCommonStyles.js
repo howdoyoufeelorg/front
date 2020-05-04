@@ -18,7 +18,7 @@ export const styles = theme => ({
         width: '100%',
         background: theme.grey,
         borderRadius: theme.globalRadius,
-        minHeight: 40,
+        minHeight: 200,
         padding: [[10, 20]]
     },
     commandBar: {
@@ -35,6 +35,9 @@ export const styles = theme => ({
         margin: [[20,0]]
     },
     question: {
-        marginBottom: 0
-    }
+        marginBottom: 10
+    },
+    strecher: {
+        height: 84
+    },
 })

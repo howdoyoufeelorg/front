@@ -12,10 +12,7 @@ const useStyles = makeStyles(styles)
 export function MobileEmergency(props)
 {
     const classes = useStyles();
-    const { onClose } = props;
-    const onButtonClick = (response) => {
-        onClose(response);
-    };
+    const { onNext } = props;
     const {dialog_emergency_title, dialog_emergency_content, button_yes, button_no} = useSelector(state => state.elements);
     const language = useSelector(state => state.language);
     return (
@@ -25,8 +22,8 @@ export function MobileEmergency(props)
                 {dialog_emergency_content[language]}
             </Card>
             <AppBar className={classes.commandBar} position="fixed" variant="elevation">
-                <BlueButton variant="noShadow" className={classes.commandButton} onClick={() => onButtonClick(true)}>{button_yes[language]}</BlueButton>
-                <BlueButton variant="default" className={classes.commandButton} onClick={() => onButtonClick(false)}>{button_no[language]}</BlueButton>
+                <BlueButton variant="noShadow" className={classes.commandButton} onClick={() => onNext(true)}>{button_yes[language]}</BlueButton>
+                <BlueButton variant="default" className={classes.commandButton} onClick={() => onNext(false)}>{button_no[language]}</BlueButton>
             </AppBar>
         </>
     )

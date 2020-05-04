@@ -32,16 +32,12 @@ function Question(props)
 export function MobileSurvey(props)
 {
     const classes = useStyles();
-    const { onNext, onPrevious, onClose, step } = props;
+    const { onPrevious, onClose } = props;
     const language = useSelector(state => state.language);
     const questions = useSelector(state => state.questions);
     const answers = useSelector(state => state.answers);
     const {alert_required_questions, alert_missing_zipcode,
-        dialog_survey_title, dialog_survey_content, button_submit, button_back, button_next,
-        zipcode_input_placeholder, country_selector_search_placeholder} = useSelector(state => state.elements);
-    const onButtonClick = () => {
-        onNext();
-    }
+        dialog_survey_title, dialog_survey_content, button_submit, button_back} = useSelector(state => state.elements);
     const onSubmitClick = () => {
         let required = questions.filter((question) => question.required === true);
         Object.keys(answers).forEach((key) => {
@@ -74,23 +70,22 @@ export function MobileSurvey(props)
     if (!questions.length) {
         return null;
     }
-    const question = questions[step-1];
-    const lastQuestion = questions.length === step;
     return (
         <>
             <h1 className={classes.title}>{dialog_survey_title[language]}</h1>
             <Card className={classes.surveyCard}>
-                <div className={classes.question}>
-                    <Question question={question}/>
-                </div>
+                {
+                    questions.map((question, index) =>
+                        <div className={classes.question} key={index}>
+                            <Question question={question}/>
+                        </div>
+                        )
+                }
+                <div className={classes.strecher} />
             </Card>
             <AppBar className={classes.commandBar} position="fixed" variant="elevation">
                 <BlueButton variant="noShadow" className={classes.commandButton} onClick={() => onPrevious()}>{button_back[language]}</BlueButton>
-                {lastQuestion ?
-                    <BlueButton variant="default" className={classes.commandButton} onClick={() => onSubmitClick()}>{button_submit[language]}</BlueButton>
-                    :
-                    <BlueButton variant="default" className={classes.commandButton} onClick={() => onNext()}>{button_next[language]}</BlueButton>
-                }
+                <BlueButton variant="default" className={classes.commandButton} onClick={() => onSubmitClick()}>{button_submit[language]}</BlueButton>
             </AppBar>
         </>
     )

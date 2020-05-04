@@ -12,10 +12,7 @@ const useStyles = makeStyles(styles)
 export function MobileDisclaimer(props)
 {
     const classes = useStyles();
-    const { onClose } = props;
-    const onButtonClick = () => {
-        onClose();
-    };
+    const { onNext } = props;
     const {dialog_disclaimer_title, dialog_disclaimer_content, button_start} = useSelector(state => state.elements);
     const language = useSelector(state => state.language);
     return (
@@ -30,7 +27,7 @@ export function MobileDisclaimer(props)
                 {dialog_disclaimer_content[language]}
             </Card>
             <AppBar className={classes.commandBar} position="fixed" variant="elevation">
-                <BlueButton variant="default" className={classes.commandButton} onClick={() => onButtonClick()}>{button_start[language]}</BlueButton>
+                <BlueButton variant="default" className={classes.commandButton} onClick={() => onNext()}>{button_start[language]}</BlueButton>
             </AppBar>
         </>
     )

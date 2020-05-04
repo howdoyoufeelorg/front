@@ -12,16 +12,11 @@ const useStyles = makeStyles(styles)
 export function Disclaimer(props)
 {
     const classes = useStyles();
-    const [open, setOpen] = useState(true);
-    const { onClose } = props;
-    const onButtonClick = () => {
-        setOpen(false);
-        onClose();
-    };
+    const { onNext } = props;
     const {dialog_disclaimer_title, dialog_disclaimer_content, button_start} = useSelector(state => state.elements);
     const language = useSelector(state => state.language);
     return (
-        <Dialog open={open} fullWidth={true} maxWidth={"md"} disableBackdropClick >
+        <Dialog open={true} fullWidth={true} maxWidth={"md"} disableBackdropClick >
             <DialogTitle className={classes.title} disableTypography>
                 <div className={classes.titleText}>{dialog_disclaimer_title[language]}</div>
                 <LanguageSelector/>
@@ -30,7 +25,7 @@ export function Disclaimer(props)
                 {dialog_disclaimer_content[language]}
             </DialogContent>
             <DialogActions className={classes.actions}>
-                <BlueButton variant="default" onClick={() => onButtonClick()} size="large">{button_start[language]}</BlueButton>
+                <BlueButton variant="default" onClick={() => onNext()} size="large">{button_start[language]}</BlueButton>
             </DialogActions>
         </Dialog>
     );

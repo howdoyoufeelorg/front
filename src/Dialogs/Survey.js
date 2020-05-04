@@ -36,11 +36,9 @@ export function Survey(props)
     const classes = useStyles();
     const questions = useSelector(state => state.questions);
     const answers = useSelector(state => state.answers);
-    const [open, setOpen] = useState(true);
-    const { onClose } = props;
+    const { onPrevious, onClose } = props;
     const {alert_required_questions, alert_missing_zipcode,
-        dialog_survey_title, dialog_survey_content, button_submit,
-        zipcode_input_placeholder, country_selector_search_placeholder} = useSelector(state => state.elements);
+        dialog_survey_title, dialog_survey_content, button_submit, button_back} = useSelector(state => state.elements);
     const language = useSelector(state => state.language);
     const onButtonClick = () => {
         let required = questions.filter((question) => question.required === true);
@@ -59,13 +57,7 @@ export function Survey(props)
         if(required.length) {
             alert(alert_required_questions[language])
         } else {
-            if(answers['zipcode'].value === '') {
-                alert(alert_missing_zipcode[language])
-            } else {
-                action('POST_SURVEY');
-                setOpen(false);
-                onClose();
-            }
+            action('POST_SURVEY');
         }
     };
     useEffect(() => {
@@ -77,7 +69,7 @@ export function Survey(props)
     }
 
     return (
-        <Dialog open={open} fullWidth={true} maxWidth={"md"} disableBackdropClick >
+        <Dialog open={true} fullWidth={true} maxWidth={"md"} disableBackdropClick >
             <DialogTitle className={classes.title} disableTypography>
                 <div className={classes.titleText}>{dialog_survey_title[language]}</div>
                 <LanguageSelector/>
@@ -90,17 +82,10 @@ export function Survey(props)
                         </div>
                     ))
                 }
-                <ReactFlagsSelect defaultCountry="US" searchable={true} searchPlaceholder={country_selector_search_placeholder[language]}
-                                  className={classes.flagDropdown}
-                                  onSelect={(value) => action('ANSWER_SET', {questionId: "country", data: {value: value}})}
-                />
-                <div>
-                    <TextField label={zipcode_input_placeholder[language]} size={"medium"} onChange={(event) => action('ANSWER_SET', {questionId: "zipcode", data: {value: event.target.value}})}/>
-                </div>
-                <div className={classes.strecher}>&nbsp;</div>
             </DialogContent>
             <DialogActions className={classes.actions}>
-                <BlueButton variant="default" onClick={() => onButtonClick()} size={"large"}>{button_submit[language]}</BlueButton>
+                <BlueButton variant="noShadow" onClick={() => onPrevious()} size="large">{button_back[language]}</BlueButton>
+                <BlueButton variant="default" onClick={() => onButtonClick()} size="large">{button_submit[language]}</BlueButton>
             </DialogActions>
         </Dialog>
     );

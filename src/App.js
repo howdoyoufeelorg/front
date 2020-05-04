@@ -23,6 +23,10 @@ import {MobileMap} from "./Dialogs/Mobile/MobileMap"
 import {HDYFMap} from "./Components/HDYFMap"
 import {MobileInstructions} from "./Dialogs/Mobile/MobileInstructions"
 import clsx from "clsx"
+import {Location} from "./Dialogs/Location"
+import {BasicInfo} from "./Dialogs/BasicInfo"
+import {MobileLocation} from "./Dialogs/Mobile/MobileLocation"
+import {MobileBasicInfo} from "./Dialogs/Mobile/MobileBasicInfo"
 
 const getGeolocation = () => {
     if(navigator.geolocation) {
@@ -78,29 +82,32 @@ function App(props) {
     const [stage, setStage] = useState(initialStage);
     const renderStage = (stage) => {
         switch(stage) {
-            case 0: return <Disclaimer onClose={() => setStage(stage+1)}/>;
-            case 1: return <Emergency onClose={(response) => response === true ? setStage(100) : setStage(stage+1)}/>;
-            //case 2: return <Survey onClose={() => setStage(stage+1)}/>;
+            case 0: return <Disclaimer onNext={() => setStage(stage+1)} />;
+            case 1: return <Emergency onNext={(response) => response === true ? setStage(100) : setStage(stage+1)}/>;
+            case 2: return <Location onNext={() => setStage(stage+1)} />
+            case 3: return <BasicInfo onNext={() => setStage(stage+1)} onPrevious={() => setStage(stage-1)} />
+            case 4: return <Survey onPrevious={() => setStage(stage-1)} onClose={() => setStage(99)} />;
             case 99: return <Instructions />;
             case 100: return <Call911 />;
-            default: return <Survey onClose={() => setStage(stage+1)}/>;
+            //default: return <Survey onClose={() => setStage(stage+1)}/>;
         }
     };
     const renderMobileStage = (stage) => {
         switch(stage) {
-            case 0: return <MobileDisclaimer onClose={() => setStage(stage+1)}/>;
-            case 1: return <MobileEmergency onClose={(response) => response === true ? setStage(100) : setStage(stage+1)}/>;
-            // case 2: return <MobileBasicInfo onClose={() => setStage(stage+1)}/>;
-            //case 2: return <MobileSurvey onClose={() => setStage(stage+1)}/>;
+            case 0: return <MobileDisclaimer onNext={() => setStage(stage+1)}/>;
+            case 1: return <MobileEmergency onNext={(response) => response === true ? setStage(100) : setStage(stage+1)}/>;
+            case 2: return <MobileLocation onNext={() => setStage(stage+1)}/>;
+            case 3: return <MobileBasicInfo onNext={() => setStage(stage+1)} onPrevious={() => setStage(stage-1)}/>;
+            case 4: return <MobileSurvey onPrevious={() => setStage(stage-1)} onClose={() => setStage(99)}/>;
             case 99: return <MobileInstructions />;
             case 100: return <MobileCall911 onClose={() => setStage(stage+1)}/>;
             case 101: return <MobileMap />
-            default: return <MobileSurvey
-                step={stage-1}
-                onNext={() => setStage(stage+1)}
-                onPrevious={() => setStage(stage-1)}
-                onClose={() => setStage(99)}
-            />;
+            // default: return <MobileSurvey
+            //     step={stage-1}
+            //     onNext={() => setStage(stage+1)}
+            //     onPrevious={() => setStage(stage-1)}
+            //     onClose={() => setStage(99)}
+            // />;
         }
     }
 
