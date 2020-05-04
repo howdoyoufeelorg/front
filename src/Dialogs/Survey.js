@@ -10,7 +10,6 @@ import ReactFlagsSelect from 'react-flags-select';
 import TextField from "@material-ui/core/TextField";
 import {action} from "../sagas";
 import {LanguageSelector} from "../Components/LanguageSelector";
-import AjaxInProgressDialog from "./AjaxInProgressDialog";
 import {styles} from "./HdyfDialogCommonStyles"
 import BlueButton from "../Components/BlueButton"
 
@@ -74,7 +73,7 @@ export function Survey(props)
     }, []);
 
     if (!questions.length) {
-        return (<AjaxInProgressDialog/>)
+        return null;
     }
 
     return (

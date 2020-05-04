@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Dialog from "@material-ui/core/Dialog";
 import {DialogTitle, DialogContent, DialogActions} from "@material-ui/core";
 import {action} from "../sagas";
-import AjaxInProgressDialog from "../Dialogs/AjaxInProgressDialog";
 import {Instruction} from "../Components/Instruction";
 import {TwitterResource} from "../Components/TwitterResource";
 import {LanguageSelector} from "../Components/LanguageSelector";
@@ -46,7 +45,7 @@ export function Instructions()
     }, [ajaxInProgress]);
 
     if (!instructions.length && !hasResources(resources)) {
-        return (<AjaxInProgressDialog/>)
+        return null;
     }
 
     return (

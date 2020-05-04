@@ -3,6 +3,7 @@ import { Dialog, makeStyles } from "@material-ui/core";
 import {CircularProgress} from "@material-ui/core";
 import {connect} from "react-redux"
 import { styles } from "./AjaxDialogCommonStyles"
+import clsx from "clsx"
 
 const useStyles = makeStyles((theme) => ({
     ...styles(theme),
@@ -22,9 +23,9 @@ const AjaxInProgressDialog = (props) => {
             open={ajax.ajaxInProgress}
             disableBackdropClick
             PaperComponent={CircularProgress}
-            classes={{ paper: classes.paperDialog }}
+            classes={{ paper: clsx(classes.paperDialog, classes.paperSpinner) }}
             PaperProps={{
-                size: 120,
+                size: 60,
                 className: classes.spinner
             }}
         >

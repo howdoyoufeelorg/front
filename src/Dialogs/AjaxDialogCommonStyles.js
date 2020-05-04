@@ -17,6 +17,9 @@ export const styles = theme => ({
         minHeight: 300,
         borderRadius: 6,
     },
+    paperSpinner: {
+        minHeight: 'unset'
+    },
     dialogActions : {
         padding: '24px 30px',
     },

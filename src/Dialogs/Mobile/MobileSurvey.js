@@ -7,7 +7,6 @@ import BlueButton from "../../Components/BlueButton"
 import Card from "@material-ui/core/Card"
 import AppBar from "@material-ui/core/AppBar"
 import {action} from "../../sagas"
-import AjaxInProgressDialog from "../AjaxInProgressDialog"
 import {Slider} from "../../Components/Slider"
 import {YesNo} from "../../Components/YesNo"
 import {Entry} from "../../Components/Entry"
@@ -73,7 +72,7 @@ export function MobileSurvey(props)
     }, []);
 
     if (!questions.length) {
-        return (<AjaxInProgressDialog/>)
+        return null;
     }
     const question = questions[step-1];
     const lastQuestion = questions.length === step;
