@@ -58,6 +58,7 @@ export function Survey(props)
             alert(alert_required_questions[language])
         } else {
             action('POST_SURVEY');
+            onClose();
         }
     };
     useEffect(() => {

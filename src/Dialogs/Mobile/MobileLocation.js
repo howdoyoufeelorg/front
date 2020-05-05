@@ -8,11 +8,7 @@ import Card from "@material-ui/core/Card"
 import AppBar from "@material-ui/core/AppBar"
 import TextField from "@material-ui/core/TextField"
 import {action} from "../../sagas"
-import Select from "@material-ui/core/Select"
-import {genderChoices, raceChoices} from "../../translations"
-import InputLabel from "@material-ui/core/InputLabel"
 import ReactFlagsSelect from "react-flags-select"
-import {DialogContent} from "@material-ui/core"
 
 const useStyles = makeStyles(styles)
 

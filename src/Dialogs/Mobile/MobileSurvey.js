@@ -55,12 +55,8 @@ export function MobileSurvey(props)
         if(required.length) {
             alert(alert_required_questions[language])
         } else {
-            if(answers['zipcode'].value === '') {
-                alert(alert_missing_zipcode[language])
-            } else {
-                action('POST_SURVEY');
-                onClose();
-            }
+            action('POST_SURVEY');
+            onClose();
         }
     };
     useEffect(() => {
