@@ -31,5 +31,8 @@ export const styles = theme => ({
         '& span.flag-select__option__label': {
             fontSize: '1.2em'
         }
+    },
+    formField: {
+        padding: [[20, 0]]
     }
 })

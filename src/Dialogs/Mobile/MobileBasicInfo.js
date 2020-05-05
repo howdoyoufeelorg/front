@@ -17,6 +17,7 @@ const useStyles = makeStyles(styles)
 export function MobileBasicInfo(props)
 {
     const classes = useStyles();
+    const answers = useSelector(state => state.answers);
     const { onNext, onPrevious } = props;
     const {dialog_basic_info_title, dialog_basic_info_content, button_next, button_back, age_input_placeholder, gender_input_placeholder, race_input_placeholder} = useSelector(state => state.elements);
     const language = useSelector(state => state.language);
@@ -24,24 +25,26 @@ export function MobileBasicInfo(props)
         <>
             <h1 className={classes.title}>{dialog_basic_info_title[language]}</h1>
             <Card className={classes.surveyCard}>
-                <div>
+                <div className={classes.formField}>
                     <InputLabel>{age_input_placeholder[language]}</InputLabel>
-                    <TextField label={age_input_placeholder[language]} size={"medium"} onChange={(event) => action('ANSWER_SET', {questionId: "age", data: {value: event.target.value}})}/>
+                    <TextField label={age_input_placeholder[language]} size={"medium"} onChange={(event) => action('ANSWER_SET', {questionId: "age", data: {value: event.target.value}})} value={answers['age'].value}/>
                 </div>
-                <div>
+                <div className={classes.formField}>
                     <InputLabel>{gender_input_placeholder[language]}</InputLabel>
                     <Select size={"medium"}
                             onChange={(event) => action('ANSWER_SET', {questionId: "gender", data: {value: event.target.value}})}
+                            value={answers['gender'].value}
                     >
                         {
                             genderChoices[language].map((item, index) => <option key={index} value={item}>{item}</option>)
                         }
                     </Select>
                 </div>
-                <div>
+                <div className={classes.formField}>
                     <InputLabel>{race_input_placeholder[language]}</InputLabel>
                     <Select size={"medium"}
                             onChange={(event) => action('ANSWER_SET', {questionId: "race", data: {value: event.target.value}})}
+                            value={answers['race'].value}
                     >
                         {
                             raceChoices[language].map((item, index) => <option key={index} value={item}>{item}</option>)

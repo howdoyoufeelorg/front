@@ -13,10 +13,10 @@ const initialState = {
     questions: [],
     answers: {
         country: {value: 'US'},
-        zipcode: {value: ''},
-        age: {value: null},
-        gender: {value: null},
-        race: {value: null},
+        zipcode: {value: localStorage.getItem('zipcode') ?? ''},
+        age: {value: localStorage.getItem('age') ?? null},
+        gender: {value: localStorage.getItem('gender') ?? null},
+        race: {value: localStorage.getItem('race') ?? null},
     },
     instructions: [],
     resources: {},
@@ -93,6 +93,9 @@ const answersReducer = (state = initialState.answers, action) => {
             return state;
         case 'ANSWER_SET':
             const {questionId, data} = action.data;
+            if(questionId === 'zipcode' || questionId === 'age' || questionId === 'gender' || questionId === 'race') {
+                localStorage.setItem(questionId, data.value);
+            }
             const newData = Object.assign({}, state[questionId], data);
             return Object.assign({}, state, {[questionId] : newData});
         default:

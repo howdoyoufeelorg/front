@@ -18,6 +18,7 @@ const useStyles = makeStyles(styles)
 export function BasicInfo(props)
 {
     const classes = useStyles();
+    const answers = useSelector(state => state.answers);
     const { onPrevious, onNext } = props;
     const {dialog_basic_info_title, dialog_basic_info_content, age_input_placeholder, gender_input_placeholder, race_input_placeholder, button_next, button_back} = useSelector(state => state.elements);
     const language = useSelector(state => state.language);
@@ -28,24 +29,26 @@ export function BasicInfo(props)
                 <LanguageSelector/>
             </DialogTitle>
             <DialogContent className={classes.content}>
-                <div>
+                <div className={classes.formField}>
                     <InputLabel>{age_input_placeholder[language]}</InputLabel>
-                    <TextField label={age_input_placeholder[language]} size={"medium"} onChange={(event) => action('ANSWER_SET', {questionId: "age", data: {value: event.target.value}})}/>
+                    <TextField size={"medium"} onChange={(event) => action('ANSWER_SET', {questionId: "age", data: {value: event.target.value}})} value={answers['age'].value}/>
                 </div>
-                <div>
+                <div className={classes.formField}>
                     <InputLabel>{gender_input_placeholder[language]}</InputLabel>
                     <Select size={"medium"}
                             onChange={(event) => action('ANSWER_SET', {questionId: "gender", data: {value: event.target.value}})}
+                            value={answers['gender'].value}
                     >
                         {
                             genderChoices[language].map((item, index) => <MenuItem key={index} value={item}>{item}</MenuItem>)
                         }
                     </Select>
                 </div>
-                <div>
+                <div className={classes.formField}>
                     <InputLabel>{race_input_placeholder[language]}</InputLabel>
                     <Select size={"medium"}
                             onChange={(event) => action('ANSWER_SET', {questionId: "race", data: {value: event.target.value}})}
+                            value={answers['race'].value}
                     >
                         {
                             raceChoices[language].map((item, index) => <MenuItem key={index} value={item}>{item}</MenuItem>)

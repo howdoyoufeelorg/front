@@ -30,8 +30,8 @@ export function MobileLocation(props)
         <>
             <h1 className={classes.title}>{dialog_location_title[language]}</h1>
             <Card className={classes.surveyCard}>
-                <div>
-                    <TextField label={zipcode_input_placeholder[language]} size={"medium"} onChange={(event) => action('ANSWER_SET', {questionId: "zipcode", data: {value: event.target.value}})}/>
+                <div className={classes.formField}>
+                    <TextField label={zipcode_input_placeholder[language]} size={"medium"} onChange={(event) => action('ANSWER_SET', {questionId: "zipcode", data: {value: event.target.value}})} value={answers['zipcode'].value}/>
                 </div>
                 <ReactFlagsSelect defaultCountry="US" searchable={true} searchPlaceholder={country_selector_search_placeholder[language]}
                                   className={classes.flagDropdown}

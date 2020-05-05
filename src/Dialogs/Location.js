@@ -33,8 +33,8 @@ export function Location(props)
                 <LanguageSelector/>
             </DialogTitle>
             <DialogContent className={classes.content}>
-                <div>
-                    <TextField label={zipcode_input_placeholder[language]} size={"medium"} onChange={(event) => action('ANSWER_SET', {questionId: "zipcode", data: {value: event.target.value}})}/>
+                <div className={classes.formField}>
+                    <TextField label={zipcode_input_placeholder[language]} size={"medium"} onChange={(event) => action('ANSWER_SET', {questionId: "zipcode", data: {value: event.target.value}})} value={answers['zipcode'].value}/>
                 </div>
                 <ReactFlagsSelect defaultCountry="US" searchable={true} searchPlaceholder={country_selector_search_placeholder[language]}
                                   className={classes.flagDropdown}
