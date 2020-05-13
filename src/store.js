@@ -8,7 +8,14 @@ const sagaMiddleware = createSagaMiddleware();
 const middlewares = [sagaMiddleware]; // In case you need more middleware, add it here
 const middlewareEnhancer = applyMiddleware(...middlewares);
 const enhancers = [middlewareEnhancer]; // In case you need non-middleware enhancer, add it here
-const composedEnhancers = compose(...enhancers);
+
+const enhancedCompose = (window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+        trace: true,
+    }) : compose;
+
+const composedEnhancers = enhancedCompose(...enhancers);
+
 const store = createStore(
     rootReducer,
     preloadedState,
