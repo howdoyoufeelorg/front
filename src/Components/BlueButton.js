@@ -37,7 +37,9 @@ const styles = theme => {
         },
         sizeSmall: {
             width: 70,
-            height: 32
+            height: 32,
+            'padding-top': 0,
+            'padding-bottom': 0,
         },
         sizeLarge: {
             width: 210,

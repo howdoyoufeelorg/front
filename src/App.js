@@ -87,8 +87,8 @@ function App(props) {
         switch(stage) {
             case 0: return <Disclaimer onNext={() => setStage(stage+1)} />;
             case 1: return <Emergency onNext={(response) => response === true ? setStage(100) : setStage(stage+1)}/>;
-            case 2: return <Location onNext={() => setStage(stage+1)} />
-            case 3: return <BasicInfo onNext={() => setStage(stage+1)} onPrevious={() => setStage(stage-1)} />
+            case 2: return <Location onPrevious={() => setStage(stage-1)} onNext={() => setStage(stage+1)} />
+            case 3: return <BasicInfo onPrevious={() => setStage(stage-1)} onNext={() => setStage(stage+1)} />
             case 4: return <Survey onPrevious={() => setStage(stage-1)} onClose={() => setStage(99)} />;
             case 99: return <Instructions />;
             case 100: return <Call911 />;
@@ -99,7 +99,7 @@ function App(props) {
         switch(stage) {
             case 0: return <MobileDisclaimer onNext={() => setStage(stage+1)}/>;
             case 1: return <MobileEmergency onNext={(response) => response === true ? setStage(100) : setStage(stage+1)}/>;
-            case 2: return <MobileLocation onNext={() => setStage(stage+1)}/>;
+            case 2: return <MobileLocation onPrevious={() => setStage(stage-1)} onNext={() => setStage(stage+1)}/>;
             case 3: return <MobileBasicInfo onNext={() => setStage(stage+1)} onPrevious={() => setStage(stage-1)}/>;
             case 4: return <MobileSurvey onPrevious={() => setStage(stage-1)} onClose={() => setStage(99)}/>;
             case 99: return <MobileInstructions />;

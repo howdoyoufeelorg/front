@@ -16,7 +16,7 @@ export function MobileLocation(props)
 {
     const classes = useStyles();
     const answers = useSelector(state => state.answers);
-    const { onNext } = props;
+    const { onNext, onPrevious } = props;
     const {dialog_location_title, dialog_location_content, button_next, button_back, zipcode_input_placeholder, country_selector_search_placeholder, alert_missing_zipcode} = useSelector(state => state.elements);
     const language = useSelector(state => state.language);
     const onButtonClick = () => {
@@ -40,6 +40,7 @@ export function MobileLocation(props)
                 <div className={classes.strecher}>&nbsp;</div>
             </Card>
             <AppBar className={classes.commandBar} position="fixed" variant="elevation">
+                <BlueButton variant="noShadow" className={classes.commandButton} onClick={() => onPrevious()}>{button_back[language]}</BlueButton>
                 <BlueButton variant="default" className={classes.commandButton} onClick={() => onButtonClick()}>{button_next[language]}</BlueButton>
             </AppBar>
         </>
