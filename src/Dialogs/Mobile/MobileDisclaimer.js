@@ -19,11 +19,9 @@ export function MobileDisclaimer(props)
         <>
             <h1 className={classes.title}>{dialog_disclaimer_title[language]}</h1>
             <Card className={classes.infoCard}>
-                <img src="HDYFLogo@2x.png" alt="TEST IMAGE" />
                 {dialog_disclaimer_content[language]}
             </Card>
             <Card className={classes.surveyCard}>
-                <img src="HDYFLogo@2x.png" alt="TEST IMAGE" />
                 {dialog_disclaimer_content[language]}
             </Card>
             <AppBar className={classes.commandBar} position="fixed" variant="elevation">

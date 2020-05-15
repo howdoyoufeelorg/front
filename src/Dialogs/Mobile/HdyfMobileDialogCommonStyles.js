@@ -5,6 +5,7 @@ export const styles = theme => ({
     title: {
         textAlign: "center",
         color: theme.white,
+        fontWeight: "900",
     },
     infoCard: {
         width: '96%',

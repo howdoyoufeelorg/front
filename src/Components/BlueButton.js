@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core/styles";
 import {styles as buttonStyles} from "@material-ui/core/Button/Button";
@@ -67,7 +67,7 @@ const styles = theme => {
         }
     }
     const computed = {...buttonStyles(theme), ...customisedStyles};
-    return(computed);
+    return (computed);
 }
 
 const useStyles = makeStyles(styles);
@@ -75,7 +75,11 @@ const useStyles = makeStyles(styles);
 function BlueButton(props) {
     const classes = useStyles();
     const {variant, className, selected, size, ...rest} = props;
-    const finalClassName = clsx(classes.root, classes[variant], selected && classes.selected, size !== undefined && size !== '' && classes["size".concat(capitalize(size))], className);
+    const finalClassName = clsx(classes.root,
+        classes[variant],
+        selected && classes.selected,
+        size !== undefined && size !== '' && classes["size".concat(capitalize(size))],
+        className);
     return <Button className={finalClassName} type="button" {...rest} />
 }
 

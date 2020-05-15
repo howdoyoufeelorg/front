@@ -2,13 +2,13 @@ import React, {useState}  from 'react';
 import {useSelector} from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from "@material-ui/core/Dialog";
-import {DialogTitle, DialogContent, DialogActions} from "@material-ui/core";
+import {DialogTitle, DialogContent, DialogActions, InputLabel} from "@material-ui/core";
 import {LanguageSelector} from "../Components/LanguageSelector";
 import {styles} from "./HdyfDialogCommonStyles"
 import BlueButton from "../Components/BlueButton"
 import ReactFlagsSelect from "react-flags-select"
 import {action} from "../sagas"
-import TextField from "@material-ui/core/TextField"
+import {TextField} from "../Components/TextField";
 
 const useStyles = makeStyles(styles)
 
@@ -36,10 +36,13 @@ export function Location(props)
                 <div className={classes.formField}>
                     <TextField label={zipcode_input_placeholder[language]} size={"medium"} onChange={(event) => action('ANSWER_SET', {questionId: "zipcode", data: {value: event.target.value}})} value={answers['zipcode'].value}/>
                 </div>
+                <div>
+                <InputLabel>{country_selector_search_placeholder[language]}</InputLabel>
                 <ReactFlagsSelect defaultCountry="US" searchable={true} searchPlaceholder={country_selector_search_placeholder[language]}
                                   className={classes.flagDropdown}
                                   onSelect={(value) => action('ANSWER_SET', {questionId: "country", data: {value: value}})}
                 />
+                </div>
                 <div className={classes.strecher}>&nbsp;</div>
             </DialogContent>
             <DialogActions className={classes.actions}>

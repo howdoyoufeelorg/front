@@ -63,6 +63,9 @@ const styles = theme => ({
     },
     logoDesktop: {
         height: 36
+    },
+    logoMobile: {
+        height: 22
     }
 })
 
@@ -123,8 +126,8 @@ function App(props) {
                 position="fixed"
                 elevation={0}
             >
-                <Toolbar className={clsx(!isMobile && classes.toolbarDesktop)} disableGutters={true}>
-                    <img className={clsx(!isMobile && classes.logoDesktop)} src="HDYFLogoWhite@2x.png" alt="HowDoYouFeel?org"/>
+                <Toolbar className={classes.toolbarDesktop} disableGutters={true}>
+                    <img className={clsx(!isMobile && classes.logoDesktop, isMobile && classes.logoMobile)} src="HDYFLogoWhite@2x.png" alt="HowDoYouFeel?org"/>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                         <MenuIcon fontSize="large" />
                     </IconButton>
