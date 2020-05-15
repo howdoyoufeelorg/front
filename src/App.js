@@ -51,8 +51,11 @@ const styles = theme => ({
         background: theme.backgroundBlue,
         padding: [[0,20]],
     },
+    mainBarMobile: {
+        height: theme.appBarHeightMobile,
+    },
     mainBarDesktop: {
-        height: 64,
+        height: theme.appBarHeightDesktop,
     },
     toolbarDesktop: {
         justifyContent: "space-between"
@@ -122,7 +125,7 @@ function App(props) {
         <>
             <CssBaseline/>
             <AppBar
-                className={clsx(classes.mainBar, !isMobile && classes.mainBarDesktop)}
+                className={clsx(classes.mainBar, !isMobile && classes.mainBarDesktop, isMobile && classes.mainBarMobile)}
                 position="fixed"
                 elevation={0}
             >
