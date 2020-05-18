@@ -6,9 +6,9 @@ import {DialogTitle, DialogContent, DialogActions, InputLabel} from "@material-u
 import {LanguageSelector} from "../Components/LanguageSelector";
 import {styles} from "./HdyfDialogCommonStyles"
 import BlueButton from "../Components/BlueButton"
-import ReactFlagsSelect from "react-flags-select"
 import {action} from "../sagas"
 import {TextField} from "../Components/TextField";
+import {FlagDropDown} from "../Components/FlagDropDown";
 
 const useStyles = makeStyles(styles)
 
@@ -17,7 +17,7 @@ export function Location(props)
     const classes = useStyles();
     const answers = useSelector(state => state.answers);
     const { onNext } = props;
-    const {dialog_location_title, dialog_location_content, button_next, zipcode_input_placeholder, country_selector_search_placeholder, alert_missing_zipcode} = useSelector(state => state.elements);
+    const {dialog_location_title, button_next, zipcode_input_placeholder, country_selector_search_placeholder, alert_missing_zipcode} = useSelector(state => state.elements);
     const language = useSelector(state => state.language);
     const onButtonClick = () => {
         if(answers['zipcode'].value === '') {
@@ -38,10 +38,8 @@ export function Location(props)
                 </div>
                 <div>
                 <InputLabel>{country_selector_search_placeholder[language]}</InputLabel>
-                <ReactFlagsSelect defaultCountry="US" searchable={true} searchPlaceholder={country_selector_search_placeholder[language]}
-                                  className={classes.flagDropdown}
-                                  onSelect={(value) => action('ANSWER_SET', {questionId: "country", data: {value: value}})}
-                />
+                <FlagDropDown
+                    onSelect={(value) => action('ANSWER_SET', {questionId: "country", data: {value: value}})} />
                 </div>
                 <div className={classes.strecher}>&nbsp;</div>
             </DialogContent>
