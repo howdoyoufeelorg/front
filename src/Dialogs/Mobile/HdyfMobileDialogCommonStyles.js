@@ -30,7 +30,6 @@ export const styles = theme => ({
         display: "flex",
         justifyContent: "space-around",
         flexDirection: "row",
-        borderTop: `2px solid ${theme.backgroundBlue}`
     },
     commandButton: {
         margin: [[20,0]]
@@ -43,5 +42,5 @@ export const styles = theme => ({
     },
     strecher: {
         height: 84
-    },
+    }
 })

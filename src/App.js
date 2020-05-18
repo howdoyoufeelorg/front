@@ -1,8 +1,8 @@
+//@flow
 import React, {useState, useEffect}  from 'react';
-import {CssBaseline, AppBar, Toolbar, IconButton, Typography} from "@material-ui/core";
+import {CssBaseline, AppBar, Toolbar, IconButton} from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 import {action} from './sagas';
-import { useSelector } from 'react-redux'
 import './faIcons';
 import AjaxInProgressDialog from "./Dialogs/AjaxInProgressDialog";
 import AjaxFailureDialog from "./Dialogs/AjaxFailureDialog";
@@ -74,7 +74,7 @@ const styles = theme => ({
 
 const useStyles = makeStyles(styles);
 
-function App(props) {
+function App() {
     const classes = useStyles();
     const hash = useGetHash();
     const isMobile = useIsMobile();
@@ -84,7 +84,7 @@ function App(props) {
         // action('ELEMENTS_LOAD');
     }, []);
 
-    const initialStage = parseInt(process.env.REACT_APP_INITIAL_STAGE) || 0;
+    const initialStage = parseInt(process.env.REACT_APP_INITIAL_STAGE) || 100;
     const [stage, setStage] = useState(initialStage);
     const renderStage = (stage) => {
         switch(stage) {
