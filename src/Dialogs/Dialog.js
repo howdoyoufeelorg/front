@@ -30,7 +30,7 @@ export const styles = (theme: any) => ({
     padding: [[20, 20]],
   },
   progressColorPrimary: {
-    backgroundColor: theme.grey,
+    backgroundColor: '#a7a7a7',
   },
   progressBarColorPrimary: {
     backgroundColor: theme.blue,
@@ -74,7 +74,10 @@ export const DialogTitle = ({
         <LinearProgress
           value={progressCompleted}
           variant="determinate"
-          classes={{ barColorPrimary: classes.progressBarColorPrimary, colorPrimary: classes.progressColorPrimary }}
+          classes={{
+            barColorPrimary: classes.progressBarColorPrimary,
+            colorPrimary: classes.progressColorPrimary,
+          }}
         />
       )}
       <div className={classes.title}>{children}</div>
