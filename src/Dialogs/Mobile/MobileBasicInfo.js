@@ -22,7 +22,7 @@ export function MobileBasicInfo(props: { onNext:Function, onPrevious: Function }
     const language = useSelector(state => state.language);
     return (
         <>
-            <MobileModalContent title={dialog_basic_info_title[language]} renderDrawerContent={() => {
+            <MobileModalContent drawerTitle={dialog_basic_info_title[language]} renderDrawerContent={() => {
                 return <React.Fragment>
                     <div className={classes.formField}>
                         <TextField

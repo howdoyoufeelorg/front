@@ -28,7 +28,7 @@ export function MobileLocation(props: { onNext: Function, onPrevious: Function }
     }
     return (
         <>
-            <MobileModalContent title={dialog_location_title[language]} renderDrawerContent={() => {
+            <MobileModalContent drawerTitle={dialog_location_title[language]} renderDrawerContent={() => {
                 return <>
                     <div className={classes.formField}>
                         <TextField
@@ -37,8 +37,10 @@ export function MobileLocation(props: { onNext: Function, onPrevious: Function }
                             onChange={(event) => action('ANSWER_SET', {questionId: "zipcode", data: {value: event.target.value}})}
                             value={answers['zipcode'].value}/>
                     </div>
-                    <InputLabel>{country_selector_search_placeholder[language]}</InputLabel>
-                    <FlagDropDown onSelect={(value) => action('ANSWER_SET', {questionId: "country", data: {value: value}})} />
+                    <div className={classes.formField}>
+                        <InputLabel>{country_selector_search_placeholder[language]}</InputLabel>
+                        <FlagDropDown onSelect={(value) => action('ANSWER_SET', {questionId: "country", data: {value: value}})} />
+                    </div>
                 </>
             }}/>
             <AppBar className={classes.commandBar} position="fixed" variant="elevation">

@@ -13,22 +13,28 @@ const useStyles = makeStyles(theme => ({
         flex: '1',
         padding: 10,
         borderRadius: 12,
+        marginTop: 20,
     },
     title: {
         textAlign: "center",
         color: theme.white,
         fontWeight: "900",
     },
+    drawerTitle: {
+        textAlign: "left",
+        fontWeight: "900",
+    },
 }));
 
-export const MobileModalContent = ({title, renderDrawerContent, children}:
-                                       { title: string, renderDrawerContent: Function, children?: React.Node }) => {
+export const MobileModalContent = ({drawerTitle, title, renderDrawerContent, children}:
+                                       { drawerTitle?: string, title?: string, renderDrawerContent: Function, children?: React.Node }) => {
     const classes = useStyles();
 
     return <div className={classes.mobileModalContent}>
-        <h1 className={classes.title}>{title}</h1>
+        { !!title && <h2 className={classes.title}>{title}</h2> }
         {children}
         <Card className={classes.mobileDrawer}>
+            { !!drawerTitle && <h2 className={classes.drawerTitle}>{drawerTitle}</h2> }
             {renderDrawerContent()}
         </Card>
     </div>

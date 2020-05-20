@@ -38,7 +38,7 @@ export const styles = theme => ({
         marginBottom: 10
     },
     formField: {
-        padding: [[20, 0]]
+        marginBottom: 20
     },
     strecher: {
         height: 84

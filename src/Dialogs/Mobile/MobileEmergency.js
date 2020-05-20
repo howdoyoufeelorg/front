@@ -17,8 +17,8 @@ export function MobileEmergency(props: { onNext: Function })
     const language = useSelector(state => state.language);
     return (
         <>
-            <MobileModalContent title={dialog_emergency_title[language]} renderDrawerContent={() => {
-                return dialog_emergency_content[language]
+            <MobileModalContent drawerTitle={dialog_emergency_title[language]} renderDrawerContent={() => {
+                return null;
             }} />
             <AppBar className={classes.commandBar} position="fixed" variant="elevation">
                 <BlueButton variant="noShadow" className={classes.commandButton} onClick={() => onNext(true)}>{button_yes[language]}</BlueButton>

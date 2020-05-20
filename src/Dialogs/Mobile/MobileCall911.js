@@ -20,7 +20,7 @@ export function MobileCall911(props: { onClose: Function })
     const language = useSelector(state => state.language);
     return (
         <>
-            <MobileModalContent title={dialog_call911_title[language]} renderDrawerContent={() => {
+            <MobileModalContent drawerTitle={dialog_call911_title[language]} renderDrawerContent={() => {
                 return dialog_call911_content[language];
             } } />
             <AppBar className={classes.commandBar} position="fixed" variant="elevation">

@@ -25,6 +25,6 @@ export const styles = theme => ({
         height: 160
     },
     formField: {
-        padding: [[20, 0]]
+        marginBottom: 20
     }
 })
