@@ -1,6 +1,6 @@
 export const styles = theme => ({
     root: {
-
+        color: 'red',
     },
     title: {
         display: 'flex',

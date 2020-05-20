@@ -21,6 +21,7 @@
     "flow-typed": "2.6.0",
     "mapbox-gl": "^1.9.1",
     "node-sass": "^4.13.1",
+    "prettier": "^2.0.5",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-flags-select": "^1.1.12",
