@@ -115,5 +115,7 @@ export const theme = createMuiTheme({
     },
     white, grey, blue, purple, orange, green, red, blue2, blue3, blue4, backgroundBlue,
     globalRadius: 10,
-    appBarHeight: 64,
+    appBarHeightMobile: 56,
+    appBarHeightDesktop: 64,
+    inputControlWidth: '200px',
 });

@@ -5,6 +5,7 @@ export const styles = theme => ({
     title: {
         textAlign: "center",
         color: theme.white,
+        fontWeight: "900",
     },
     infoCard: {
         width: '96%',
@@ -29,7 +30,6 @@ export const styles = theme => ({
         display: "flex",
         justifyContent: "space-around",
         flexDirection: "row",
-        borderTop: `2px solid ${theme.backgroundBlue}`
     },
     commandButton: {
         margin: [[20,0]]
@@ -38,9 +38,9 @@ export const styles = theme => ({
         marginBottom: 10
     },
     formField: {
-        padding: [[20, 0]]
+        marginBottom: 20
     },
     strecher: {
         height: 84
-    },
+    }
 })

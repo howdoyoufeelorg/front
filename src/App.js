@@ -1,8 +1,8 @@
+//@flow
 import React, {useState, useEffect}  from 'react';
-import {CssBaseline, AppBar, Toolbar, IconButton, Typography} from "@material-ui/core";
+import {CssBaseline, AppBar, Toolbar, IconButton} from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 import {action} from './sagas';
-import { useSelector } from 'react-redux'
 import './faIcons';
 import AjaxInProgressDialog from "./Dialogs/AjaxInProgressDialog";
 import AjaxFailureDialog from "./Dialogs/AjaxFailureDialog";
@@ -51,8 +51,11 @@ const styles = theme => ({
         background: theme.backgroundBlue,
         padding: [[0,20]],
     },
+    mainBarMobile: {
+        height: theme.appBarHeightMobile,
+    },
     mainBarDesktop: {
-        height: 64,
+        height: theme.appBarHeightDesktop,
     },
     toolbarDesktop: {
         justifyContent: "space-between"
@@ -63,12 +66,15 @@ const styles = theme => ({
     },
     logoDesktop: {
         height: 36
+    },
+    logoMobile: {
+        height: 22
     }
 })
 
 const useStyles = makeStyles(styles);
 
-function App(props) {
+function App() {
     const classes = useStyles();
     const hash = useGetHash();
     const isMobile = useIsMobile();
@@ -84,8 +90,8 @@ function App(props) {
         switch(stage) {
             case 0: return <Disclaimer onNext={() => setStage(stage+1)} />;
             case 1: return <Emergency onNext={(response) => response === true ? setStage(100) : setStage(stage+1)}/>;
-            case 2: return <Location onNext={() => setStage(stage+1)} />
-            case 3: return <BasicInfo onNext={() => setStage(stage+1)} onPrevious={() => setStage(stage-1)} />
+            case 2: return <Location onPrevious={() => setStage(stage-1)} onNext={() => setStage(stage+1)} />
+            case 3: return <BasicInfo onPrevious={() => setStage(stage-1)} onNext={() => setStage(stage+1)} />
             case 4: return <Survey onPrevious={() => setStage(stage-1)} onClose={() => setStage(99)} />;
             case 99: return <Instructions />;
             case 100: return <Call911 />;
@@ -96,7 +102,7 @@ function App(props) {
         switch(stage) {
             case 0: return <MobileDisclaimer onNext={() => setStage(stage+1)}/>;
             case 1: return <MobileEmergency onNext={(response) => response === true ? setStage(100) : setStage(stage+1)}/>;
-            case 2: return <MobileLocation onNext={() => setStage(stage+1)}/>;
+            case 2: return <MobileLocation onPrevious={() => setStage(stage-1)} onNext={() => setStage(stage+1)}/>;
             case 3: return <MobileBasicInfo onNext={() => setStage(stage+1)} onPrevious={() => setStage(stage-1)}/>;
             case 4: return <MobileSurvey onPrevious={() => setStage(stage-1)} onClose={() => setStage(99)}/>;
             case 99: return <MobileInstructions />;
@@ -119,12 +125,12 @@ function App(props) {
         <>
             <CssBaseline/>
             <AppBar
-                className={clsx(classes.mainBar, !isMobile && classes.mainBarDesktop)}
+                className={clsx(classes.mainBar, !isMobile && classes.mainBarDesktop, isMobile && classes.mainBarMobile)}
                 position="fixed"
                 elevation={0}
             >
-                <Toolbar className={clsx(!isMobile && classes.toolbarDesktop)} disableGutters={true}>
-                    <img className={clsx(!isMobile && classes.logoDesktop)} src="HDYFLogoWhite@2x.png" alt="HowDoYouFeel?org"/>
+                <Toolbar className={classes.toolbarDesktop} disableGutters={true}>
+                    <img className={clsx(!isMobile && classes.logoDesktop, isMobile && classes.logoMobile)} src="HDYFLogoWhite@2x.png" alt="HowDoYouFeel?org"/>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                         <MenuIcon fontSize="large" />
                     </IconButton>

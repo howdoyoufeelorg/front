@@ -24,15 +24,7 @@ export const styles = theme => ({
     strecher: {
         height: 160
     },
-    flagDropdown: {
-        '& img.flag-select__option__icon': {
-            fontSize: 20
-        },
-        '& span.flag-select__option__label': {
-            fontSize: '1.2em'
-        }
-    },
     formField: {
-        padding: [[20, 0]]
+        marginBottom: 20
     }
 })
