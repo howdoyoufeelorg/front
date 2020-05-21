@@ -20,11 +20,9 @@ import { MobileEmergency } from './Dialogs/Mobile/MobileEmergency';
 import { MobileCall911 } from './Dialogs/Mobile/MobileCall911';
 import { MobileSurvey } from './Dialogs/Mobile/MobileSurvey';
 import { MobileMap } from './Dialogs/Mobile/MobileMap';
-import { HDYFMap } from './Components/HDYFMap';
 import { MobileInstructions } from './Dialogs/Mobile/MobileInstructions';
 import clsx from 'clsx';
 import { Location } from './Dialogs/Location';
-import { BasicInfo } from './Dialogs/BasicInfo';
 import { MobileLocation } from './Dialogs/Mobile/MobileLocation';
 import { MobileBasicInfo } from './Dialogs/Mobile/MobileBasicInfo';
 
@@ -70,6 +68,12 @@ const styles = (theme) => ({
   logoMobile: {
     height: 22,
   },
+  pageContent: {
+    minHeight: `calc(100vh - ${theme.appBarHeightDesktop}px)`,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 const useStyles = makeStyles(styles);
@@ -101,10 +105,6 @@ function App() {
           <Location onPrevious={() => setStage(stage - 1)} onNext={() => setStage(stage + 1)} />
         );
       case 3:
-        return (
-          <BasicInfo onPrevious={() => setStage(stage - 1)} onNext={() => setStage(stage + 1)} />
-        );
-      case 4:
         return <Survey onPrevious={() => setStage(stage - 1)} onClose={() => setStage(99)} />;
       case 99:
         return <Instructions />;
@@ -182,7 +182,9 @@ function App() {
         </Toolbar>
       </AppBar>
       <div className={classes.offset} />
-      {isMobile ? renderMobileStage(stage) : renderStage(stage)}
+      <div className={classes.pageContent}>
+        {isMobile ? renderMobileStage(stage) : renderStage(stage)}
+      </div>
       <AjaxInProgressDialog />
       <AjaxFailureDialog />
     </>

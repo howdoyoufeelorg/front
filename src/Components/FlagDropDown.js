@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 
 export const styles = (theme: any) => ({
     flagDropdown: {
-        width: theme.inputControlWidth,
+        width: '100%',
         'margin-top': '8px',
         '& button': {
             width: '100%',
