@@ -28,6 +28,7 @@ export const styles = (theme: any) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    padding: 0,
   },
   actions: {
     display: 'flex',

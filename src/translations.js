@@ -31,7 +31,7 @@ export const elements = {
   dialog_basic_info_content: { en: 'Tell Us About Yourself', es: 'Cuéntanos acerca de tí' },
   dialog_emergency_title: { en: 'Is this an Emergency?', es: '\u00bfEs esto una emergencia?' },
   dialog_emergency_content: { en: 'Is this an Emergency?', es: '\u00bfEs esto una emergencia?' },
-  dialog_survey_title: { en: 'Survey', es: 'Encuesta' },
+  dialog_survey_title: { en: 'How Do You Feel Right Now?', es: '¿Cómo te sientes ahora?' },
   dialog_survey_content: { en: 'Survey', es: 'Encuesta' },
   dialog_instructions_title: { en: 'Thank You', es: 'Gracias' },
   dialog_instructions_content: { en: 'Instructions', es: 'Instrucciones' },

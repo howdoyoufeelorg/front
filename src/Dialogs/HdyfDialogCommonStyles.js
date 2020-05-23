@@ -13,6 +13,7 @@ export const styles = (theme) => ({
   content: {
     width: '668px',
     margin: '0 auto',
+    padding: 0,
   },
   actions: {
     padding: [[20, 20]],

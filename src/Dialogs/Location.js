@@ -41,7 +41,7 @@ export function Location(props) {
   };
   return (
     <DialogCard>
-      <DialogCardHeader displayProgress progressCompleted={75}>
+      <DialogCardHeader displayProgress progressCompleted={60}>
         <div className={classes.titleText}></div>
         <LanguageSelector />
       </DialogCardHeader>

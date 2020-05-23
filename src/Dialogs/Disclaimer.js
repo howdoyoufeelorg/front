@@ -30,7 +30,7 @@ export function Disclaimer(props: { onNext: () => void }) {
   return (
     <React.Fragment>
       <DialogCard>
-        <DialogCardHeader disableTypography displayProgress progressCompleted={25}>
+        <DialogCardHeader disableTypography displayProgress progressCompleted={20}>
           <div></div>
           <LanguageSelector />
         </DialogCardHeader>
@@ -38,7 +38,7 @@ export function Disclaimer(props: { onNext: () => void }) {
           <div className={commonClasses.titleText}>{getting_started_title[language]}</div>
           <Card classes={{ root: disclaimerClasses.card }}>Hello</Card>
         </DialogCardContent>
-        <DialogCardActions style={ {marginBottom: 96} }>
+        <DialogCardActions style={{ marginBottom: 96 }}>
           <BlueButton variant="default" onClick={() => onNext()} size="large">
             {button_start[language]}
           </BlueButton>

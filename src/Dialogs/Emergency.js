@@ -17,7 +17,7 @@ export function Emergency(props) {
   const language = useSelector((state) => state.language);
   return (
     <DialogCard>
-      <DialogCardHeader displayProgress progressCompleted={50}>
+      <DialogCardHeader displayProgress progressCompleted={40}>
         <div className={classes.titleText}>{dialog_emergency_title[language]}</div>
         <LanguageSelector />
       </DialogCardHeader>
