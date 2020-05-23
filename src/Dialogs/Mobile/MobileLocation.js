@@ -1,52 +1,126 @@
 //@flow
-import React  from 'react';
-import {makeStyles} from "@material-ui/core/styles"
-import {styles} from "./HdyfMobileDialogCommonStyles"
-import {useSelector} from "react-redux"
-import BlueButton from "../../Components/BlueButton"
-import AppBar from "@material-ui/core/AppBar"
-import {action} from "../../sagas"
-import {MobileModalContent} from "../../Components/MobileModalContent";
-import {FlagDropDown} from "../../Components/FlagDropDown";
-import {TextField} from "../../Components/TextField";
-import {InputLabel} from "@material-ui/core";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { styles } from './HdyfMobileDialogCommonStyles';
+import { useSelector } from 'react-redux';
+import BlueButton from '../../Components/BlueButton';
+import AppBar from '@material-ui/core/AppBar';
+import { action } from '../../sagas';
+import { FlagDropDown } from '../../Components/FlagDropDown';
+import { TextField } from '../../Components/TextField';
+import { InputLabel } from '@material-ui/core';
+import { genderChoices, raceChoices } from '../../translations';
 
-const useStyles = makeStyles(styles)
+const useStyles = makeStyles(styles);
 
 export function MobileLocation(props: { onNext: Function, onPrevious: Function }) {
-    const classes = useStyles();
-    const answers = useSelector(state => state.answers);
-    const { onNext, onPrevious } = props;
-    const {dialog_location_title, button_next, button_back, zipcode_input_placeholder, alert_missing_zipcode, country_selector_search_placeholder} = useSelector(state => state.elements);
-    const language = useSelector(state => state.language);
-    const onButtonClick = () => {
-        if(answers['zipcode'].value === '') {
-            alert(alert_missing_zipcode[language])
-        } else {
-            onNext();
-        }
+  const classes = useStyles();
+  const answers = useSelector((state) => state.answers);
+  const { onNext, onPrevious } = props;
+  const {
+    dialog_location_title,
+    button_next,
+    button_back,
+    zipcode_input_placeholder,
+    alert_missing_zipcode,
+    country_selector_search_placeholder,
+    dialog_basic_info_title,
+    age_input_label,
+    age_input_placeholder,
+    gender_input_placeholder,
+    race_input_placeholder,
+  } = useSelector((state) => state.elements);
+  const language = useSelector((state) => state.language);
+  const onButtonClick = () => {
+    if (answers['zipcode'].value === '') {
+      alert(alert_missing_zipcode[language]);
+    } else {
+      onNext();
     }
-    return (
-        <>
-            <MobileModalContent drawerTitle={dialog_location_title[language]} renderDrawerContent={() => {
-                return <>
-                    <div className={classes.formField}>
-                        <TextField
-                            label={zipcode_input_placeholder[language]}
-                            size={"medium"}
-                            onChange={(event) => action('ANSWER_SET', {questionId: "zipcode", data: {value: event.target.value}})}
-                            value={answers['zipcode'].value}/>
-                    </div>
-                    <div className={classes.formField}>
-                        <InputLabel>{country_selector_search_placeholder[language]}</InputLabel>
-                        <FlagDropDown onSelect={(value) => action('ANSWER_SET', {questionId: "country", data: {value: value}})} />
-                    </div>
-                </>
-            }}/>
-            <AppBar className={classes.commandBar} position="fixed" variant="elevation">
-                <BlueButton variant="noShadow" className={classes.commandButton} onClick={() => onPrevious()}>{button_back[language]}</BlueButton>
-                <BlueButton variant="default" className={classes.commandButton} onClick={() => onButtonClick()}>{button_next[language]}</BlueButton>
-            </AppBar>
-        </>
-    )
+  };
+  return (
+    <div className={classes.content}>
+      <h2 className={classes.title}>{dialog_location_title[language]}</h2>
+      <div className={classes.formField}>
+        <TextField
+          label={zipcode_input_placeholder[language]}
+          size={'medium'}
+          onChange={(event) =>
+            action('ANSWER_SET', { questionId: 'zipcode', data: { value: event.target.value } })
+          }
+          value={answers['zipcode'].value}
+        />
+      </div>
+      <div className={classes.formField}>
+        <InputLabel className={classes.label}>{country_selector_search_placeholder[language]}</InputLabel>
+        <FlagDropDown
+          onSelect={(value) =>
+            action('ANSWER_SET', { questionId: 'country', data: { value: value } })
+          }
+        />
+      </div>
+      <h2 className={classes.title}>{dialog_basic_info_title[language]}</h2>
+      <div className={classes.formField}>
+        <TextField
+          label={age_input_label[language]}
+          placeholder={age_input_placeholder[language]}
+          size={'medium'}
+          onChange={(event) =>
+            action('ANSWER_SET', { questionId: 'age', data: { value: event.target.value } })
+          }
+          value={answers['age'].value}
+        />
+      </div>
+      <div className={classes.formField}>
+        <InputLabel className={classes.label}>{gender_input_placeholder[language]}</InputLabel>
+        <TextField
+          size={'medium'}
+          select
+          onChange={(event) =>
+            action('ANSWER_SET', { questionId: 'gender', data: { value: event.target.value } })
+          }
+          value={answers['gender'].value}
+        >
+          {genderChoices[language].map((item, index) => (
+            <option key={index} value={item}>
+              {item}
+            </option>
+          ))}
+        </TextField>
+      </div>
+      <div className={classes.formField}>
+        <InputLabel className={classes.label}>{race_input_placeholder[language]}</InputLabel>
+        <TextField
+          size={'medium'}
+          select
+          onChange={(event) =>
+            action('ANSWER_SET', { questionId: 'race', data: { value: event.target.value } })
+          }
+          value={answers['race'].value}
+        >
+          {raceChoices[language].map((item, index) => (
+            <option key={index} value={item}>
+              {item}
+            </option>
+          ))}
+        </TextField>
+      </div>
+      <AppBar className={classes.commandBar} position="fixed" variant="elevation">
+        <BlueButton
+          variant="noShadow"
+          className={classes.commandButton}
+          onClick={() => onPrevious()}
+        >
+          {button_back[language]}
+        </BlueButton>
+        <BlueButton
+          variant="default"
+          className={classes.commandButton}
+          onClick={() => onButtonClick()}
+        >
+          {button_next[language]}
+        </BlueButton>
+      </AppBar>
+    </div>
+  );
 }

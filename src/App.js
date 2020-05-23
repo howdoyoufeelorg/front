@@ -68,12 +68,6 @@ const styles = (theme) => ({
   logoMobile: {
     height: 22,
   },
-  pageContent: {
-    minHeight: `calc(100vh - ${theme.appBarHeightDesktop}px)`,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
 });
 
 const useStyles = makeStyles(styles);
@@ -130,6 +124,7 @@ function App() {
             onNext={() => setStage(stage + 1)}
           />
         );
+      /*
       case 3:
         return (
           <MobileBasicInfo
@@ -137,7 +132,8 @@ function App() {
             onPrevious={() => setStage(stage - 1)}
           />
         );
-      case 4:
+*/
+      case 3:
         return <MobileSurvey onPrevious={() => setStage(stage - 1)} onClose={() => setStage(99)} />;
       case 99:
         return <MobileInstructions />;
@@ -182,9 +178,9 @@ function App() {
         </Toolbar>
       </AppBar>
       <div className={classes.offset} />
-      <div className={classes.pageContent}>
-        {isMobile ? renderMobileStage(stage) : renderStage(stage)}
-      </div>
+
+      {isMobile ? renderMobileStage(stage) : renderStage(stage)}
+
       <AjaxInProgressDialog />
       <AjaxFailureDialog />
     </>

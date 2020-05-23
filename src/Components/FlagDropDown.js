@@ -3,22 +3,14 @@ import * as React from 'react';
 import ReactFlagsSelect from 'react-flags-select';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
-
-type Width = number | 'fullWidth' | 'auto';
+import { getWidth } from '../styleUtils';
+import type { Width } from '../styleUtils';
 
 type FlagStyleProps = {
   width: Width,
 };
 
-const getWidth = (width: Width) => {
-  if (width === 'fullWidth') {
-    return '100%';
-  }
-  return width || '100%';
-};
-
 export const flagDropdownStyles = (props: FlagStyleProps) => (theme: any) => {
-  console.log('props', props);
   return {
     flagDropdown: {
       width: getWidth(props.width),
@@ -69,7 +61,7 @@ export const flagDropdownStyles = (props: FlagStyleProps) => (theme: any) => {
       },
       '& span.flag-select__option__label': {
         fontSize: '1rem',
-          marginLeft: 12,
+        marginLeft: 12,
       },
     },
   };
