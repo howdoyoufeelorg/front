@@ -20,7 +20,7 @@ export const styles = (theme) => ({
     width: '96%',
     background: theme.white,
     borderRadius: theme.globalRadius,
-    margin: [[10, 'auto']],
+    margin: [[10, 'auto', 40, 'auto']],
     minHeight: 40,
     padding: [[16]],
     fontSize: '1rem',

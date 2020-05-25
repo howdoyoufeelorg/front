@@ -10,7 +10,7 @@ import { FlagDropDown } from '../../Components/FlagDropDown';
 import { TextField } from '../../Components/TextField';
 import { InputLabel } from '@material-ui/core';
 import { genderChoices, raceChoices } from '../../translations';
-import clsx from "clsx";
+import clsx from 'clsx';
 
 const useStyles = makeStyles(styles);
 
@@ -45,6 +45,7 @@ export function MobileLocation(props: { onNext: Function, onPrevious: Function }
       <div className={classes.formField}>
         <TextField
           label={zipcode_input_placeholder[language]}
+          placeholder={zipcode_input_placeholder[language]}
           size={'medium'}
           onChange={(event) =>
             action('ANSWER_SET', { questionId: 'zipcode', data: { value: event.target.value } })
@@ -53,7 +54,9 @@ export function MobileLocation(props: { onNext: Function, onPrevious: Function }
         />
       </div>
       <div className={classes.formField}>
-        <InputLabel className={classes.label}>{country_selector_search_placeholder[language]}</InputLabel>
+        <InputLabel className={classes.label}>
+          {country_selector_search_placeholder[language]}
+        </InputLabel>
         <FlagDropDown
           onSelect={(value) =>
             action('ANSWER_SET', { questionId: 'country', data: { value: value } })

@@ -101,7 +101,7 @@ function App() {
       case 3:
         return <Survey onPrevious={() => setStage(stage - 1)} onClose={() => setStage(99)} />;
       case 99:
-        return <Instructions />;
+        return <Instructions onClose={() => setStage(101)} />;
       case 100:
         return <Call911 />;
       //default: return <Survey onClose={() => setStage(stage+1)}/>;
@@ -136,7 +136,7 @@ function App() {
       case 3:
         return <MobileSurvey onPrevious={() => setStage(stage - 1)} onClose={() => setStage(99)} />;
       case 99:
-        return <MobileInstructions />;
+        return <MobileInstructions onClose={() => setStage(101)} />;
       case 100:
         return <MobileCall911 onClose={() => setStage(stage + 1)} />;
       case 101:
