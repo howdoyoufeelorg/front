@@ -82,7 +82,7 @@ function App() {
     // action('ELEMENTS_LOAD');
   }, []);
 
-  const initialStage = parseInt(process.env.REACT_APP_INITIAL_STAGE) || 2;
+  const initialStage = parseInt(process.env.REACT_APP_INITIAL_STAGE) || 0;
   const [stage, setStage] = useState(initialStage);
   const renderStage = (stage) => {
     switch (stage) {
