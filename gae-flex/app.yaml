@@ -2,9 +2,6 @@ service: hdyf-front
 runtime: nodejs
 env: flex
 
-env_variables:
-    REACT_APP_API_HOST: https://hdyf-api-dot-m-app-3.appspot.com
-
 handlers:
     - url: /static/js/(.*)
       static_files: build/static/js/\1
