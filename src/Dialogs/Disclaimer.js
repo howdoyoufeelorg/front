@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: `0 3px 60px 0 rgba(0, 0, 0, 0.16)`,
     width: 670,
     marginTop: 32,
+    fontSize: '1rem',
   },
 }));
 
@@ -36,7 +37,9 @@ export function Disclaimer(props: { onNext: () => void }) {
         </DialogCardHeader>
         <DialogCardContent>
           <div className={commonClasses.titleText}>{getting_started_title[language]}</div>
-          <Card classes={{ root: disclaimerClasses.card }}>Hello</Card>
+          <Card classes={{ root: disclaimerClasses.card }}>
+            {dialog_disclaimer_content[language]}
+          </Card>
         </DialogCardContent>
         <DialogCardActions style={{ marginBottom: 96 }}>
           <BlueButton variant="default" onClick={() => onNext()} size="large">

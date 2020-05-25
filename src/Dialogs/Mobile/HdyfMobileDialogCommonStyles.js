@@ -5,8 +5,11 @@ export const styles = (theme) => ({
   },
   content: {
     padding: 16,
+    height: `calc(100vh - ${theme.appBarHeightMobile + theme.actionBarHeightMobile}px)`,
+    overflow: 'scroll',
+  },
+  backgroundWhite: {
     backgroundColor: theme.white,
-    minHeight: `calc(100vh - ${theme.appBarHeightDesktop}px)`,
   },
   title: {
     marginTop: 0,
@@ -19,13 +22,11 @@ export const styles = (theme) => ({
     borderRadius: theme.globalRadius,
     margin: [[10, 'auto']],
     minHeight: 40,
-    padding: [[10]],
+    padding: [[16]],
+    fontSize: '1rem',
   },
   surveyCard: {
     width: '100%',
-    background: theme.grey,
-    borderRadius: theme.globalRadius,
-    minHeight: 200,
     padding: [[10, 20]],
   },
   commandBar: {

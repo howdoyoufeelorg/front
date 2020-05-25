@@ -129,5 +129,6 @@ export const theme = createMuiTheme({
   globalRadius: 10,
   appBarHeightMobile: 56,
   appBarHeightDesktop: 64,
+  actionBarHeightMobile: 80,
   inputControlWidth: '200px',
 });

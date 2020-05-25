@@ -18,12 +18,11 @@ export function MobileDisclaimer(props: { onNext: Function }) {
   );
   const language = useSelector((state) => state.language);
   return (
-    <div>
+    <div className={classes.content}>
       <Card className={classes.infoCard}>
         <h2 className={classes.title}>{getting_started_title[language]}</h2>
         {dialog_disclaimer_content[language]}
       </Card>
-      <Card className={classes.infoCard}>{dialog_disclaimer_content[language]}</Card>
       <AppBar className={classes.commandBar} position="fixed" variant="elevation">
         <BlueButton variant="default" className={classes.commandButton} onClick={() => onNext()}>
           {button_start[language]}

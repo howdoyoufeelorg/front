@@ -10,6 +10,7 @@ import { FlagDropDown } from '../../Components/FlagDropDown';
 import { TextField } from '../../Components/TextField';
 import { InputLabel } from '@material-ui/core';
 import { genderChoices, raceChoices } from '../../translations';
+import clsx from "clsx";
 
 const useStyles = makeStyles(styles);
 
@@ -39,7 +40,7 @@ export function MobileLocation(props: { onNext: Function, onPrevious: Function }
     }
   };
   return (
-    <div className={classes.content}>
+    <div className={clsx(classes.content, classes.backgroundWhite)}>
       <h2 className={classes.title}>{dialog_location_title[language]}</h2>
       <div className={classes.formField}>
         <TextField
