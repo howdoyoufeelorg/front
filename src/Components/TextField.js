@@ -42,6 +42,6 @@ const HDYFTextField = ({ width }) =>
 
 export const TextField = (props: any) => {
   const { width, ...textProps } = props;
-  const TextFieldWithProps = HDYFTextField({ width });
+  const TextFieldWithProps = React.useMemo(() => HDYFTextField({ width }), [width]);
   return <TextFieldWithProps InputLabelProps={{ shrink: true }} {...textProps} />;
 };
