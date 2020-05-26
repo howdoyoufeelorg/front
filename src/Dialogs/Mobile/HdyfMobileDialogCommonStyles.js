@@ -4,7 +4,7 @@ export const styles = (theme) => ({
     fontWeight: 900,
   },
   content: {
-    padding: 16,
+    padding: [16, 16, 40, 16],
     height: `calc(100vh - ${theme.appBarHeightMobile + theme.actionBarHeightMobile}px)`,
     overflow: 'scroll',
   },
@@ -20,10 +20,11 @@ export const styles = (theme) => ({
     width: '96%',
     background: theme.white,
     borderRadius: theme.globalRadius,
-    margin: [[10, 'auto', 40, 'auto']],
+    margin: [[10, 'auto']],
     minHeight: 40,
     padding: [[16]],
     fontSize: '1rem',
+    boxShadow: '0 3px 60px 0 rgba(0, 0, 0, 0.16)',
   },
   surveyCard: {
     width: '100%',
