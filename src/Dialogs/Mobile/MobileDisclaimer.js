@@ -39,7 +39,7 @@ export function MobileDisclaimer(props: { onNext: Function }) {
           variant="default"
           className={classes.commandButton}
           onClick={() => onNext()}
-          size="large"
+          size="extraLarge"
         >
           {button_start[language]}
         </BlueButton>

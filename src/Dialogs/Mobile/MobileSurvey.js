@@ -72,7 +72,9 @@ export function MobileSurvey(props) {
   }
   return (
     <div className={clsx(classes.content, classes.backgroundWhite)}>
-      <h2 className={clsx(classes.title, classes.titleMedium)} style={ {marginBottom: 20} }>{dialog_survey_title[language]}</h2>
+      <h2 className={clsx(classes.title, classes.titleMedium)} style={{ marginBottom: 20 }}>
+        {dialog_survey_title[language]}
+      </h2>
       <div className={classes.surveyCard}>
         {questions.map((question, index) => (
           <div className={classes.question} key={index}>
@@ -85,6 +87,7 @@ export function MobileSurvey(props) {
           variant="noShadow"
           className={classes.commandButton}
           onClick={() => onPrevious()}
+          size="regular"
         >
           {button_back[language]}
         </BlueButton>
@@ -92,6 +95,7 @@ export function MobileSurvey(props) {
           variant="default"
           className={classes.commandButton}
           onClick={() => onSubmitClick()}
+          size="large"
         >
           {button_submit[language]}
         </BlueButton>

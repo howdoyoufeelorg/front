@@ -31,7 +31,6 @@ const styles = (theme) => {
       borderStyle: 'solid',
       borderColor: theme.blue,
       textTransform: 'none',
-      padding: 0,
       '&:hover': {
         backgroundColor: theme.white,
       },
@@ -40,17 +39,25 @@ const styles = (theme) => {
         marginTop: 2,
       },
     },
-    sizeSmall: {
-      width: 70,
+    sizeXSmall: {
+      width: 80,
       height: 40,
-      'padding-top': 0,
-      'padding-bottom': 0,
+    },
+    sizeSmall: {
+      width: 90,
+      height: 40,
+    },
+    sizeRegular: {
+      width: 110,
+      height: 45,
     },
     sizeLarge: {
-      width: 210,
+      width: 185,
+      height: 45,
     },
-    sizeExtralarge: {
-      width: 280,
+    sizeExtraLarge: {
+      width: 315,
+      height: 45,
     },
     noShadow: {
       boxShadow: 'none',

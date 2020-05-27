@@ -32,6 +32,7 @@ export function MobileEmergency(props: { onNext: Function }) {
           variant="noShadow"
           className={classes.commandButton}
           onClick={() => onNext(true)}
+          size="regular"
         >
           {button_yes[language]}
         </BlueButton>
@@ -39,6 +40,7 @@ export function MobileEmergency(props: { onNext: Function }) {
           variant="default"
           className={classes.commandButton}
           onClick={() => onNext(false)}
+          size="large"
         >
           {button_no[language]}
         </BlueButton>

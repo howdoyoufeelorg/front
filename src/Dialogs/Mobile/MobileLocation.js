@@ -120,6 +120,7 @@ export function MobileLocation(props: { onNext: Function, onPrevious: Function }
           variant="noShadow"
           className={classes.commandButton}
           onClick={() => onPrevious()}
+          size="regular"
         >
           {button_back[language]}
         </BlueButton>
@@ -127,6 +128,7 @@ export function MobileLocation(props: { onNext: Function, onPrevious: Function }
           variant="default"
           className={classes.commandButton}
           onClick={() => onButtonClick()}
+          size="large"
         >
           {button_next[language]}
         </BlueButton>
