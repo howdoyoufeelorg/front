@@ -3,6 +3,8 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { styles as buttonStyles } from '@material-ui/core/Button/Button';
 import clsx from 'clsx';
+import Chevron from '../assets/icons/Chevron_for_Button.svg';
+import { inputBoxShadow } from '../styleUtils';
 
 function capitalize(string) {
   if (process.env.NODE_ENV !== 'production') {
@@ -19,7 +21,8 @@ const styles = (theme) => {
     root: {
       color: theme.blue,
       backgroundColor: theme.white,
-      fontSize: 14,
+      fontSize: 20,
+      lineHeight: '24px',
       fontWeight: 900,
       height: 40,
       width: 140,
@@ -28,13 +31,18 @@ const styles = (theme) => {
       borderStyle: 'solid',
       borderColor: theme.blue,
       textTransform: 'none',
+      padding: 0,
       '&:hover': {
         backgroundColor: theme.white,
+      },
+      '& img': {
+        marginLeft: 15,
+        marginTop: 2,
       },
     },
     sizeSmall: {
       width: 70,
-      height: 32,
+      height: 40,
       'padding-top': 0,
       'padding-bottom': 0,
     },
@@ -57,12 +65,13 @@ const styles = (theme) => {
     selected: {
       color: theme.white,
       backgroundColor: theme.blue,
-      boxShadow: '8px 8px 24px 0px rgba(86,133,247,0.75)',
-      '-moz-box-shadow': '8px 8px 24px 0px rgba(86,133,247,0.75)',
-      '-webkit-box-shadow': '8px 8px 24px 0px rgba(86,133,247,0.75)',
+      ...inputBoxShadow,
       '&:hover': {
         backgroundColor: theme.blue,
       },
+    },
+    buttonText: {
+      lineHeight: '36px',
     },
   };
   const computed = { ...buttonStyles(theme), ...customisedStyles };
@@ -73,7 +82,7 @@ const useStyles = makeStyles(styles);
 
 function BlueButton(props) {
   const classes = useStyles();
-  const { variant, className, selected, size, ...rest } = props;
+  const { variant, className, selected, size, children, ...rest } = props;
   const finalClassName = clsx(
     classes.root,
     classes[variant],
@@ -81,7 +90,12 @@ function BlueButton(props) {
     size !== undefined && size !== '' && classes['size'.concat(capitalize(size))],
     className,
   );
-  return <Button className={finalClassName} type="button" {...rest} />;
+  return (
+    <Button className={finalClassName} type="button" {...rest}>
+      <span className="button-text">{children}</span>
+      {variant === 'default' && <img src={Chevron} alt="chevron" />}
+    </Button>
+  );
 }
 
 export default BlueButton;

@@ -5,6 +5,7 @@ import { LanguageSelector } from '../Components/LanguageSelector';
 import { styles } from './HdyfDialogCommonStyles';
 import BlueButton from '../Components/BlueButton';
 import { DialogCardActions, DialogCard, DialogCardContent, DialogCardHeader } from './DialogCard';
+import { EmergencyLanguageMapping } from '../Components/EmergencyContent';
 
 const useStyles = makeStyles(styles);
 
@@ -15,13 +16,19 @@ export function Emergency(props) {
     (state) => state.elements,
   );
   const language = useSelector((state) => state.language);
+  const LanguageEmergency = EmergencyLanguageMapping[language];
   return (
     <DialogCard>
       <DialogCardHeader displayProgress progressCompleted={40}>
-        <div className={classes.titleText}>{dialog_emergency_title[language]}</div>
+        <div className={classes.titleText}></div>
         <LanguageSelector />
       </DialogCardHeader>
-      <DialogCardContent>{dialog_emergency_content[language]}</DialogCardContent>
+      <DialogCardContent>
+        <h2 className={classes.title}>{dialog_emergency_content[language]}</h2>
+        <div>
+          <LanguageEmergency />
+        </div>
+      </DialogCardContent>
       <DialogCardActions>
         <BlueButton variant="noShadow" onClick={() => onNext(true)} size={'large'}>
           {button_yes[language]}

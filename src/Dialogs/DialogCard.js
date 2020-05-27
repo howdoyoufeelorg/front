@@ -12,6 +12,7 @@ export const styles = (theme: any) => ({
     borderTopRightRadius: 0,
     width: `calc(100vw - 96px)`,
     margin: 48,
+    boxShadow: '0 3px 60px 0 rgba(0, 0, 0, 0.16)',
   },
   titleRoot: {
     display: 'flex',
@@ -25,6 +26,7 @@ export const styles = (theme: any) => ({
     padding: [[16, 24]],
   },
   content: {
+    fontSize: 16,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -34,7 +36,7 @@ export const styles = (theme: any) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: [[20, 20]],
+    paddingTop: 52,
   },
   progressColorPrimary: {
     backgroundColor: '#a7a7a7',

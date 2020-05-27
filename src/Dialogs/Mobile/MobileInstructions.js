@@ -28,6 +28,7 @@ const instructionsStyles = makeStyles((theme) => ({
   instructionsCards: {
     position: 'relative',
     top: -24,
+    padding: [[0, 20]],
   },
   instructionsPage: {
     padding: 0,

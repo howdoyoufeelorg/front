@@ -3,7 +3,7 @@ import * as React from 'react';
 import ReactFlagsSelect from 'react-flags-select';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
-import { getWidth } from '../styleUtils';
+import { getWidth, inputBoxShadow } from '../styleUtils';
 import type { Width } from '../styleUtils';
 
 type FlagStyleProps = {
@@ -23,6 +23,9 @@ export const flagDropdownStyles = (props: FlagStyleProps) => (theme: any) => {
         padding: '2px 8px',
         display: 'flex',
         'align-items': 'center',
+      },
+      '& button:focus': {
+        ...inputBoxShadow,
       },
       '& .flag-select__options': {
         maxHeight: 312,

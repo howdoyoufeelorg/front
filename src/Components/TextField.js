@@ -19,8 +19,9 @@ const HDYFTextField = ({ width }) =>
         },
         '& label': {
           fontWeight: 900,
+          color: theme.textColor,
         },
-        '& .Mui-focused input': {
+        '& .Mui-focused input, .Mui-focused .MuiSelect-root ': {
           'box-shadow': '8px 8px 24px 0px rgba(86,133,247,0.5)',
         },
         '& .MuiInputLabel-formControl': {

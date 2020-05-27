@@ -5,13 +5,16 @@ export const styles = (theme) => ({
   title: {
     textAlign: 'center',
     fontWeight: 900,
+    fontSize: 31,
   },
   titleText: {
-    fontSize: 30,
+    fontSize: 48,
     fontWeight: 900,
+    color: theme.textColor,
   },
   content: {
-    width: '668px',
+    width: '90%',
+    maxWidth: '668px',
     margin: '0 auto',
     padding: 0,
   },
@@ -29,5 +32,8 @@ export const styles = (theme) => ({
   },
   formField: {
     marginBottom: 20,
+  },
+  imageContainer: {
+    textAlign: 'center',
   },
 });

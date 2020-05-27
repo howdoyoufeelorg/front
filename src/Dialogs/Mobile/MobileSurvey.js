@@ -72,7 +72,7 @@ export function MobileSurvey(props) {
   }
   return (
     <div className={clsx(classes.content, classes.backgroundWhite)}>
-      <h2 className={classes.title}>{dialog_survey_title[language]}</h2>
+      <h2 className={clsx(classes.title, classes.titleMedium)} style={ {marginBottom: 20} }>{dialog_survey_title[language]}</h2>
       <div className={classes.surveyCard}>
         {questions.map((question, index) => (
           <div className={classes.question} key={index}>

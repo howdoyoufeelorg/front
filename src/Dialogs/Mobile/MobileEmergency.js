@@ -7,6 +7,9 @@ import BlueButton from '../../Components/BlueButton';
 import AppBar from '@material-ui/core/AppBar';
 import { MobileModalContent } from '../../Components/MobileModalContent';
 import Card from '@material-ui/core/Card';
+import { ComponentLanguageMapping } from '../../Components/DisclaimerContent';
+import { EmergencyLanguageMapping } from '../../Components/EmergencyContent';
+import clsx from "clsx";
 
 const useStyles = makeStyles(styles);
 
@@ -17,17 +20,12 @@ export function MobileEmergency(props: { onNext: Function }) {
     (state) => state.elements,
   );
   const language = useSelector((state) => state.language);
+  const LanguageEmergency = EmergencyLanguageMapping[language];
   return (
     <div className={classes.content}>
       <Card className={classes.infoCard}>
-        <h2 className={classes.title}>{dialog_emergency_title[language]}</h2>
-          <p>STOP NOW and Dial Emergency Services (US – 911) if you are experiencing any of the following:</p>
-          <ul>
-              <li>Extreme Difficulty with Breathing</li>
-              <li>Constant Chest Pain or Pressure</li>
-              <li>Extreme Fatigue or lightheadedness</li>
-              <li>Disorientation or Unresponsiveness</li>
-          </ul>
+        <h2 className={clsx(classes.title, classes.titleMedium)}>{dialog_emergency_title[language]}</h2>
+        <LanguageEmergency />
       </Card>
       <AppBar className={classes.commandBar} position="fixed" variant="elevation">
         <BlueButton

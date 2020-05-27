@@ -7,7 +7,7 @@ export const elements = {
   button_yes: { en: 'Yes', es: 'Si' },
   button_no: { en: 'No', es: 'No' },
   button_close: { en: 'Close', es: 'Cerca' },
-  button_start: { en: 'Start', es: '\u00a1Comienzo!' },
+  button_start: { en: 'Get Started', es: 'Empezar' },
   language_selector_search_placeholder: {
     en: 'Search for Language',
     es: 'B\u00fasqueda de idioma',

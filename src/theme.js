@@ -16,6 +16,7 @@ const red = '#ef6464';
 const blue2 = '#0667f6';
 const blue3 = '#148df7';
 const blue4 = '#00355a';
+const textColor = '#333';
 
 // Picked from the mockup
 const backgroundBlue = '#4f7ff2';
@@ -85,6 +86,9 @@ export const theme = createMuiTheme({
     secondary: {
       main: 'rgb(255,255,255)',
     },
+    text: {
+      primary: textColor,
+    }
   },
   typography: {
     useNextVariants: true,
@@ -125,7 +129,7 @@ export const theme = createMuiTheme({
   blue2,
   blue3,
   blue4,
-  backgroundBlue,
+  backgroundBlue, textColor,
   globalRadius: 10,
   appBarHeightMobile: 56,
   appBarHeightDesktop: 64,

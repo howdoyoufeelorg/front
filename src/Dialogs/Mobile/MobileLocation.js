@@ -10,6 +10,7 @@ import { FlagDropDown } from '../../Components/FlagDropDown';
 import { TextField } from '../../Components/TextField';
 import { InputLabel } from '@material-ui/core';
 import { genderChoices, raceChoices } from '../../translations';
+import Image from '../../assets/images/Medical_Illustration.png';
 import clsx from 'clsx';
 
 const useStyles = makeStyles(styles);
@@ -41,7 +42,10 @@ export function MobileLocation(props: { onNext: Function, onPrevious: Function }
   };
   return (
     <div className={clsx(classes.content, classes.backgroundWhite)}>
-      <h2 className={classes.title}>{dialog_location_title[language]}</h2>
+      <div className={classes.imageContainer}>
+        <img src={Image} alt="Illustration" />
+      </div>
+      <h2 className={clsx(classes.title, classes.titleSmall)}>{dialog_location_title[language]}</h2>
       <div className={classes.formField}>
         <TextField
           label={zipcode_input_placeholder[language]}
@@ -63,7 +67,9 @@ export function MobileLocation(props: { onNext: Function, onPrevious: Function }
           }
         />
       </div>
-      <h2 className={classes.title}>{dialog_basic_info_title[language]}</h2>
+      <h2 className={clsx(classes.title, classes.titleSmall)}>
+        {dialog_basic_info_title[language]}
+      </h2>
       <div className={classes.formField}>
         <TextField
           label={age_input_label[language]}

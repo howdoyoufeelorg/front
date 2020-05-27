@@ -61,7 +61,7 @@ const HDYFSlider = withStyles((theme) => ({
   },
   markLabel: {
     top: 'auto',
-    bottom: 32,
+    bottom: 40,
   },
   track: {
     height: 8,
@@ -91,11 +91,14 @@ const useStylesTooltip = makeStyles((theme) => ({
   tooltip: {
     backgroundColor: 'transparent',
     color: theme.backgroundBlue,
-    fontSize: 24,
+    fontSize: 34,
     fontWeight: 900,
     marginTop: 0,
     padding: [[2, 8]],
     lineHeight: 1,
+  },
+  popper: {
+    zIndex: 1,
   },
 }));
 
@@ -109,7 +112,7 @@ function ValueLabelComponent(props: Props) {
       enterTouchDelay={0}
       placement="bottom"
       title={value}
-      classes={{ tooltip: classes.tooltip }}
+      classes={{ tooltip: classes.tooltip, popper: classes.popper }}
     >
       {children}
     </Tooltip>

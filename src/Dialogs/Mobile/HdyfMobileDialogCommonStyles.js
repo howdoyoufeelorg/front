@@ -2,9 +2,10 @@ export const styles = (theme) => ({
   root: {},
   label: {
     fontWeight: 900,
+    color: theme.textColor,
   },
   content: {
-    padding: [16, 16, 40, 16],
+    padding: [[20, 20, 40, 20]],
     height: `calc(100vh - ${theme.appBarHeightMobile + theme.actionBarHeightMobile}px)`,
     overflow: 'scroll',
   },
@@ -16,19 +17,33 @@ export const styles = (theme) => ({
     textAlign: 'center',
     fontWeight: '900',
   },
+  titleLarge: {
+    fontSize: 32,
+  },
+  titleMedium: {
+    fontSize: 28,
+  },
+  titleSmall: {
+    fontSize: 24,
+  },
+  imageContainer: {
+    textAlign: 'center',
+    marginBottom: 20,
+  },
   infoCard: {
-    width: '96%',
+    width: '100%',
     background: theme.white,
     borderRadius: theme.globalRadius,
-    margin: [[10, 'auto']],
     minHeight: 40,
     padding: [[16]],
     fontSize: '1rem',
     boxShadow: '0 3px 60px 0 rgba(0, 0, 0, 0.16)',
+    marginBottom: 20,
   },
   surveyCard: {
     width: '100%',
     padding: [[10, 20]],
+    marginTop: 30,
   },
   commandBar: {
     top: 'auto',
@@ -43,10 +58,10 @@ export const styles = (theme) => ({
     margin: [[20, 0]],
   },
   question: {
-    marginBottom: 10,
+    marginBottom: 40,
   },
   formField: {
-    marginBottom: 20,
+    marginBottom: 24,
   },
   strecher: {
     height: 84,
