@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { styles as buttonStyles } from '@material-ui/core/Button/Button';
 import clsx from 'clsx';
 import Chevron from '../assets/icons/Chevron_for_Button.svg';
+import BlueChevron from '../assets/icons/Chevron_for_Button_blue.svg';
 import { inputBoxShadow } from '../styleUtils';
 
 function capitalize(string) {
@@ -34,10 +35,15 @@ const styles = (theme) => {
       '&:hover': {
         backgroundColor: theme.white,
       },
-      '& img': {
-        marginLeft: 15,
-        marginTop: 2,
-      },
+    },
+    chevronRight: {
+      marginLeft: 15,
+      marginTop: 2,
+    },
+    chevronLeft: {
+      marginTop: 3,
+      marginRight: 10,
+      transform: 'rotateY(180deg)',
     },
     sizeXSmall: {
       width: 80,
@@ -89,7 +95,16 @@ const useStyles = makeStyles(styles);
 
 function BlueButton(props) {
   const classes = useStyles();
-  const { variant, className, selected, size, children, ...rest } = props;
+  const {
+    variant,
+    className,
+    selected,
+    size,
+    children,
+    hasNextIcon,
+    hasPreviousIcon,
+    ...rest
+  } = props;
   const finalClassName = clsx(
     classes.root,
     classes[variant],
@@ -99,10 +114,18 @@ function BlueButton(props) {
   );
   return (
     <Button className={finalClassName} type="button" {...rest}>
+      {hasPreviousIcon && <img className={classes.chevronLeft} src={BlueChevron} alt="chevron" />}
       <span className="button-text">{children}</span>
-      {variant === 'default' && <img src={Chevron} alt="chevron" />}
+      {hasNextIcon && <img className={classes.chevronRight} src={Chevron} alt="chevron" />}
     </Button>
   );
 }
 
 export default BlueButton;
+
+export const NextButton = (props) => {
+  return <BlueButton {...props} hasNextIcon />;
+};
+export const BackButton = (props) => {
+  return <BlueButton {...props} hasPreviousIcon />;
+};

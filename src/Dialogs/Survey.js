@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { action } from '../sagas';
 import { LanguageSelector } from '../Components/LanguageSelector';
 import { styles } from './HdyfDialogCommonStyles';
-import BlueButton from '../Components/BlueButton';
+import BlueButton, {BackButton, NextButton} from '../Components/BlueButton';
 import { DialogCard, DialogCardActions, DialogCardContent, DialogCardHeader } from './DialogCard';
 
 function Question(props) {
@@ -86,12 +86,12 @@ export function Survey(props) {
         ))}
       </DialogCardContent>
       <DialogCardActions className={classes.actions}>
-        <BlueButton variant="noShadow" onClick={() => onPrevious()} size="large">
+        <BackButton variant="noShadow" onClick={() => onPrevious()} size="regular">
           {button_back[language]}
-        </BlueButton>
-        <BlueButton variant="default" onClick={() => onButtonClick()} size="large">
+        </BackButton>
+        <NextButton variant="default" onClick={() => onButtonClick()} size="large">
           {button_submit[language]}
-        </BlueButton>
+        </NextButton>
       </DialogCardActions>
     </DialogCard>
   );

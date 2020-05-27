@@ -37,6 +37,9 @@ export const styles = (theme: any) => ({
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: 52,
+    '& button:nth-of-type(2)': {
+      marginLeft: 20,
+    },
   },
   progressColorPrimary: {
     backgroundColor: '#a7a7a7',

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { LanguageSelector } from '../Components/LanguageSelector';
 import { styles } from './HdyfDialogCommonStyles';
-import BlueButton from '../Components/BlueButton';
+import BlueButton, {BackButton, NextButton} from '../Components/BlueButton';
 import { DialogCardActions, DialogCard, DialogCardContent, DialogCardHeader } from './DialogCard';
 import { EmergencyLanguageMapping } from '../Components/EmergencyContent';
 
@@ -23,19 +23,19 @@ export function Emergency(props) {
         <div className={classes.titleText}></div>
         <LanguageSelector />
       </DialogCardHeader>
-      <DialogCardContent>
+      <DialogCardContent classes={{ root: classes.content }}>
         <h2 className={classes.title}>{dialog_emergency_content[language]}</h2>
         <div>
           <LanguageEmergency />
         </div>
       </DialogCardContent>
       <DialogCardActions>
-        <BlueButton variant="noShadow" onClick={() => onNext(true)} size={'large'}>
+        <BackButton variant="noShadow" onClick={() => onNext(true)} size={'regular'}>
           {button_yes[language]}
-        </BlueButton>
-        <BlueButton variant="default" onClick={() => onNext(false)} size={'large'}>
+        </BackButton>
+        <NextButton variant="default" onClick={() => onNext(false)} size={'large'}>
           {button_no[language]}
-        </BlueButton>
+        </NextButton>
       </DialogCardActions>
     </DialogCard>
   );
