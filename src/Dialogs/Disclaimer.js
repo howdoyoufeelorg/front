@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { LanguageSelector } from '../Components/LanguageSelector';
 import { styles } from './HdyfDialogCommonStyles';
-import BlueButton from '../Components/BlueButton';
+import BlueButton, { NextButton } from '../Components/BlueButton';
 import { DialogCard, DialogCardContent, DialogCardHeader, DialogCardActions } from './DialogCard';
 import Card from '@material-ui/core/Card';
 import { ComponentLanguageMapping } from '../Components/DisclaimerContent';
@@ -53,9 +53,9 @@ export function Disclaimer(props: { onNext: () => void }) {
           </Card>
         </DialogCardContent>
         <DialogCardActions style={{ marginBottom: 96 }}>
-          <BlueButton variant="default" onClick={() => onNext()} size="large">
+          <NextButton variant="default" onClick={() => onNext()} size="extraLarge">
             {button_start[language]}
-          </BlueButton>
+          </NextButton>
         </DialogCardActions>
       </DialogCard>
     </React.Fragment>

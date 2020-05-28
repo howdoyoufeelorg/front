@@ -48,6 +48,7 @@ const styles = (theme) => ({
   mainBar: {
     background: theme.backgroundBlue,
     padding: [[0, 20]],
+    boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.16)',
   },
   mainBarMobile: {
     height: theme.appBarHeightMobile,

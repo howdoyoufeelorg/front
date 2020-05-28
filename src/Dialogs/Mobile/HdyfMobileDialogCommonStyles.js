@@ -48,11 +48,15 @@ export const styles = (theme) => ({
   commandBar: {
     top: 'auto',
     bottom: 0,
-    borderRadius: [[theme.globalRadius, theme.globalRadius, 0, 0]],
-    background: theme.grey,
+    borderRadius: 0,
+    background: theme.white,
     display: 'flex',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     flexDirection: 'row',
+    boxShadow: '0 3px 60px 0 rgba(0, 0, 0, 0.16)',
+    '& button:nth-of-type(2)': {
+      marginLeft: 20,
+    },
   },
   commandButton: {
     margin: [[20, 0]],

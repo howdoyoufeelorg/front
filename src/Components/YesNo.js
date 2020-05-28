@@ -93,7 +93,7 @@ export function YesNo(props) {
               action('ANSWER_SET', { questionId: question.id, data: { answer: 'YES' } })
             }
             selected={state === true}
-            size={isMobile ? 'small' : ''}
+            size={isMobile ? 'xSmall' : 'small'}
           >
             {button_yes[language]}
           </BlueButton>
@@ -103,7 +103,7 @@ export function YesNo(props) {
               action('ANSWER_SET', { questionId: question.id, data: { answer: 'NO' } })
             }
             selected={state === false}
-            size={isMobile ? 'small' : ''}
+            size={isMobile ? 'xSmall' : 'small'}
           >
             {button_no[language]}
           </BlueButton>

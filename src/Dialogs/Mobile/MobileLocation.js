@@ -3,7 +3,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { styles } from './HdyfMobileDialogCommonStyles';
 import { useSelector } from 'react-redux';
-import BlueButton from '../../Components/BlueButton';
+import BlueButton, {BackButton, NextButton} from '../../Components/BlueButton';
 import AppBar from '@material-ui/core/AppBar';
 import { action } from '../../sagas';
 import { FlagDropDown } from '../../Components/FlagDropDown';
@@ -58,7 +58,7 @@ export function MobileLocation(props: { onNext: Function, onPrevious: Function }
         />
       </div>
       <div className={classes.formField}>
-        <InputLabel className={classes.label}>
+        <InputLabel classes={ {root: classes.label}}>
           {country_selector_search_placeholder[language]}
         </InputLabel>
         <FlagDropDown
@@ -116,20 +116,22 @@ export function MobileLocation(props: { onNext: Function, onPrevious: Function }
         </TextField>
       </div>
       <AppBar className={classes.commandBar} position="fixed" variant="elevation">
-        <BlueButton
+        <BackButton
           variant="noShadow"
           className={classes.commandButton}
           onClick={() => onPrevious()}
+          size="regular"
         >
           {button_back[language]}
-        </BlueButton>
-        <BlueButton
+        </BackButton>
+        <NextButton
           variant="default"
           className={classes.commandButton}
           onClick={() => onButtonClick()}
+          size="large"
         >
           {button_next[language]}
-        </BlueButton>
+        </NextButton>
       </AppBar>
     </div>
   );

@@ -13,6 +13,7 @@ export const styles = (theme: any) => ({
     width: `calc(100vw - 96px)`,
     margin: 48,
     boxShadow: '0 3px 60px 0 rgba(0, 0, 0, 0.16)',
+    paddingBottom: 40,
   },
   titleRoot: {
     display: 'flex',
@@ -37,6 +38,9 @@ export const styles = (theme: any) => ({
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: 52,
+    '& button:nth-of-type(2)': {
+      marginLeft: 20,
+    },
   },
   progressColorPrimary: {
     backgroundColor: '#a7a7a7',
