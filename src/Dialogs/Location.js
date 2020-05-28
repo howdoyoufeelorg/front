@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { DialogContent, InputLabel } from '@material-ui/core';
 import { LanguageSelector } from '../Components/LanguageSelector';
 import { styles } from './HdyfDialogCommonStyles';
-import BlueButton, {BackButton, NextButton} from '../Components/BlueButton';
+import BlueButton, { BackButton, NextButton } from '../Components/BlueButton';
 import { action } from '../sagas';
 import { TextField } from '../Components/TextField';
 import { FlagDropDown } from '../Components/FlagDropDown';
@@ -59,7 +59,7 @@ export function Location(props) {
           />
         </div>
         <div>
-          <InputLabel style={{ fontWeight: 900 }}>
+          <InputLabel className={classes.label}>
             {country_selector_search_placeholder[language]}
           </InputLabel>
           <FlagDropDown

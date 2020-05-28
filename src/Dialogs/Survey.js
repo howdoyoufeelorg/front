@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { action } from '../sagas';
 import { LanguageSelector } from '../Components/LanguageSelector';
 import { styles } from './HdyfDialogCommonStyles';
-import BlueButton, {BackButton, NextButton} from '../Components/BlueButton';
+import BlueButton, { BackButton, NextButton } from '../Components/BlueButton';
 import { DialogCard, DialogCardActions, DialogCardContent, DialogCardHeader } from './DialogCard';
 
 function Question(props) {
@@ -76,7 +76,7 @@ export function Survey(props) {
         <LanguageSelector />
       </DialogCardHeader>
       <DialogCardContent className={classes.content} style={{ alignItems: 'stretch' }}>
-        <h2 className={classes.title} style={{ marginBottom: 40, marginTop: 0 }}>
+        <h2 className={classes.title} style={{ marginBottom: 60, marginTop: 0 }}>
           {dialog_survey_title[language]}
         </h2>
         {questions.map((question, index) => (

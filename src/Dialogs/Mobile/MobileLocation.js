@@ -58,7 +58,7 @@ export function MobileLocation(props: { onNext: Function, onPrevious: Function }
         />
       </div>
       <div className={classes.formField}>
-        <InputLabel className={classes.label}>
+        <InputLabel classes={ {root: classes.label}}>
           {country_selector_search_placeholder[language]}
         </InputLabel>
         <FlagDropDown

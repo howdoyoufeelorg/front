@@ -12,11 +12,16 @@ export const styles = (theme) => ({
     fontWeight: 900,
     color: theme.textColor,
   },
+  label: {
+    fontWeight: 900,
+    color: theme.textColor,
+  },
   content: {
     width: '90%',
     maxWidth: '668px',
     margin: '0 auto',
     padding: 0,
+    fontSize: '1rem'
   },
   actions: {
     padding: [[20, 20]],
