@@ -44,7 +44,9 @@ const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
-  offset: theme.mixins.toolbar,
+  offset: {
+    minHeight: (props) => (props.isMobile ? theme.appBarHeightMobile : theme.appBarHeightDesktop),
+  },
   mainBar: {
     background: theme.backgroundBlue,
     padding: [[0, 20]],
@@ -56,15 +58,20 @@ const styles = (theme) => ({
   mainBarDesktop: {
     height: theme.appBarHeightDesktop,
   },
+  toolbarMobile: {
+    justifyContent: 'space-between',
+    height: theme.appBarHeightMobile,
+  },
   toolbarDesktop: {
     justifyContent: 'space-between',
+    height: theme.appBarHeightDesktop,
   },
   menuButton: {
     marginLeft: 12,
     padding: 0,
   },
   logoDesktop: {
-    height: 36,
+    height: 30,
   },
   logoMobile: {
     height: 22,
@@ -74,9 +81,10 @@ const styles = (theme) => ({
 const useStyles = makeStyles(styles);
 
 function App() {
-  const classes = useStyles();
-  const hash = useGetHash();
   const isMobile = useIsMobile();
+  const classes = useStyles({ isMobile });
+  const hash = useGetHash();
+
   useEffect(() => {
     // Enable this if you decide to load translations from the backend -
     // currently they're hardcoded in translations.js
@@ -167,7 +175,10 @@ function App() {
         position="fixed"
         elevation={0}
       >
-        <Toolbar className={classes.toolbarDesktop} disableGutters={true}>
+        <Toolbar
+          className={isMobile ? classes.toolbarMobile : classes.toolbarDesktop}
+          disableGutters={true}
+        >
           <img
             className={clsx(!isMobile && classes.logoDesktop, isMobile && classes.logoMobile)}
             src="HDYFLogoWhite@2x.png"

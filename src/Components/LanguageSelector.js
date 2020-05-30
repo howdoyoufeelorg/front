@@ -3,6 +3,7 @@ import { action } from '../sagas';
 import ReactFlagsSelect from 'react-flags-select';
 import { useSelector } from 'react-redux';
 import { useFlagDropdownStyles } from './FlagDropDown';
+import clsx from "clsx";
 
 const getCountryCodeFromLanguage = (language) => {
   switch (language) {
@@ -24,7 +25,7 @@ export const LanguageSelector = () => {
       searchable={false}
       searchPlaceholder={language_selector_search_placeholder[language]}
       countries={['US', 'ES']}
-      className={classes.flagDropdown}
+      className={clsx(classes.flagDropdown, 'language-selector')}
       customLabels={{ US: 'US English', ES: 'Spanish' }}
       onSelect={(value) => action('LANGUAGE_SET', { language: value })}
       optionsSize={28}

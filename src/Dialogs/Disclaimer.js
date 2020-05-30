@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     width: '80%',
     marginTop: 32,
     fontSize: '1rem',
+    fontWeight: 600,
   },
 }));
 

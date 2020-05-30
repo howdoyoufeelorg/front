@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { Slider } from './Slider';
+import { Slider } from './Slider/Slider';
 import { TextField } from '@material-ui/core';
 import { action } from '../sagas';
 import BlueButton from './BlueButton';

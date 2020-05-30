@@ -42,6 +42,9 @@ export const styles = (theme: any) => ({
       marginLeft: 20,
     },
   },
+  progressRoot: {
+    height: 6,
+  },
   progressColorPrimary: {
     backgroundColor: '#a7a7a7',
   },
@@ -79,6 +82,7 @@ export const DialogCardHeader = ({
           value={progressCompleted}
           variant="determinate"
           classes={{
+            root: classes.progressRoot,
             barColorPrimary: classes.progressBarColorPrimary,
             colorPrimary: classes.progressColorPrimary,
           }}
