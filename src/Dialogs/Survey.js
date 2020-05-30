@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { YesNo } from '../Components/YesNo';
-import { Slider } from '../Components/Slider';
+import { Slider } from '../Components/Slider/Slider';
 import { Entry } from '../Components/Entry';
 import { makeStyles } from '@material-ui/core/styles';
 import { action } from '../sagas';

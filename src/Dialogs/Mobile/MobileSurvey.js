@@ -7,7 +7,7 @@ import BlueButton, {BackButton, NextButton} from '../../Components/BlueButton';
 import Card from '@material-ui/core/Card';
 import AppBar from '@material-ui/core/AppBar';
 import { action } from '../../sagas';
-import { Slider } from '../../Components/Slider';
+import { Slider } from '../../Components/Slider/Slider';
 import { YesNo } from '../../Components/YesNo';
 import { Entry } from '../../Components/Entry';
 import clsx from 'clsx';
