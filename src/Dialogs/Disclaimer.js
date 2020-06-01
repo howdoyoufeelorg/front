@@ -24,10 +24,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function Disclaimer(props: { onNext: () => void }) {
+export function Disclaimer(props: { onNext: () => void, progressCompleted: number }) {
   const commonClasses = useCommonStyles();
   const disclaimerClasses = useStyles();
-  const { onNext } = props;
+  const { onNext, progressCompleted } = props;
   const { getting_started_title, dialog_disclaimer_content, button_start } = useSelector(
     (state) => state.elements,
   );
@@ -37,7 +37,7 @@ export function Disclaimer(props: { onNext: () => void }) {
   return (
     <React.Fragment>
       <DialogCard>
-        <DialogCardHeader disableTypography displayProgress progressCompleted={20}>
+        <DialogCardHeader disableTypography displayProgress progressCompleted={progressCompleted}>
           <div></div>
           <LanguageSelector />
         </DialogCardHeader>

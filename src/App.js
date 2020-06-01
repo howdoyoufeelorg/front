@@ -80,6 +80,15 @@ const styles = (theme) => ({
 
 const useStyles = makeStyles(styles);
 
+const getProgress = (currentStage: number): number => {
+  const numberOfStages = 5;
+  if (currentStage <= 3) {
+    return (100 / numberOfStages) * (currentStage + 1);
+  }
+
+  return 100;
+};
+
 function App() {
   const isMobile = useIsMobile();
   const classes = useStyles({ isMobile });
@@ -93,22 +102,35 @@ function App() {
 
   const initialStage = parseInt(process.env.REACT_APP_INITIAL_STAGE) || 0;
   const [stage, setStage] = useState(initialStage);
+  const progress = getProgress(stage);
+
   const renderStage = (stage) => {
     switch (stage) {
       case 0:
-        return <Disclaimer onNext={() => setStage(stage + 1)} />;
+        return <Disclaimer onNext={() => setStage(stage + 1)} progressCompleted={progress} />;
       case 1:
         return (
           <Emergency
+            progressCompleted={progress}
             onNext={(response) => (response === true ? setStage(100) : setStage(stage + 1))}
           />
         );
       case 2:
         return (
-          <Location onPrevious={() => setStage(stage - 1)} onNext={() => setStage(stage + 1)} />
+          <Location
+            onPrevious={() => setStage(stage - 1)}
+            onNext={() => setStage(stage + 1)}
+            progressCompleted={progress}
+          />
         );
       case 3:
-        return <Survey onPrevious={() => setStage(stage - 1)} onClose={() => setStage(99)} />;
+        return (
+          <Survey
+            onPrevious={() => setStage(stage - 1)}
+            onClose={() => setStage(99)}
+            progressCompleted={progress}
+          />
+        );
       case 99:
         return <Instructions onClose={() => setStage(101)} />;
       case 100:
@@ -119,16 +141,18 @@ function App() {
   const renderMobileStage = (stage) => {
     switch (stage) {
       case 0:
-        return <MobileDisclaimer onNext={() => setStage(stage + 1)} />;
+        return <MobileDisclaimer onNext={() => setStage(stage + 1)} progressCompleted={progress} />;
       case 1:
         return (
           <MobileEmergency
+            progressCompleted={progress}
             onNext={(response) => (response === true ? setStage(100) : setStage(stage + 1))}
           />
         );
       case 2:
         return (
           <MobileLocation
+            progressCompleted={progress}
             onPrevious={() => setStage(stage - 1)}
             onNext={() => setStage(stage + 1)}
           />
@@ -143,7 +167,13 @@ function App() {
         );
 */
       case 3:
-        return <MobileSurvey onPrevious={() => setStage(stage - 1)} onClose={() => setStage(99)} />;
+        return (
+          <MobileSurvey
+            onPrevious={() => setStage(stage - 1)}
+            onClose={() => setStage(99)}
+            progressCompleted={progress}
+          />
+        );
       case 99:
         return <MobileInstructions onClose={() => setStage(101)} />;
       case 100:

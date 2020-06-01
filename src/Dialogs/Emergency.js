@@ -1,17 +1,18 @@
+//@flow
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { LanguageSelector } from '../Components/LanguageSelector';
 import { styles } from './HdyfDialogCommonStyles';
-import BlueButton, {BackButton, NextButton} from '../Components/BlueButton';
+import BlueButton, { BackButton, NextButton } from '../Components/BlueButton';
 import { DialogCardActions, DialogCard, DialogCardContent, DialogCardHeader } from './DialogCard';
 import { EmergencyLanguageMapping } from '../Components/EmergencyContent';
 
 const useStyles = makeStyles(styles);
 
-export function Emergency(props) {
+export function Emergency(props: { onNext: (boolean) => void, progressCompleted: number }) {
   const classes = useStyles();
-  const { onNext } = props;
+  const { onNext, progressCompleted } = props;
   const { dialog_emergency_title, dialog_emergency_content, button_yes, button_no } = useSelector(
     (state) => state.elements,
   );
@@ -19,7 +20,7 @@ export function Emergency(props) {
   const LanguageEmergency = EmergencyLanguageMapping[language];
   return (
     <DialogCard>
-      <DialogCardHeader displayProgress progressCompleted={40}>
+      <DialogCardHeader displayProgress progressCompleted={progressCompleted}>
         <div className={classes.titleText}></div>
         <LanguageSelector />
       </DialogCardHeader>

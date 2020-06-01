@@ -1,3 +1,4 @@
+//@flow
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { YesNo } from '../Components/YesNo';
@@ -26,11 +27,15 @@ function Question(props) {
 
 const useStyles = makeStyles(styles);
 
-export function Survey(props) {
+export function Survey(props: {
+  onPrevious: () => void,
+  onClose: () => void,
+  progressCompleted: number,
+}) {
   const classes = useStyles();
   const questions = useSelector((state) => state.questions);
   const answers = useSelector((state) => state.answers);
-  const { onPrevious, onClose } = props;
+  const { onPrevious, onClose, progressCompleted } = props;
   const {
     alert_required_questions,
     alert_missing_zipcode,
@@ -71,7 +76,7 @@ export function Survey(props) {
 
   return (
     <DialogCard>
-      <DialogCardHeader displayProgress progressCompleted={80}>
+      <DialogCardHeader displayProgress progressCompleted={progressCompleted}>
         <div></div>
         <LanguageSelector />
       </DialogCardHeader>
