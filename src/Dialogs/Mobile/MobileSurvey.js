@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
+//@flow
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { styles } from './HdyfMobileDialogCommonStyles';
 import { useSelector } from 'react-redux';
-import { LanguageSelector } from '../../Components/LanguageSelector';
-import BlueButton, {BackButton, NextButton} from '../../Components/BlueButton';
-import Card from '@material-ui/core/Card';
+import { BackButton, NextButton } from '../../Components/BlueButton';
 import AppBar from '@material-ui/core/AppBar';
 import { action } from '../../sagas';
 import { Slider } from '../../Components/Slider/Slider';
 import { YesNo } from '../../Components/YesNo';
 import { Entry } from '../../Components/Entry';
 import clsx from 'clsx';
+import { ProgressBar } from '../../Components/ProgressBar';
 
 const useStyles = makeStyles(styles);
 
@@ -28,20 +28,19 @@ function Question(props) {
   return null;
 }
 
-export function MobileSurvey(props) {
+export function MobileSurvey(props: {
+  onClose: Function,
+  onPrevious: Function,
+  progressCompleted: number,
+}) {
   const classes = useStyles();
-  const { onPrevious, onClose } = props;
+  const { onPrevious, onClose, progressCompleted } = props;
   const language = useSelector((state) => state.language);
   const questions = useSelector((state) => state.questions);
   const answers = useSelector((state) => state.answers);
-  const {
-    alert_required_questions,
-    alert_missing_zipcode,
-    dialog_survey_title,
-    dialog_survey_content,
-    button_submit,
-    button_back,
-  } = useSelector((state) => state.elements);
+  const { alert_required_questions, dialog_survey_title, button_submit, button_back } = useSelector(
+    (state) => state.elements,
+  );
   const onSubmitClick = () => {
     let required = questions.filter((question) => question.required === true);
     Object.keys(answers).forEach((key) => {
@@ -83,22 +82,25 @@ export function MobileSurvey(props) {
         ))}
       </div>
       <AppBar className={classes.commandBar} position="fixed" variant="elevation">
-        <BackButton
-          variant="noShadow"
-          className={classes.commandButton}
-          onClick={() => onPrevious()}
-          size="regular"
-        >
-          {button_back[language]}
-        </BackButton>
-        <NextButton
-          variant="default"
-          className={classes.commandButton}
-          onClick={() => onSubmitClick()}
-          size="large"
-        >
-          {button_submit[language]}
-        </NextButton>
+        <ProgressBar progressCompleted={progressCompleted} />
+        <div className={classes.actionButtons}>
+          <BackButton
+            variant="noShadow"
+            className={classes.commandButton}
+            onClick={() => onPrevious()}
+            size="regular"
+          >
+            {button_back[language]}
+          </BackButton>
+          <NextButton
+            variant="default"
+            className={classes.commandButton}
+            onClick={() => onSubmitClick()}
+            size="large"
+          >
+            {button_submit[language]}
+          </NextButton>
+        </div>
       </AppBar>
     </div>
   );

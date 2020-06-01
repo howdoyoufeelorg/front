@@ -10,12 +10,13 @@ import Card from '@material-ui/core/Card';
 import { ComponentLanguageMapping } from '../../Components/DisclaimerContent';
 import { EmergencyLanguageMapping } from '../../Components/EmergencyContent';
 import clsx from 'clsx';
+import { ProgressBar } from '../../Components/ProgressBar';
 
 const useStyles = makeStyles(styles);
 
-export function MobileEmergency(props: { onNext: Function }) {
+export function MobileEmergency(props: { onNext: Function, progressCompleted: number }) {
   const classes = useStyles();
-  const { onNext } = props;
+  const { onNext, progressCompleted } = props;
   const { dialog_emergency_title, dialog_emergency_content, button_yes, button_no } = useSelector(
     (state) => state.elements,
   );
@@ -30,22 +31,25 @@ export function MobileEmergency(props: { onNext: Function }) {
         <LanguageEmergency />
       </Card>
       <AppBar className={classes.commandBar} position="fixed" variant="elevation">
-        <BackButton
-          variant="noShadow"
-          className={classes.commandButton}
-          onClick={() => onNext(true)}
-          size="regular"
-        >
-          {button_yes[language]}
-        </BackButton>
-        <NextButton
-          variant="default"
-          className={classes.commandButton}
-          onClick={() => onNext(false)}
-          size="large"
-        >
-          {button_no[language]}
-        </NextButton>
+        <ProgressBar progressCompleted={progressCompleted} />
+        <div className={classes.actionButtons}>
+          <BackButton
+            variant="noShadow"
+            className={classes.commandButton}
+            onClick={() => onNext(true)}
+            size="regular"
+          >
+            {button_yes[language]}
+          </BackButton>
+          <NextButton
+            variant="default"
+            className={classes.commandButton}
+            onClick={() => onNext(false)}
+            size="large"
+          >
+            {button_no[language]}
+          </NextButton>
+        </div>
       </AppBar>
     </div>
   );

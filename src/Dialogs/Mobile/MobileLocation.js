@@ -3,7 +3,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { styles } from './HdyfMobileDialogCommonStyles';
 import { useSelector } from 'react-redux';
-import BlueButton, {BackButton, NextButton} from '../../Components/BlueButton';
+import BlueButton, { BackButton, NextButton } from '../../Components/BlueButton';
 import AppBar from '@material-ui/core/AppBar';
 import { action } from '../../sagas';
 import { FlagDropDown } from '../../Components/FlagDropDown';
@@ -12,13 +12,18 @@ import { InputLabel } from '@material-ui/core';
 import { genderChoices, raceChoices } from '../../translations';
 import Image from '../../assets/images/Medical_Illustration.png';
 import clsx from 'clsx';
+import { ProgressBar } from '../../Components/ProgressBar';
 
 const useStyles = makeStyles(styles);
 
-export function MobileLocation(props: { onNext: Function, onPrevious: Function }) {
+export function MobileLocation(props: {
+  onNext: Function,
+  onPrevious: Function,
+  progressCompleted: number,
+}) {
   const classes = useStyles();
   const answers = useSelector((state) => state.answers);
-  const { onNext, onPrevious } = props;
+  const { onNext, onPrevious, progressCompleted } = props;
   const {
     dialog_location_title,
     button_next,
@@ -58,7 +63,7 @@ export function MobileLocation(props: { onNext: Function, onPrevious: Function }
         />
       </div>
       <div className={classes.formField}>
-        <InputLabel classes={ {root: classes.label}}>
+        <InputLabel classes={{ root: classes.label }}>
           {country_selector_search_placeholder[language]}
         </InputLabel>
         <FlagDropDown
@@ -116,22 +121,25 @@ export function MobileLocation(props: { onNext: Function, onPrevious: Function }
         </TextField>
       </div>
       <AppBar className={classes.commandBar} position="fixed" variant="elevation">
-        <BackButton
-          variant="noShadow"
-          className={classes.commandButton}
-          onClick={() => onPrevious()}
-          size="regular"
-        >
-          {button_back[language]}
-        </BackButton>
-        <NextButton
-          variant="default"
-          className={classes.commandButton}
-          onClick={() => onButtonClick()}
-          size="large"
-        >
-          {button_next[language]}
-        </NextButton>
+        <ProgressBar progressCompleted={progressCompleted} />
+        <div className={classes.actionButtons}>
+          <BackButton
+            variant="noShadow"
+            className={classes.commandButton}
+            onClick={() => onPrevious()}
+            size="regular"
+          >
+            {button_back[language]}
+          </BackButton>
+          <NextButton
+            variant="default"
+            className={classes.commandButton}
+            onClick={() => onButtonClick()}
+            size="large"
+          >
+            {button_next[language]}
+          </NextButton>
+        </div>
       </AppBar>
     </div>
   );

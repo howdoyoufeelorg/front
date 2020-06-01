@@ -1,3 +1,4 @@
+//@flow
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,10 +15,14 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles(styles);
 
-export function Location(props) {
+export function Location(props: {
+  onNext: () => void,
+  onPrevious: () => void,
+  progressCompleted: number,
+}) {
   const classes = useStyles();
   const answers = useSelector((state) => state.answers);
-  const { onNext, onPrevious } = props;
+  const { onNext, onPrevious, progressCompleted } = props;
   const {
     dialog_location_title,
     button_next,
@@ -41,7 +46,7 @@ export function Location(props) {
   };
   return (
     <DialogCard>
-      <DialogCardHeader displayProgress progressCompleted={60}>
+      <DialogCardHeader displayProgress progressCompleted={progressCompleted}>
         <div className={classes.titleText}></div>
         <LanguageSelector />
       </DialogCardHeader>

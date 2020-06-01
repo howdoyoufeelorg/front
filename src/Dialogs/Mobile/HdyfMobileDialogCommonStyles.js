@@ -51,12 +51,19 @@ export const styles = (theme) => ({
     borderRadius: 0,
     background: theme.white,
     display: 'flex',
+    alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'row',
+    flexDirection: 'column',
     boxShadow: '0 3px 60px 0 rgba(0, 0, 0, 0.16)',
     '& button:nth-of-type(2)': {
       marginLeft: 20,
     },
+  },
+  actionButtons: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
   },
   commandButton: {
     margin: [[20, 0]],
