@@ -88,7 +88,7 @@ export const theme = createMuiTheme({
     },
     text: {
       primary: textColor,
-    }
+    },
   },
   typography: {
     useNextVariants: true,
@@ -129,10 +129,11 @@ export const theme = createMuiTheme({
   blue2,
   blue3,
   blue4,
-  backgroundBlue, textColor,
+  backgroundBlue,
+  textColor,
   globalRadius: 10,
-  appBarHeightMobile: 56,
-  appBarHeightDesktop: 64,
+  appBarHeightMobile: 85,
+  appBarHeightDesktop: 100,
   actionBarHeightMobile: 80,
   inputControlWidth: '200px',
 });

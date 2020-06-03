@@ -5,14 +5,15 @@ import MuiDialogContent from '@material-ui/core/CardContent';
 import MuiDialogActions from '@material-ui/core/CardActions';
 import { makeStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import { ProgressBar } from '../Components/ProgressBar';
 
 export const styles = (theme: any) => ({
   paper: {
-    borderTopLeftRadius: 0,
-    borderTopRightRadius: 0,
+    borderRadius: [[0, 0, 10, 10]],
     width: `calc(100vw - 96px)`,
     margin: 48,
     boxShadow: '0 3px 60px 0 rgba(0, 0, 0, 0.16)',
+    paddingBottom: 40,
   },
   titleRoot: {
     display: 'flex',
@@ -37,6 +38,12 @@ export const styles = (theme: any) => ({
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: 52,
+    '& button:nth-of-type(2)': {
+      marginLeft: 20,
+    },
+  },
+  progressRoot: {
+    height: 6,
   },
   progressColorPrimary: {
     backgroundColor: '#a7a7a7',
@@ -70,15 +77,8 @@ export const DialogCardHeader = ({
 
   return (
     <div className={classes.titleRoot}>
-      {displayProgress && (
-        <LinearProgress
-          value={progressCompleted}
-          variant="determinate"
-          classes={{
-            barColorPrimary: classes.progressBarColorPrimary,
-            colorPrimary: classes.progressColorPrimary,
-          }}
-        />
+      {displayProgress && progressCompleted && (
+        <ProgressBar progressCompleted={progressCompleted} />
       )}
       <div className={classes.title}>{children}</div>
     </div>

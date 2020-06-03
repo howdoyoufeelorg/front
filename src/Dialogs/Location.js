@@ -1,10 +1,11 @@
+//@flow
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { DialogContent, InputLabel } from '@material-ui/core';
 import { LanguageSelector } from '../Components/LanguageSelector';
 import { styles } from './HdyfDialogCommonStyles';
-import BlueButton from '../Components/BlueButton';
+import BlueButton, { BackButton, NextButton } from '../Components/BlueButton';
 import { action } from '../sagas';
 import { TextField } from '../Components/TextField';
 import { FlagDropDown } from '../Components/FlagDropDown';
@@ -14,10 +15,14 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles(styles);
 
-export function Location(props) {
+export function Location(props: {
+  onNext: () => void,
+  onPrevious: () => void,
+  progressCompleted: number,
+}) {
   const classes = useStyles();
   const answers = useSelector((state) => state.answers);
-  const { onNext, onPrevious } = props;
+  const { onNext, onPrevious, progressCompleted } = props;
   const {
     dialog_location_title,
     button_next,
@@ -41,7 +46,7 @@ export function Location(props) {
   };
   return (
     <DialogCard>
-      <DialogCardHeader displayProgress progressCompleted={60}>
+      <DialogCardHeader displayProgress progressCompleted={progressCompleted}>
         <div className={classes.titleText}></div>
         <LanguageSelector />
       </DialogCardHeader>
@@ -59,7 +64,7 @@ export function Location(props) {
           />
         </div>
         <div>
-          <InputLabel style={{ fontWeight: 900 }}>
+          <InputLabel className={classes.label}>
             {country_selector_search_placeholder[language]}
           </InputLabel>
           <FlagDropDown
@@ -121,12 +126,12 @@ export function Location(props) {
         </div>
       </DialogCardContent>
       <DialogCardActions className={classes.actions}>
-        <BlueButton variant="noShadow" onClick={() => onPrevious()} size="large">
+        <BackButton variant="noShadow" onClick={() => onPrevious()} size="regular">
           {button_back[language]}
-        </BlueButton>
-        <BlueButton variant="default" onClick={() => onButtonClick()} size="large">
+        </BackButton>
+        <NextButton variant="default" onClick={() => onButtonClick()} size="large">
           {button_next[language]}
-        </BlueButton>
+        </NextButton>
       </DialogCardActions>
     </DialogCard>
   );

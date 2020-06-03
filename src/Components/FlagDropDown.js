@@ -27,11 +27,16 @@ export const flagDropdownStyles = (props: FlagStyleProps) => (theme: any) => {
       '& button:focus': {
         ...inputBoxShadow,
       },
+      '&.language-selector button:focus': {
+        boxShadow: 'none',
+      },
       '& .flag-select__options': {
         maxHeight: 312,
         marginTop: 14,
         padding: 16,
         borderRadius: 12,
+        border: 0,
+        boxShadow: '0 4px 14px 0 rgba(0, 0, 0, 0.16)',
       },
       '& .filterBox': {
         height: 0,

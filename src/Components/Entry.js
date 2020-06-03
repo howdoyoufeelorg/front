@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import Button from "@material-ui/core/Button";
-import {Slider} from "./Slider";
+import {Slider} from "./Slider/Slider";
 import {YesNo} from "./YesNo";
 import {TextField} from "@material-ui/core";
 import {action} from "../sagas";

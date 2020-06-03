@@ -1,13 +1,14 @@
+//@flow
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { YesNo } from '../Components/YesNo';
-import { Slider } from '../Components/Slider';
+import { Slider } from '../Components/Slider/Slider';
 import { Entry } from '../Components/Entry';
 import { makeStyles } from '@material-ui/core/styles';
 import { action } from '../sagas';
 import { LanguageSelector } from '../Components/LanguageSelector';
 import { styles } from './HdyfDialogCommonStyles';
-import BlueButton from '../Components/BlueButton';
+import BlueButton, { BackButton, NextButton } from '../Components/BlueButton';
 import { DialogCard, DialogCardActions, DialogCardContent, DialogCardHeader } from './DialogCard';
 
 function Question(props) {
@@ -26,11 +27,15 @@ function Question(props) {
 
 const useStyles = makeStyles(styles);
 
-export function Survey(props) {
+export function Survey(props: {
+  onPrevious: () => void,
+  onClose: () => void,
+  progressCompleted: number,
+}) {
   const classes = useStyles();
   const questions = useSelector((state) => state.questions);
   const answers = useSelector((state) => state.answers);
-  const { onPrevious, onClose } = props;
+  const { onPrevious, onClose, progressCompleted } = props;
   const {
     alert_required_questions,
     alert_missing_zipcode,
@@ -71,12 +76,12 @@ export function Survey(props) {
 
   return (
     <DialogCard>
-      <DialogCardHeader displayProgress progressCompleted={80}>
+      <DialogCardHeader displayProgress progressCompleted={progressCompleted}>
         <div></div>
         <LanguageSelector />
       </DialogCardHeader>
       <DialogCardContent className={classes.content} style={{ alignItems: 'stretch' }}>
-        <h2 className={classes.title} style={{ marginBottom: 40, marginTop: 0 }}>
+        <h2 className={classes.title} style={{ marginBottom: 60, marginTop: 0 }}>
           {dialog_survey_title[language]}
         </h2>
         {questions.map((question, index) => (
@@ -86,12 +91,12 @@ export function Survey(props) {
         ))}
       </DialogCardContent>
       <DialogCardActions className={classes.actions}>
-        <BlueButton variant="noShadow" onClick={() => onPrevious()} size="large">
+        <BackButton variant="noShadow" onClick={() => onPrevious()} size="regular">
           {button_back[language]}
-        </BlueButton>
-        <BlueButton variant="default" onClick={() => onButtonClick()} size="large">
+        </BackButton>
+        <NextButton variant="default" onClick={() => onButtonClick()} size="large">
           {button_submit[language]}
-        </BlueButton>
+        </NextButton>
       </DialogCardActions>
     </DialogCard>
   );

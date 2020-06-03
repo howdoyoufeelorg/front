@@ -1,22 +1,21 @@
-// @flow
+//@flow
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { styles } from './HdyfMobileDialogCommonStyles';
 import { useSelector } from 'react-redux';
-import BlueButton from '../../Components/BlueButton';
+import BlueButton, { NextButton } from '../../Components/BlueButton';
 import Card from '@material-ui/core/Card';
 import AppBar from '@material-ui/core/AppBar';
 import { ComponentLanguageMapping } from '../../Components/DisclaimerContent';
 import Image from '../../assets/images/Medical_Illustration.png';
 import clsx from 'clsx';
-
-console.log('Image', Image);
+import { ProgressBar } from '../../Components/ProgressBar';
 
 const useStyles = makeStyles(styles);
 
-export function MobileDisclaimer(props: { onNext: Function }) {
+export function MobileDisclaimer(props: { onNext: Function, progressCompleted: number }) {
   const classes = useStyles();
-  const { onNext } = props;
+  const { onNext, progressCompleted } = props;
   const { getting_started_title, button_start } = useSelector((state) => state.elements);
 
   const language = useSelector((state) => state.language);
@@ -35,14 +34,17 @@ export function MobileDisclaimer(props: { onNext: Function }) {
         <LanguageDisclaimer />
       </Card>
       <AppBar className={classes.commandBar} position="fixed" variant="elevation">
-        <BlueButton
-          variant="default"
-          className={classes.commandButton}
-          onClick={() => onNext()}
-          size="large"
-        >
-          {button_start[language]}
-        </BlueButton>
+        <ProgressBar progressCompleted={progressCompleted} />
+        <div className={classes.actionButtons}>
+          <NextButton
+            variant="default"
+            className={classes.commandButton}
+            onClick={() => onNext()}
+            size="extraLarge"
+          >
+            {button_start[language]}
+          </NextButton>
+        </div>
       </AppBar>
     </div>
   );
