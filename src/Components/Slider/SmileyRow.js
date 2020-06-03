@@ -14,7 +14,8 @@ const useStyles = makeStyles(() => ({
     width: 'calc(100% + 30px)',
     justifyContent: 'space-between',
     marginLeft: '-15px',
-    marginTop: (props) => (props.isMobile ? -5 : 0),
+    marginTop: (props) => (props.isMobile ? -5 : 5),
+    marginBottom: 5,
     '& > img': {
       height: (props) => (props.isMobile ? 30 : 40),
     },

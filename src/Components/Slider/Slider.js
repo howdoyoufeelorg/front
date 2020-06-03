@@ -2,12 +2,14 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Slider as MaterialSlider } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
 import { action } from '../../sagas';
-import { EmojiFrownIcon, EmojiGrinIcon, EmojiMehIcon, EmojiSmileIcon } from '../../icons';
-import Tooltip from '@material-ui/core/Tooltip';
+import SliderThumb from '../../assets/images/Mood_Chart_Dot.svg';
 import { useIsMobile } from '../../Hooks/useIsMobile';
 import { SmileyRow } from './SmileyRow';
+import { ValueLabelComponent } from './ValueLabelComponent';
+import Chevron from '../../assets/icons/Chevron_for_Button.svg';
+import { ThumbSVG } from './ThumbSVG';
+import clsx from 'clsx';
 
 const useStyles = makeStyles({
   sliderWrapper: {
@@ -17,9 +19,24 @@ const useStyles = makeStyles({
   },
   limit: {
     color: '#1168f6',
-    fontSize: (props) => (props.isMobile ? 24 : 37),
+    fontSize: (props) => {
+      console.log('props', props);
+      return props.isMobile ? 24 : 37;
+    },
     fontWeight: 900,
     marginTop: (props) => (props.isMobile ? 0 : -10),
+    transition: '0.3s transform',
+    transform: 'translateX(0)',
+  },
+  leftLimit: {
+    marginRight: 14,
+  },
+  rightLimit: {
+    marginLeft: 14,
+    transform: (props) => {
+      console.log('transform props', props.value, typeof props.value);
+      return props.value === 10 ? 'translateX(10px)' : 'translateX(0)';
+    },
   },
   questionTitle: {
     fontSize: '1.2rem',
@@ -30,25 +47,6 @@ const useStyles = makeStyles({
 
 const size = '2x';
 
-const marks = [
-  {
-    value: 1,
-    label: <EmojiFrownIcon size={size} color="blue" />,
-  },
-  {
-    value: 4,
-    label: <EmojiMehIcon size={size} color="blue" />,
-  },
-  {
-    value: 7,
-    label: <EmojiSmileIcon size={size} color="blue" />,
-  },
-  {
-    value: 10,
-    label: <EmojiGrinIcon size={size} color="blue" />,
-  },
-];
-
 const HDYFSlider = (props) =>
   withStyles((theme) => ({
     root: {
@@ -56,18 +54,26 @@ const HDYFSlider = (props) =>
       height: 8,
     },
     thumb: {
-      height: props.isMobile ? 30 : 40,
-      width: props.isMobile ? 30 : 40,
-      backgroundColor: '#fff',
-      border: '4px solid',
-      borderColor: theme.backgroundBlue,
-      marginTop: props.isMobile ? -12 : -16,
-      marginLeft: -11,
+      height: props.isMobile ? 45 : 58,
+      width: props.isMobile ? 45 : 58,
+      marginTop: props.isMobile ? -20 : -20,
+      marginLeft: props.isMobile ? -20 : -31,
+      backgroundColor: 'transparent',
       '&:focus, &:hover, &:active': {
         boxShadow: 'inherit',
       },
-      '&::after': {
-        content: 'a',
+      '&.MuiSlider-active': {
+        boxShadow: 'none',
+      },
+      '& > svg': {
+        transform: 'scale(1)',
+        transition: '0.3s transform',
+      },
+      '&.MuiSlider-active > svg': {
+        transform: 'scale(1.2)',
+      },
+      '&:after': {
+        content: 'unset',
       },
     },
     markLabel: {
@@ -91,81 +97,49 @@ const HDYFSlider = (props) =>
   }))(MaterialSlider);
 
 function HDYFThumbComponent(props) {
-  console.log('props', props);
-  return (
-    <span {...props}>
-      <span className="circle" />
-    </span>
-  );
-}
-
-const useStylesTooltip = makeStyles((theme) => ({
-  tooltip: {
-    backgroundColor: 'transparent',
-    color: theme.backgroundBlue,
-    fontSize: (props) => (props.isMobile ? 34 : 44),
-    fontWeight: 900,
-    marginTop: 0,
-    padding: [[2, 8]],
-    lineHeight: 1,
-    marginBottom: 4,
-  },
-  popper: {
-    zIndex: 1,
-  },
-}));
-
-function ValueLabelComponent(props: Props) {
-  const { children, open, value } = props;
-  const isMobile = useIsMobile();
-
-  const classes = useStylesTooltip({ isMobile });
+  const value = props?.['aria-valuenow'];
+  console.log('props inside thumb', typeof value);
 
   return (
-    <Tooltip
-      open={true}
-      enterTouchDelay={0}
-      placement="top"
-      title={value}
-      classes={{ tooltip: classes.tooltip, popper: classes.popper }}
-    >
-      {children}
-    </Tooltip>
+    <ValueLabelComponent value={value}>
+      <span {...props}>
+        <ThumbSVG />
+      </span>
+    </ValueLabelComponent>
   );
 }
 
 export function Slider(props) {
   const { question } = props;
-  const isMobile = useIsMobile();
-  const language = useSelector((state) => state.language);
-  const classes = useStyles({ isMobile });
   const defaultValue = 6;
+
+  const [value, setValue] = React.useState(defaultValue);
+  const isMobile = useIsMobile();
+
+  console.log('slider value', value);
+
+  const classes = useStyles({ isMobile, value });
 
   const HDYFSliderWithProps = React.useMemo(() => HDYFSlider({ isMobile }), [isMobile]);
 
   return (
     <div className={classes.sliderWrapper}>
-      <div className={classes.limit} style={{ marginRight: 4 }}>
-        1
-      </div>
+      <div className={clsx(classes.limit, classes.leftLimit)}>1</div>
       <div style={{ width: '100%' }}>
         <HDYFSliderWithProps
           min={1}
           max={10}
           defaultValue={defaultValue}
-          valueLabelDisplay="on"
-          ValueLabelComponent={ValueLabelComponent}
           track={false}
-          /*marks={marks}*/
-          onChange={(event, value) =>
-            action('ANSWER_SET', { questionId: question.id, data: { answer: value } })
-          }
+          ThumbComponent={HDYFThumbComponent}
+          onChange={(event, value) => {
+            setValue(value);
+            action('ANSWER_SET', { questionId: question.id, data: { answer: value } });
+          }}
         />
         <SmileyRow />
       </div>
-      <div className={classes.limit} style={{ marginLeft: 4 }}>
-        10
-      </div>
+      <div className={clsx(classes.limit, classes.rightLimit)}>10</div>
     </div>
   );
 }

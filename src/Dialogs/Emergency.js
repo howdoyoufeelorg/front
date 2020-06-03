@@ -31,12 +31,12 @@ export function Emergency(props: { onNext: (boolean) => void, progressCompleted:
         </div>
       </DialogCardContent>
       <DialogCardActions>
-        <BackButton variant="noShadow" onClick={() => onNext(true)} size={'regular'}>
+        <BlueButton variant="noShadow" onClick={() => onNext(true)} size={'regular'}>
           {button_yes[language]}
-        </BackButton>
-        <NextButton variant="default" onClick={() => onNext(false)} size={'large'}>
+        </BlueButton>
+        <BlueButton variant="default" onClick={() => onNext(false)} size={'large'}>
           {button_no[language]}
-        </NextButton>
+        </BlueButton>
       </DialogCardActions>
     </DialogCard>
   );

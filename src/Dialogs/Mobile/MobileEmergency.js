@@ -33,22 +33,22 @@ export function MobileEmergency(props: { onNext: Function, progressCompleted: nu
       <AppBar className={classes.commandBar} position="fixed" variant="elevation">
         <ProgressBar progressCompleted={progressCompleted} />
         <div className={classes.actionButtons}>
-          <BackButton
+          <BlueButton
             variant="noShadow"
             className={classes.commandButton}
             onClick={() => onNext(true)}
             size="regular"
           >
             {button_yes[language]}
-          </BackButton>
-          <NextButton
+          </BlueButton>
+          <BlueButton
             variant="default"
             className={classes.commandButton}
             onClick={() => onNext(false)}
             size="large"
           >
             {button_no[language]}
-          </NextButton>
+          </BlueButton>
         </div>
       </AppBar>
     </div>
