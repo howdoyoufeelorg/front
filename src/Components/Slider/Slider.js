@@ -25,11 +25,14 @@ const useStyles = makeStyles({
     },
     fontWeight: 900,
     marginTop: (props) => (props.isMobile ? 0 : -10),
-    transition: '0.3s transform',
+    transition: '0.5s transform',
     transform: 'translateX(0)',
   },
   leftLimit: {
     marginRight: 14,
+    transform: (props) => {
+      return props.value === 1 ? 'translateX(-12px)' : 'translateX(0)';
+    },
   },
   rightLimit: {
     marginLeft: 14,
@@ -70,7 +73,7 @@ const HDYFSlider = (props) =>
         transition: '0.3s transform',
       },
       '&.MuiSlider-active > svg': {
-        transform: 'scale(1.2)',
+        transform: props.isMobile ? 'scale(1.5)' : 'scale(1.2)',
       },
       '&:after': {
         content: 'unset',
