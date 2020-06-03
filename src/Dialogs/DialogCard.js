@@ -9,8 +9,7 @@ import { ProgressBar } from '../Components/ProgressBar';
 
 export const styles = (theme: any) => ({
   paper: {
-    borderTopLeftRadius: 0,
-    borderTopRightRadius: 0,
+    borderRadius: [[0, 0, 10, 10]],
     width: `calc(100vw - 96px)`,
     margin: 48,
     boxShadow: '0 3px 60px 0 rgba(0, 0, 0, 0.16)',
