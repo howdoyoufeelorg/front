@@ -42,10 +42,10 @@ export function MobileEmergency(props: { onNext: Function, progressCompleted: nu
             {button_yes[language]}
           </BlueButton>
           <BlueButton
-            variant="default"
+            variant="noShadow"
             className={classes.commandButton}
             onClick={() => onNext(false)}
-            size="large"
+            size="regular"
           >
             {button_no[language]}
           </BlueButton>
@@ -54,3 +54,4 @@ export function MobileEmergency(props: { onNext: Function, progressCompleted: nu
     </div>
   );
 }
+

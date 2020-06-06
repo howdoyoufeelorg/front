@@ -31,14 +31,23 @@ const useStyles = makeStyles({
   leftLimit: {
     marginRight: 14,
     transform: (props) => {
-      return props.value === 1 ? 'translateX(-12px)' : 'translateX(0)';
+      if (props.value !== 1) {
+        return 'translate(0px)';
+      }
+      return props.isMobile
+        ? 'translate(-12px, 15px) scale(1.5)'
+        : 'translate(-15px, 4px) scale(1.1)';
     },
   },
   rightLimit: {
     marginLeft: 14,
     transform: (props) => {
-      console.log('transform props', props.value, typeof props.value);
-      return props.value === 10 ? 'translateX(10px)' : 'translateX(0)';
+      if (props.value !== 10) {
+        return 'translate(0px)';
+      }
+      return props.isMobile
+        ? 'translate(15px, 13px) scale(1.5)'
+        : 'translate(15px, -2px) scale(1.1)';
     },
   },
   questionTitle: {

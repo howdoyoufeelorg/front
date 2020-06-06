@@ -1,7 +1,7 @@
 import React  from 'react';
 import {useSelector} from "react-redux";
 
-export function Instruction(props)
+export function InstructionRow(props)
 {
     const {data} = props;
     const language = useSelector(state => state.language);

@@ -1,14 +1,21 @@
-import React, { useEffect } from 'react';
+//@flow
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { styles } from './HdyfMobileDialogCommonStyles';
 import { useSelector } from 'react-redux';
 import BlueButton from '../../Components/BlueButton';
 import Card from '@material-ui/core/Card';
 import AppBar from '@material-ui/core/AppBar';
-import { Instruction } from '../../Components/Instruction';
+import { InstructionRow } from '../../Components/InstructionRow';
 import { TwitterResource } from '../../Components/TwitterResource';
-import { action } from '../../sagas';
 import clsx from 'clsx';
+import { ScoreCard } from '../../Components/DiagnosisCards/ScoreCard';
+import type { GeoEntity, Instruction } from '../../models/Instruction';
+import type { UseInstructionsProps } from '../../Hooks/useInstructions';
+import { useInstructions } from '../../Hooks/useInstructions';
+import { InstructionsCard } from '../../Components/DiagnosisCards/InstructionsCard';
+import { GEO_ENTITY } from '../../models/Instruction';
+import { TwitterFeedCard } from '../../Components/DiagnosisCards/TwitterFeedCard';
 
 const useCommonStyles = makeStyles(styles);
 
@@ -40,7 +47,13 @@ const instructionsStyles = makeStyles((theme) => ({
   },
 }));
 
-export function MobileInstructions(props) {
+const filterInstructions = (instructions: Array<Instruction>, geoEntity: GeoEntity) => {
+  return instructions.filter((instruction: Instruction) => {
+    return instruction.geoentity === geoEntity;
+  });
+};
+
+export function MobileInstructions(props: { onClose: () => void }) {
   const classes = { ...useCommonStyles(), ...instructionsStyles() };
   const { onClose } = props;
   const onButtonClick = () => {
@@ -49,14 +62,15 @@ export function MobileInstructions(props) {
   const { dialog_instructions_title, button_close } = useSelector((state) => state.elements);
   const language = useSelector((state) => state.language);
 
-  const instructions = useSelector((state) => state.instructions);
-  const resources = useSelector((state) => state.resources);
-  const ajaxInProgress = useSelector((state) => state.ajax.ajaxInProgress);
-  useEffect(() => {
-    if (!ajaxInProgress) {
-      action('INSTRUCTIONS_LOAD_SILENTLY');
-    }
-  }, [ajaxInProgress]);
+  const { instructions, resources }: UseInstructionsProps = useInstructions();
+
+  if (!instructions || !instructions.length) {
+    return null;
+  }
+
+  const zipInstructions = filterInstructions(instructions, 'zipcode');
+  const areaInstructions = filterInstructions(instructions, 'area');
+
   return (
     <div className={clsx(classes.content, classes.backgroundWhite, classes.instructionsPage)}>
       <div className={classes.header}>
@@ -64,37 +78,10 @@ export function MobileInstructions(props) {
       </div>
       <div className={classes.instructionsSection}>
         <div className={classes.instructionsCards}>
-          <Card className={clsx(classes.infoCard, classes.firstCard)}>
-            Instructions for your area
-            {instructions.map((instruction, index) => (
-              <Instruction data={instruction} key={index} />
-            ))}
-          </Card>
-          <Card className={classes.infoCard}>Local News Updates</Card>
-          <Card className={classes.infoCard}>
-            {resources.area && resources.area.twitterResources.length ? (
-              <>
-                LATEST TWITTER POSTS FOR YOUR AREA
-                <hr />
-                {resources.area.twitterResources.map((data, index) => (
-                  <TwitterResource profile={data.value} key={index} />
-                ))}
-              </>
-            ) : (
-              ''
-            )}
-            {resources.state && resources.state.twitterResources.length ? (
-              <>
-                LATEST TWITTER POSTS FOR YOUR STATE
-                <hr />
-                {resources.state.twitterResources.map((data, index) => (
-                  <TwitterResource profile={data.value} key={index} />
-                ))}
-              </>
-            ) : (
-              ''
-            )}
-          </Card>
+          <ScoreCard />
+          <InstructionsCard instructions={zipInstructions} geoEntity={GEO_ENTITY.zipcode} />
+          <InstructionsCard instructions={areaInstructions} geoEntity={GEO_ENTITY.area} />
+          <TwitterFeedCard resources={resources} />
         </div>
       </div>
       <AppBar className={classes.commandBar} position="fixed" variant="elevation">

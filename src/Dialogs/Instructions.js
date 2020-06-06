@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import { DialogTitle, DialogContent, DialogActions } from '@material-ui/core';
 import { action } from '../sagas';
-import { Instruction } from '../Components/Instruction';
+import { InstructionRow } from '../Components/InstructionRow';
 import { TwitterResource } from '../Components/TwitterResource';
 import { LanguageSelector } from '../Components/LanguageSelector';
 import { styles } from './HdyfDialogCommonStyles';

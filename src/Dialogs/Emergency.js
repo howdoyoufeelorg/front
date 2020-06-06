@@ -34,7 +34,7 @@ export function Emergency(props: { onNext: (boolean) => void, progressCompleted:
         <BlueButton variant="noShadow" onClick={() => onNext(true)} size={'regular'}>
           {button_yes[language]}
         </BlueButton>
-        <BlueButton variant="default" onClick={() => onNext(false)} size={'large'}>
+        <BlueButton variant="noShadow" onClick={() => onNext(false)} size={'regular'}>
           {button_no[language]}
         </BlueButton>
       </DialogCardActions>
