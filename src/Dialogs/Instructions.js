@@ -11,6 +11,13 @@ import { styles } from './HdyfDialogCommonStyles';
 import BlueButton from '../Components/BlueButton';
 import { DialogCard, DialogCardHeader } from './DialogCard';
 import clsx from 'clsx';
+import type { GeoEntity, Instruction } from '../models/Instruction';
+import type { UseInstructionsProps } from '../Hooks/useInstructions';
+import { useInstructions } from '../Hooks/useInstructions';
+import { ScoreCard } from '../Components/DiagnosisCards/ScoreCard';
+import { InstructionsCard } from '../Components/DiagnosisCards/InstructionsCard';
+import { GEO_ENTITY } from '../models/Instruction';
+import { TwitterFeedCard } from '../Components/DiagnosisCards/TwitterFeedCard';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -18,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
     height: `calc(100vh - 64px)`,
     margin: [[24, 'auto']],
     boxShadow: '0 3px 60px 0 rgba(0, 0, 0, 0.16)',
+    borderRadius: 10,
   },
   header: {
     paddingTop: 24,
@@ -27,6 +35,14 @@ const useStyles = makeStyles((theme) => ({
     color: theme.white,
     fontSize: '1rem',
     textAlign: 'center',
+  },
+  cardsContainer: {
+    padding: 20,
+  },
+  instructionCards: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+    gridColumnGap: 20,
   },
 }));
 
@@ -44,33 +60,41 @@ const hasResources = (resources) => {
   return has;
 };
 
+export const filterInstructions = (instructions: Array<Instruction>, geoEntity: GeoEntity) => {
+  return instructions.filter((instruction: Instruction) => {
+    return instruction.geoentity === geoEntity;
+  });
+};
+
 export function Instructions() {
   const classes = useStyles();
-  const ajaxInProgress = useSelector((state) => state.ajax.ajaxInProgress);
-  const instructions = useSelector((state) => state.instructions);
-  const resources = useSelector((state) => state.resources);
-  const [open, setOpen] = useState(true);
+
   const { dialog_instructions_title, dialog_instructions_content, button_close } = useSelector(
     (state) => state.elements,
   );
   const language = useSelector((state) => state.language);
 
-  useEffect(() => {
-    if (!ajaxInProgress) {
-      action('INSTRUCTIONS_LOAD_SILENTLY');
-    }
-  }, [ajaxInProgress]);
-  /*
+  const { instructions, resources }: UseInstructionsProps = useInstructions();
 
-  if (!instructions.length && !hasResources(resources)) {
+  if (!instructions || !instructions.length) {
     return null;
   }
-*/
+
+  const zipInstructions = filterInstructions(instructions, 'zipcode');
+  const areaInstructions = filterInstructions(instructions, 'area');
 
   return (
     <DialogCard className={classes.container}>
       <div className={classes.header}>
         <h2 className={clsx(classes.title)}>{dialog_instructions_title[language]}</h2>
+      </div>
+      <div className={classes.cardsContainer}>
+        <ScoreCard />
+        <div className={classes.instructionCards}>
+          <InstructionsCard instructions={zipInstructions} geoEntity={GEO_ENTITY.zipcode} />
+          <InstructionsCard instructions={areaInstructions} geoEntity={GEO_ENTITY.area} />
+          <TwitterFeedCard resources={resources} />
+        </div>
       </div>
     </DialogCard>
   );

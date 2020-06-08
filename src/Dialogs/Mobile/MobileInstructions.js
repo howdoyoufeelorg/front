@@ -16,6 +16,7 @@ import { useInstructions } from '../../Hooks/useInstructions';
 import { InstructionsCard } from '../../Components/DiagnosisCards/InstructionsCard';
 import { GEO_ENTITY } from '../../models/Instruction';
 import { TwitterFeedCard } from '../../Components/DiagnosisCards/TwitterFeedCard';
+import { filterInstructions } from '../Instructions';
 
 const useCommonStyles = makeStyles(styles);
 
@@ -46,12 +47,6 @@ const instructionsStyles = makeStyles((theme) => ({
     marginTop: 0,
   },
 }));
-
-const filterInstructions = (instructions: Array<Instruction>, geoEntity: GeoEntity) => {
-  return instructions.filter((instruction: Instruction) => {
-    return instruction.geoentity === geoEntity;
-  });
-};
 
 export function MobileInstructions(props: { onClose: () => void }) {
   const classes = { ...useCommonStyles(), ...instructionsStyles() };

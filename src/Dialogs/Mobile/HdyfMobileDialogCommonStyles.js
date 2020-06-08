@@ -3,6 +3,7 @@ export const styles = (theme) => ({
   label: {
     fontWeight: 900,
     color: theme.textColor,
+    fontSize: 18,
   },
   content: {
     padding: [[20, 20, 40, 20]],
@@ -24,7 +25,7 @@ export const styles = (theme) => ({
     fontSize: 28,
   },
   titleSmall: {
-    fontSize: 24,
+    fontSize: 26,
   },
   imageContainer: {
     textAlign: 'center',

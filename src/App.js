@@ -24,7 +24,6 @@ import { MobileInstructions } from './Dialogs/Mobile/MobileInstructions';
 import clsx from 'clsx';
 import { Location } from './Dialogs/Location';
 import { MobileLocation } from './Dialogs/Mobile/MobileLocation';
-import { MobileBasicInfo } from './Dialogs/Mobile/MobileBasicInfo';
 
 const getGeolocation = () => {
   if (navigator.geolocation) {

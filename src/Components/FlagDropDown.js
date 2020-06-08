@@ -68,8 +68,9 @@ export const flagDropdownStyles = (props: FlagStyleProps) => (theme: any) => {
         borderRadius: 5,
       },
       '& span.flag-select__option__label': {
-        fontSize: '1rem',
         marginLeft: 12,
+        fontSize: 18,
+        fontWeight: 600,
       },
     },
   };
