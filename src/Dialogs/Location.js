@@ -7,7 +7,7 @@ import { LanguageSelector } from '../Components/LanguageSelector';
 import { styles } from './HdyfDialogCommonStyles';
 import BlueButton, { BackButton, NextButton } from '../Components/BlueButton';
 import { action } from '../sagas';
-import { TextField } from '../Components/TextField';
+import { TextField } from '../Components/FormFields/TextField';
 import { FlagDropDown } from '../Components/FlagDropDown';
 import { DialogCard, DialogCardActions, DialogCardContent, DialogCardHeader } from './DialogCard';
 import { genderChoices, raceChoices } from '../translations';

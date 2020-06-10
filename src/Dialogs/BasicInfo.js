@@ -11,7 +11,7 @@ import Select from "@material-ui/core/Select"
 import {genderChoices, raceChoices} from "../translations"
 import MenuItem from "@material-ui/core/MenuItem"
 import InputLabel from "@material-ui/core/InputLabel"
-import {TextField} from "../Components/TextField";
+import {TextField} from "../Components/FormFields/TextField";
 
 const useStyles = makeStyles(styles)
 

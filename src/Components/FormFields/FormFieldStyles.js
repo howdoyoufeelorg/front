@@ -1,7 +1,5 @@
 //@flow
-import MUITextField from '@material-ui/core/TextField';
-import * as React from 'react';
-import { getWidth } from '../styleUtils';
+import { getWidth } from '../../styleUtils';
 import { makeStyles } from '@material-ui/core/styles';
 
 const styles = (theme) => {
@@ -40,27 +38,16 @@ const styles = (theme) => {
       '& .MuiInput-underline:before, & .MuiInput-underline:after': {
         border: 'none',
       },
+      '&.MuiInput-underline:before, &.MuiInput-underline:after, &.MuiInput-underline:hover:not(.Mui-disabled):before': {
+        border: 'none',
+      },
       '& .MuiInput-underline:hover:before': {
         border: 'none',
       },
     },
+    placeholder: {
+      opacity: 0.42,
+    },
   };
 };
-const useStyles = makeStyles(styles);
-
-export const TextField = (props: any) => {
-  const { width, value, ...textProps } = props;
-  const hasValue = !!value;
-
-  const classes = useStyles({ width, hasValue });
-
-  // const TextFieldWithProps = React.useMemo(() => HDYFTextField({ width }), [width]);
-  return (
-    <MUITextField
-      value={value}
-      classes={{ root: classes.root }}
-      InputLabelProps={{ shrink: true }}
-      {...textProps}
-    />
-  );
-};
+export const useStyles = makeStyles(styles);

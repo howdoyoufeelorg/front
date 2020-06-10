@@ -19,7 +19,6 @@ flow-typed
 
 [options]
 server.max_workers=1
-exact_by_default=true
 esproposal.class_static_fields=enable
 esproposal.class_instance_fields=enable
 esproposal.optional_chaining=enable

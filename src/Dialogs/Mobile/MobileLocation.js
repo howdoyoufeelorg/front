@@ -3,16 +3,17 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { styles } from './HdyfMobileDialogCommonStyles';
 import { useSelector } from 'react-redux';
-import BlueButton, { BackButton, NextButton } from '../../Components/BlueButton';
+import { BackButton, NextButton } from '../../Components/BlueButton';
 import AppBar from '@material-ui/core/AppBar';
 import { action } from '../../sagas';
 import { FlagDropDown } from '../../Components/FlagDropDown';
-import { TextField } from '../../Components/TextField';
+import { TextField } from '../../Components/FormFields/TextField';
 import { InputLabel } from '@material-ui/core';
 import { genderChoices, raceChoices } from '../../translations';
 import Image from '../../assets/images/Medical_Illustration.png';
 import clsx from 'clsx';
 import { ProgressBar } from '../../Components/ProgressBar';
+import { Select } from '../../Components/FormFields/Select';
 
 const useStyles = makeStyles(styles);
 
@@ -36,6 +37,7 @@ export function MobileLocation(props: {
     age_input_placeholder,
     gender_input_placeholder,
     race_input_placeholder,
+    race_input_label,
   } = useSelector((state) => state.elements);
   const language = useSelector((state) => state.language);
   const onButtonClick = () => {
@@ -88,37 +90,33 @@ export function MobileLocation(props: {
       </div>
       <div className={classes.formField}>
         <InputLabel className={classes.label}>{gender_input_placeholder[language]}</InputLabel>
-        <TextField
-          size={'medium'}
-          select
+        <Select
           onChange={(event) =>
             action('ANSWER_SET', { questionId: 'gender', data: { value: event.target.value } })
           }
-          value={answers['gender'].value}
-        >
-          {genderChoices[language].map((item, index) => (
-            <option key={index} value={item}>
-              {item}
-            </option>
-          ))}
-        </TextField>
+          value={answers['gender'].value || ''}
+          displayEmpty
+          placeholder={gender_input_placeholder[language]}
+          options={genderChoices[language].map((item) => ({
+            value: item,
+            label: item,
+          }))}
+        />
       </div>
       <div className={classes.formField}>
-        <InputLabel className={classes.label}>{race_input_placeholder[language]}</InputLabel>
-        <TextField
-          size={'medium'}
-          select
+        <InputLabel className={classes.label}>{race_input_label[language]}</InputLabel>
+        <Select
           onChange={(event) =>
             action('ANSWER_SET', { questionId: 'race', data: { value: event.target.value } })
           }
-          value={answers['race'].value}
-        >
-          {raceChoices[language].map((item, index) => (
-            <option key={index} value={item}>
-              {item}
-            </option>
-          ))}
-        </TextField>
+          value={answers['race'].value || ''}
+          displayEmpty
+          placeholder={race_input_placeholder[language]}
+          options={raceChoices[language].map((item) => ({
+            value: item,
+            label: item,
+          }))}
+        />
       </div>
       <AppBar className={classes.commandBar} position="fixed" variant="elevation">
         <ProgressBar progressCompleted={progressCompleted} />
