@@ -10,7 +10,7 @@ const styles = (theme) => {
         return getWidth(props.width);
       },
       '& input, .MuiSelect-root': {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: 600,
         backgroundColor: ({ hasValue }) => {
           return !hasValue ? '#F4F5FF' : 'white';

@@ -35,6 +35,7 @@ export function MobileLocation(props: {
     dialog_basic_info_title,
     age_input_label,
     age_input_placeholder,
+    gender_input_label,
     gender_input_placeholder,
     race_input_placeholder,
     race_input_label,
@@ -89,7 +90,7 @@ export function MobileLocation(props: {
         />
       </div>
       <div className={classes.formField}>
-        <InputLabel className={classes.label}>{gender_input_placeholder[language]}</InputLabel>
+        <InputLabel className={classes.label}>{gender_input_label[language]}</InputLabel>
         <Select
           onChange={(event) =>
             action('ANSWER_SET', { questionId: 'gender', data: { value: event.target.value } })
