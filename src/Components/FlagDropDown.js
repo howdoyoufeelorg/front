@@ -16,6 +16,7 @@ export const flagDropdownStyles = (props: FlagStyleProps) => (theme: any) => {
       width: getWidth(props.width),
       'margin-top': '8px',
       '& button': {
+        height: 45,
         width: '100%',
         border: `2px ${theme.blue} solid`,
         color: theme.blue,

@@ -53,7 +53,9 @@ export function MobileLocation(props: {
       <div className={classes.imageContainer}>
         <img src={Image} alt="Illustration" />
       </div>
-      <h2 className={clsx(classes.title, classes.titleSmall)}>{dialog_location_title[language]}</h2>
+      <h2 className={clsx(classes.title, classes.titleSmall)} style={{ marginTop: 52 }}>
+        {dialog_location_title[language]}
+      </h2>
       <div className={classes.formField}>
         <TextField
           label={zipcode_input_placeholder[language]}
@@ -75,7 +77,7 @@ export function MobileLocation(props: {
           }
         />
       </div>
-      <h2 className={clsx(classes.title, classes.titleSmall)}>
+      <h2 className={clsx(classes.title, classes.titleSmall)} style={{ marginTop: 60 }}>
         {dialog_basic_info_title[language]}
       </h2>
       <div className={classes.formField}>

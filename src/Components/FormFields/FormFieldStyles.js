@@ -10,15 +10,23 @@ const styles = (theme) => {
         return getWidth(props.width);
       },
       '& input, .MuiSelect-root': {
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: 600,
+        height: 45,
+        lineHeight: '41px',
+        boxSizing: 'border-box',
         backgroundColor: ({ hasValue }) => {
           return !hasValue ? '#F4F5FF' : 'white';
         },
         border: `2px ${theme.blue} solid`,
         color: theme.blue,
-        'border-radius': '4px',
-        'padding-left': '12px',
+        borderRadius: 4,
+        paddingLeft: 12,
+        paddingTop: 0,
+        paddingBottom: 0,
+        '@media (min-width: 320px)': {
+          fontSize: 18,
+        },
       },
       '& label': {
         fontWeight: 900,
