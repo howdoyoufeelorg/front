@@ -54,7 +54,9 @@ export function Location(props: {
         <LanguageSelector />
       </DialogCardHeader>
       <DialogCardContent classes={{ root: classes.content }}>
-        <h2 className={classes.title}>{dialog_location_title[language]}</h2>
+        <h2 className={classes.title} style={{ marginBottom: 32 }}>
+          {dialog_location_title[language]}
+        </h2>
         <div className={classes.formField}>
           <TextField
             label={zipcode_input_label[language]}
@@ -77,7 +79,7 @@ export function Location(props: {
             }
           />
         </div>
-        <h2 className={classes.title} style={{ marginTop: 40 }}>
+        <h2 className={classes.title} style={{ marginTop: 74, marginBottom: 32 }}>
           {dialog_basic_info_title[language]}
         </h2>
         <div className={classes.formField}>

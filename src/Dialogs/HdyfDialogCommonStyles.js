@@ -15,13 +15,14 @@ export const styles = (theme) => ({
   label: {
     fontWeight: 900,
     color: theme.textColor,
+    fontSize: 23,
   },
   content: {
     width: '90%',
     maxWidth: '668px',
     margin: '0 auto',
     padding: 0,
-    fontSize: '1rem'
+    fontSize: '1rem',
   },
   actions: {
     padding: [[20, 20]],
@@ -36,7 +37,7 @@ export const styles = (theme) => ({
     height: 160,
   },
   formField: {
-    marginBottom: 20,
+    marginBottom: 27
   },
   imageContainer: {
     textAlign: 'center',

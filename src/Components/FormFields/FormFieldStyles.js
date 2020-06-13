@@ -10,10 +10,10 @@ const styles = (theme) => {
         return getWidth(props.width);
       },
       '& input, .MuiSelect-root': {
-        fontSize: 18,
+        fontSize: ({ isMobile }) => (isMobile ? 18 : 24),
         fontWeight: 600,
-        height: 45,
-        lineHeight: '41px',
+        height: ({ isMobile }) => (isMobile ? 45 : 60),
+        lineHeight: ({ isMobile }) => (isMobile ? '41px' : '56px'),
         boxSizing: 'border-box',
         backgroundColor: ({ hasValue }) => {
           return !hasValue ? '#F4F5FF' : 'white';
@@ -31,7 +31,7 @@ const styles = (theme) => {
       '& label': {
         fontWeight: 900,
         color: theme.textColor,
-        fontSize: 18,
+        fontSize: ({ isMobile }) => (isMobile ? 18 : 23),
       },
       '& .Mui-focused input, .Mui-focused .MuiSelect-root ': {
         'box-shadow': '8px 8px 24px 0px rgba(86,133,247,0.5)',

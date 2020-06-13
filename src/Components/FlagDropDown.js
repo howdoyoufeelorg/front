@@ -5,9 +5,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 import { getWidth, inputBoxShadow } from '../styleUtils';
 import type { Width } from '../styleUtils';
+import { useIsMobile } from '../Hooks/useIsMobile';
 
 type FlagStyleProps = {
   width: Width,
+  isMobile: boolean,
 };
 
 export const flagDropdownStyles = (props: FlagStyleProps) => (theme: any) => {
@@ -16,14 +18,14 @@ export const flagDropdownStyles = (props: FlagStyleProps) => (theme: any) => {
       width: getWidth(props.width),
       'margin-top': '8px',
       '& button': {
-        height: 45,
+        height: props.isMobile ? 45 : 60,
         width: '100%',
         border: `2px ${theme.blue} solid`,
         color: theme.blue,
-        'border-radius': '4px',
+        borderRadius: '4px',
         padding: '2px 8px',
         display: 'flex',
-        'align-items': 'center',
+        alignItems: 'center',
       },
       '& button:focus': {
         ...inputBoxShadow,
@@ -70,7 +72,7 @@ export const flagDropdownStyles = (props: FlagStyleProps) => (theme: any) => {
       },
       '& span.flag-select__option__label': {
         marginLeft: 12,
-        fontSize: 18,
+        fontSize: props.isMobile ? 18 : 24,
         fontWeight: 600,
       },
     },
@@ -81,7 +83,8 @@ export const useFlagDropdownStyles = (props?: FlagStyleProps) =>
   makeStyles(flagDropdownStyles(props || {}));
 
 export const FlagDropDown = ({ onSelect }: { onSelect: (string) => void }) => {
-  const classes = useFlagDropdownStyles({ width: 'fullWidth' })();
+  const isMobile = useIsMobile();
+  const classes = useFlagDropdownStyles({ width: 'fullWidth', isMobile })();
   console.log('classes', classes);
   const { country_selector_search_placeholder } = useSelector((state) => state.elements);
   const language = useSelector((state) => state.language);
