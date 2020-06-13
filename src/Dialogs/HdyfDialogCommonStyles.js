@@ -37,9 +37,12 @@ export const styles = (theme) => ({
     height: 160,
   },
   formField: {
-    marginBottom: 27
+    marginBottom: 27,
   },
   imageContainer: {
     textAlign: 'center',
+    '& img': {
+      height: 150,
+    },
   },
 });

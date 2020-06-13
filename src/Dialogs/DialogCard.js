@@ -54,12 +54,12 @@ export const styles = (theme: any) => ({
 });
 const useStyles = makeStyles(styles);
 
-export const DialogCard = ({ children, ...props }: { children: React.Node, ... }) => {
+export const DialogCard = ({ children, ...props }: { children?: React.Node, ... }) => {
   const classes = useStyles();
 
   return (
     <MuiCard classes={{ root: classes.paper }} {...props}>
-      {children}
+      {children ? children : null}
     </MuiCard>
   );
 };
@@ -69,7 +69,7 @@ export const DialogCardHeader = ({
   displayProgress,
   progressCompleted,
 }: {
-  children: React.Node,
+  children?: React.Node,
   displayProgress?: boolean,
   progressCompleted?: number,
 }) => {

@@ -13,17 +13,14 @@ const useStyles = makeStyles(styles);
 export function Emergency(props: { onNext: (boolean) => void, progressCompleted: number }) {
   const classes = useStyles();
   const { onNext, progressCompleted } = props;
-  const { dialog_emergency_title, dialog_emergency_content, button_yes, button_no } = useSelector(
+  const { dialog_emergency_content, button_yes, button_no } = useSelector(
     (state) => state.elements,
   );
   const language = useSelector((state) => state.language);
   const LanguageEmergency = EmergencyLanguageMapping[language];
   return (
     <DialogCard>
-      <DialogCardHeader displayProgress progressCompleted={progressCompleted}>
-        <div className={classes.titleText}></div>
-        <LanguageSelector />
-      </DialogCardHeader>
+      <DialogCardHeader displayProgress progressCompleted={progressCompleted}></DialogCardHeader>
       <DialogCardContent classes={{ root: classes.content }}>
         <h2 className={classes.title}>{dialog_emergency_content[language]}</h2>
         <div>

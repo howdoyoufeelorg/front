@@ -37,10 +37,11 @@ export function Disclaimer(props: { onNext: () => void, progressCompleted: numbe
   return (
     <React.Fragment>
       <DialogCard>
-        <DialogCardHeader disableTypography displayProgress progressCompleted={progressCompleted}>
-          <div></div>
-          <LanguageSelector />
-        </DialogCardHeader>
+        <DialogCardHeader
+          disableTypography
+          displayProgress
+          progressCompleted={progressCompleted}
+        ></DialogCardHeader>
         <DialogCardContent>
           <div className={commonClasses.titleText} style={{ color: '#00355a' }}>
             {getting_started_title[language]}

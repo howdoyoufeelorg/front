@@ -12,6 +12,7 @@ import { FlagDropDown } from '../Components/FlagDropDown';
 import { DialogCard, DialogCardActions, DialogCardContent, DialogCardHeader } from './DialogCard';
 import { genderChoices, raceChoices } from '../translations';
 import { Select } from '../Components/FormFields/Select';
+import Image from '../assets/images/Medical_Illustration@2x.png';
 
 const useStyles = makeStyles(styles);
 
@@ -49,11 +50,11 @@ export function Location(props: {
   };
   return (
     <DialogCard>
-      <DialogCardHeader displayProgress progressCompleted={progressCompleted}>
-        <div className={classes.titleText}></div>
-        <LanguageSelector />
-      </DialogCardHeader>
+      <DialogCardHeader displayProgress progressCompleted={progressCompleted}></DialogCardHeader>
       <DialogCardContent classes={{ root: classes.content }}>
+        <div className={classes.imageContainer} style={{ marginTop: 70, marginBottom: 96 }}>
+          <img src={Image} alt="Illustration" />
+        </div>
         <h2 className={classes.title} style={{ marginBottom: 32 }}>
           {dialog_location_title[language]}
         </h2>

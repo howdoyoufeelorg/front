@@ -76,10 +76,7 @@ export function Survey(props: {
 
   return (
     <DialogCard>
-      <DialogCardHeader displayProgress progressCompleted={progressCompleted}>
-        <div></div>
-        <LanguageSelector />
-      </DialogCardHeader>
+      <DialogCardHeader displayProgress progressCompleted={progressCompleted}></DialogCardHeader>
       <DialogCardContent className={classes.content} style={{ alignItems: 'stretch' }}>
         <h2 className={classes.title} style={{ marginBottom: 60, marginTop: 0 }}>
           {dialog_survey_title[language]}
