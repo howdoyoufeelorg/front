@@ -213,9 +213,6 @@ function App() {
             src="HDYFLogoWhite@2x.png"
             alt="HowDoYouFeel?org"
           />
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon fontSize="large" />
-          </IconButton>
         </Toolbar>
       </AppBar>
       <div className={classes.offset} />

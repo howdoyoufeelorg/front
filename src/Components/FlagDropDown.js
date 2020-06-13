@@ -12,13 +12,13 @@ type FlagStyleProps = {
   isMobile: boolean,
 };
 
-export const flagDropdownStyles = (props: FlagStyleProps) => (theme: any) => {
+export const flagDropdownStyles = (theme: any) => {
   return {
     flagDropdown: {
-      width: getWidth(props.width),
+      width: (props: FlagStyleProps) => getWidth(props.width),
       'margin-top': '8px',
       '& button': {
-        height: props.isMobile ? 45 : 60,
+        height: (props: FlagStyleProps) => (props.isMobile ? 45 : 60),
         width: '100%',
         border: `2px ${theme.blue} solid`,
         color: theme.blue,
@@ -72,19 +72,18 @@ export const flagDropdownStyles = (props: FlagStyleProps) => (theme: any) => {
       },
       '& span.flag-select__option__label': {
         marginLeft: 12,
-        fontSize: props.isMobile ? 18 : 24,
+        fontSize: (props: FlagStyleProps) => (props.isMobile ? 18 : 24),
         fontWeight: 600,
       },
     },
   };
 };
 
-export const useFlagDropdownStyles = (props?: FlagStyleProps) =>
-  makeStyles(flagDropdownStyles(props || {}));
+export const useFlagDropdownStyles = makeStyles(flagDropdownStyles);
 
 export const FlagDropDown = ({ onSelect }: { onSelect: (string) => void }) => {
   const isMobile = useIsMobile();
-  const classes = useFlagDropdownStyles({ width: 'fullWidth', isMobile })();
+  const classes = useFlagDropdownStyles({ width: 'fullWidth', isMobile });
   console.log('classes', classes);
   const { country_selector_search_placeholder } = useSelector((state) => state.elements);
   const language = useSelector((state) => state.language);
