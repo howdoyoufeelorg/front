@@ -40,6 +40,13 @@ const getGeolocation = () => {
 
 getGeolocation();
 
+const getLogoClass = (isMobile: boolean, isSmallMobile: boolean, classes: Object) => {
+  if (isSmallMobile) {
+    return classes.logoSmallMobile;
+  }
+  return isMobile ? classes.logoMobile : classes.logoDesktop;
+};
+
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
@@ -76,6 +83,9 @@ const styles = (theme) => ({
   logoMobile: {
     height: 22,
   },
+  logoSmallMobile: {
+    height: 49,
+  },
 });
 
 const useStyles = makeStyles(styles);
@@ -90,7 +100,7 @@ const getProgress = (currentStage: number): number => {
 };
 
 function App() {
-  const isMobile = useIsMobile();
+  const { isMobile, isSmallMobile } = useIsMobile();
   const classes = useStyles({ isMobile });
   const hash = useGetHash();
 
@@ -210,8 +220,8 @@ function App() {
           disableGutters={true}
         >
           <img
-            className={clsx(!isMobile && classes.logoDesktop, isMobile && classes.logoMobile)}
-            src="HDYFLogoWhite@2x.png"
+            className={clsx(getLogoClass(isMobile, isSmallMobile, classes))}
+            src={isSmallMobile ? 'Boxed_Logo@3x.png' : 'HDYFLogoWhite@2x.png'}
             alt="HowDoYouFeel?org"
           />
           <LanguageSelector />

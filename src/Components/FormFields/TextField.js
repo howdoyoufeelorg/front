@@ -6,7 +6,7 @@ import { useIsMobile } from '../../Hooks/useIsMobile';
 
 export const TextField = (props: any) => {
   const { width, value, ...textProps } = props;
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   const hasValue = !!value;
 
   const classes = useStyles({ isMobile, width, hasValue });

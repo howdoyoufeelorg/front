@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 export const SmileyRow = () => {
-  const isMobile = useIsMobile();
+  const {isMobile} = useIsMobile();
   const classes = useStyles({ isMobile });
   return (
     <div className={classes.smileyRow}>

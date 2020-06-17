@@ -35,7 +35,7 @@ export const flagDropdownStyles = (theme: any) => {
         '& button': {
           border: 'none',
           height: 'auto',
-          cursor: 'pointer'
+          cursor: 'pointer',
         },
         '& button:focus': {
           boxShadow: 'none',
@@ -44,8 +44,11 @@ export const flagDropdownStyles = (theme: any) => {
           right: 0,
         },
         '& .flag-select__option__icon': {
+          width: (props: FlagStyleProps) => (props.isMobile ? 37 : 60),
+        },
+        '& li .flag-select__option__icon': {
           width: 30,
-        }
+        },
       },
 
       '& .flag-select__options': {
@@ -97,7 +100,7 @@ export const flagDropdownStyles = (theme: any) => {
 export const useFlagDropdownStyles = makeStyles(flagDropdownStyles);
 
 export const FlagDropDown = ({ onSelect }: { onSelect: (string) => void }) => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   const classes = useFlagDropdownStyles({ width: 'fullWidth', isMobile });
   console.log('classes', classes);
   const { country_selector_search_placeholder } = useSelector((state) => state.elements);

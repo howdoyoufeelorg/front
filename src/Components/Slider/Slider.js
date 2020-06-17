@@ -126,7 +126,7 @@ export function Slider(props) {
   const defaultValue = 6;
 
   const [value, setValue] = React.useState(defaultValue);
-  const isMobile = useIsMobile();
+  const {isMobile} = useIsMobile();
 
   console.log('slider value', value);
 

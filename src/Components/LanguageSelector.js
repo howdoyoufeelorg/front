@@ -4,6 +4,7 @@ import ReactFlagsSelect from 'react-flags-select';
 import { useSelector } from 'react-redux';
 import { useFlagDropdownStyles } from './FlagDropDown';
 import clsx from 'clsx';
+import { useIsMobile } from '../Hooks/useIsMobile';
 
 const getCountryCodeFromLanguage = (language) => {
   switch (language) {
@@ -17,8 +18,9 @@ const getCountryCodeFromLanguage = (language) => {
 export const LanguageSelector = () => {
   const { language_selector_search_placeholder } = useSelector((state) => state.elements);
   const language = useSelector((state) => state.language);
+  const { isMobile } = useIsMobile();
   const currentLanguageCountryCode = getCountryCodeFromLanguage(language);
-  const classes = useFlagDropdownStyles({ width: 'auto' });
+  const classes = useFlagDropdownStyles({ width: 'auto', isMobile });
   return (
     <ReactFlagsSelect
       showSelectedLabel={false}

@@ -24,7 +24,7 @@ const FakeTransitionComponent = ({ children }) => children;
 
 export function ValueLabelComponent(props) {
   const { children, value } = props;
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
 
   const classes = useStylesTooltip({ isMobile });
 

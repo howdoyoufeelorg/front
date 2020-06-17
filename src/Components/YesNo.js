@@ -11,18 +11,19 @@ import clsx from 'clsx';
 const useStyles = makeStyles((theme) => ({
   questionTitle: {
     fontSize: 24,
-    marginBottom: 10,
     textAlign: 'center',
     fontWeight: 900,
+    marginBottom: 10,
   },
   questionTitleDesktop: {
     textAlign: 'left',
     width: '100%',
+    marginRight: 10,
   },
   additionalDataTitleDesktop: {
     textAlign: 'right',
     marginRight: 20,
-    paddingTop: 5,
+    paddingTop: 0,
   },
   yesNoWrapper: {
     display: 'flex',
@@ -30,12 +31,13 @@ const useStyles = makeStyles((theme) => ({
   },
   yesNoWrapperDesktop: {
     flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
   },
   buttonWrapper: {
     display: 'flex',
     justifyContent: 'center',
     width: '100%',
-    marginBottom: 6,
   },
   buttonWrapperDesktop: {
     width: 'auto',
@@ -47,9 +49,12 @@ const useStyles = makeStyles((theme) => ({
   additionalDataWrapper: {
     display: 'flex',
     flexDirection: 'column',
+    marginTop: 35,
   },
   additionalDataWrapperDesktop: {
     flexDirection: 'row',
+    marginTop: 25,
+    marginBottom: 15,
   },
 }));
 
@@ -61,7 +66,7 @@ export function YesNo(props) {
   const { button_no, button_yes } = useSelector((state) => state.elements);
   const language = useSelector((state) => state.language);
   const classes = useStyles();
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
   let additionalDataInput;
   if (question.additionalDataType === 'slider') {
     additionalDataInput = <Slider />;
