@@ -17,6 +17,7 @@ export const flagDropdownStyles = (theme: any) => {
     flagDropdown: {
       width: (props: FlagStyleProps) => getWidth(props.width),
       'margin-top': '8px',
+      color: theme.textColor,
       '& button': {
         height: (props: FlagStyleProps) => (props.isMobile ? 45 : 60),
         width: '100%',
@@ -30,9 +31,23 @@ export const flagDropdownStyles = (theme: any) => {
       '& button:focus': {
         ...inputBoxShadow,
       },
-      '&.language-selector button:focus': {
-        boxShadow: 'none',
+      '&.language-selector': {
+        '& button': {
+          border: 'none',
+          height: 'auto',
+          cursor: 'pointer'
+        },
+        '& button:focus': {
+          boxShadow: 'none',
+        },
+        '& .flag-select__options': {
+          right: 0,
+        },
+        '& .flag-select__option__icon': {
+          width: 30,
+        }
       },
+
       '& .flag-select__options': {
         maxHeight: 312,
         marginTop: 14,

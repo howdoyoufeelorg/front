@@ -24,6 +24,7 @@ import { MobileInstructions } from './Dialogs/Mobile/MobileInstructions';
 import clsx from 'clsx';
 import { Location } from './Dialogs/Location';
 import { MobileLocation } from './Dialogs/Mobile/MobileLocation';
+import { LanguageSelector } from './Components/LanguageSelector';
 
 const getGeolocation = () => {
   if (navigator.geolocation) {
@@ -213,6 +214,7 @@ function App() {
             src="HDYFLogoWhite@2x.png"
             alt="HowDoYouFeel?org"
           />
+          <LanguageSelector />
         </Toolbar>
       </AppBar>
       <div className={classes.offset} />

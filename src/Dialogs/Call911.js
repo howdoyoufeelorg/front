@@ -21,7 +21,6 @@ export function Call911(props)
         <Dialog open={open} fullWidth={true} maxWidth={"md"} disableBackdropClick >
             <DialogTitle className={classes.title} disableTypography>
                 <div className={classes.titleText}>{dialog_call911_title[language]}</div>
-                <LanguageSelector/>
             </DialogTitle>
             <DialogContent className={classes.content}>
                 {dialog_call911_content[language]}
