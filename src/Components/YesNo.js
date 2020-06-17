@@ -7,8 +7,23 @@ import { action } from '../sagas';
 import BlueButton from './BlueButton';
 import { useIsMobile } from '../Hooks/useIsMobile';
 import clsx from 'clsx';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 const useStyles = makeStyles((theme) => ({
+  textRoot: {
+    '& input': {
+      fontWeight: 600,
+      fontSize: 24,
+      textAlign: 'center',
+    },
+  },
+  adornment: {
+    '& .MuiTypography-root': {
+      fontWeight: 600,
+      fontSize: 24,
+      color: '#333',
+    },
+  },
   questionTitle: {
     fontSize: 24,
     textAlign: 'center',
@@ -77,6 +92,12 @@ export function YesNo(props) {
   if (question.additionalDataType === 'entry') {
     additionalDataInput = (
       <TextField
+        classes={{ root: classes.textRoot }}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end" className={classes.adornment}></InputAdornment>
+          ),
+        }}
         onChange={(event) =>
           action('ANSWER_SET', {
             questionId: question.id,
