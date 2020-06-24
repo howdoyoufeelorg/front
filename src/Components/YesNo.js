@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   additionalDataTitleDesktop: {
     textAlign: 'right',
-    marginRight: 20,
+    marginRight: 42,
     paddingTop: 0,
   },
   yesNoWrapper: {

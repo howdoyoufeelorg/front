@@ -18,15 +18,7 @@ const EnglishEmergency = () => {
   );
 };
 
-const SpanishEmergency = () => {
-  return (
-    <React.Fragment>
-      <p>Spanish</p>
-    </React.Fragment>
-  );
-};
-
 export const EmergencyLanguageMapping = {
   en: EnglishEmergency,
-  es: SpanishEmergency,
+  es: EnglishEmergency,
 };

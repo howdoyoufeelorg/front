@@ -1,33 +1,21 @@
-import React, {useState}  from 'react';
-import {useSelector} from "react-redux";
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import Dialog from "@material-ui/core/Dialog";
-import {DialogTitle, DialogContent, DialogActions} from "@material-ui/core";
-import {LanguageSelector} from "../Components/LanguageSelector";
-import {styles} from "./HdyfDialogCommonStyles"
-import BlueButton from "../Components/BlueButton"
-
+import { styles } from './HdyfDialogCommonStyles';
+import { DialogCard, DialogCardContent } from './DialogCard';
 
 const useStyles = makeStyles(styles);
 
-
-export function Call911(props)
-{
-    const classes = useStyles();
-    const [open, setOpen] = useState(true);
-    const {dialog_call911_title, dialog_call911_content, button_close} = useSelector(state => state.elements);
-    const language = useSelector(state => state.language);
-    return (
-        <Dialog open={open} fullWidth={true} maxWidth={"md"} disableBackdropClick >
-            <DialogTitle className={classes.title} disableTypography>
-                <div className={classes.titleText}>{dialog_call911_title[language]}</div>
-            </DialogTitle>
-            <DialogContent className={classes.content}>
-                {dialog_call911_content[language]}
-            </DialogContent>
-            <DialogActions className={classes.actions}>
-                <BlueButton variant="default" onClick={() => setOpen(false)} size={"large"}>{button_close[language]}</BlueButton>
-            </DialogActions>
-        </Dialog>
-    );
+export function Call911(props) {
+  const classes = useStyles();
+  const { dialog_call911_title, dialog_call911_content } = useSelector((state) => state.elements);
+  const language = useSelector((state) => state.language);
+  return (
+    <DialogCard>
+      <DialogCardContent classes={{ root: classes.content }}>
+        <h2 className={classes.title}>{dialog_call911_title[language]}</h2>
+        <div style={{ textAlign: 'center' }}>{dialog_call911_content[language]}</div>
+      </DialogCardContent>
+    </DialogCard>
+  );
 }
