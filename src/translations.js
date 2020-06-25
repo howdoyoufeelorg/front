@@ -43,8 +43,14 @@ export const elements = {
   dialog_survey_content: { en: 'Survey', es: 'Encuesta' },
   dialog_instructions_title: { en: 'Diagnosis Page', es: 'Página de diagnóstico' },
   dialog_instructions_content: { en: 'Instructions', es: 'Instrucciones' },
-  dialog_call911_title: { en: 'Please Stop and Call Emergency Services - 911', es: 'Deténgase y llame a los servicios de emergencia - 911' },
-  dialog_call911_content: { en: 'According to your reported symptoms, it\'s best to seek immediate care.', es: 'Según sus síntomas informados, es mejor buscar atención inmediata.' },
+  dialog_call911_title: {
+    en: 'Please Stop and Call Emergency Services - 911',
+    es: 'Deténgase y llame a los servicios de emergencia - 911',
+  },
+  dialog_call911_content: {
+    en: "According to your reported symptoms, it's best to seek immediate care.",
+    es: 'Según sus síntomas informados, es mejor buscar atención inmediata.',
+  },
   alert_required_questions: {
     en: 'You have to give answers to all required questions!',
     es: '¡Tienes que dar respuestas a todas las preguntas requeridas!',
@@ -52,6 +58,18 @@ export const elements = {
   alert_missing_zipcode: {
     en: 'You have to insert your zipcode!',
     es: '¡Tienes que insertar tu código postal!',
+  },
+  low_severity_title: {
+    en: 'NO NEED TO SEEK TEST!',
+    es: 'NO NECESITA BUSCAR PRUEBA!',
+  },
+  medium_severity_title: {
+    en: 'PLEASE SELF ISOLATE!',
+    es: 'POR FAVOR AISLARSE!',
+  },
+  high_severity_title: {
+    en: 'PLEASE SEEK MEDICAL CARE!',
+    es: '¡BUSQUE ATENCIÓN MÉDICA!',
   },
 };
 

@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useIsMobile } from '../../Hooks/useIsMobile';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -22,14 +22,13 @@ const useStylesTooltip = makeStyles((theme) => ({
 
 const FakeTransitionComponent = ({ children }) => children;
 
-export function ValueLabelComponent(props) {
+export function ValueLabelComponent(props: { children: React.Node, value: number }) {
   const { children, value } = props;
   const { isMobile } = useIsMobile();
 
   const classes = useStylesTooltip({ isMobile });
 
   const open = React.useMemo(() => value !== 1 && value !== 10, [value]);
-  console.log('open', open);
 
   return (
     <Tooltip

@@ -57,11 +57,7 @@ export function MobileInstructions(props: { onClose: () => void }) {
   const { dialog_instructions_title, button_close } = useSelector((state) => state.elements);
   const language = useSelector((state) => state.language);
 
-  const { instructions, resources }: UseInstructionsProps = useInstructions();
-
-  if (!instructions || !instructions.length) {
-    return null;
-  }
+  const { instructions, resources, severity }: UseInstructionsProps = useInstructions();
 
   const zipInstructions = filterInstructions(instructions, 'zipcode');
   const areaInstructions = filterInstructions(instructions, 'area');
@@ -73,7 +69,7 @@ export function MobileInstructions(props: { onClose: () => void }) {
       </div>
       <div className={classes.instructionsSection}>
         <div className={classes.instructionsCards}>
-          <ScoreCard />
+          <ScoreCard severity={severity}/>
           <InstructionsCard instructions={zipInstructions} geoEntity={GEO_ENTITY.zipcode} />
           <InstructionsCard instructions={areaInstructions} geoEntity={GEO_ENTITY.area} />
           <TwitterFeedCard resources={resources} />

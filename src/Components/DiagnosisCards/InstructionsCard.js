@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import type { GeoEntity, Instruction } from '../../models/Instruction';
-import { useDiagnosisStyles } from './CardStyles';
+import { useDiagnosisCardStyles } from './CardStyles';
 import Card from '@material-ui/core/Card';
 import clsx from 'clsx';
 import { InstructionRow } from '../InstructionRow';
@@ -25,8 +25,13 @@ export const InstructionsCard = ({
   geoEntity: GeoEntity,
   className?: string,
 }) => {
-  const diagnosisClasses = useDiagnosisStyles();
+  const diagnosisClasses = useDiagnosisCardStyles();
   const classes = useStyles();
+
+  if (!instructions || !instructions.length) {
+    return null;
+  }
+
   return (
     <Card className={clsx(diagnosisClasses.infoCard, className)}>
       <div className={classes.title}>Instructions for your area</div>

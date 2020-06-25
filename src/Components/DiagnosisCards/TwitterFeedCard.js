@@ -2,7 +2,7 @@
 import React from 'react';
 import { TwitterResource } from '../TwitterResource';
 import Card from '@material-ui/core/Card';
-import { useDiagnosisStyles } from './CardStyles';
+import { useDiagnosisCardStyles } from './CardStyles';
 
 type EntityResources = {
   twitterResources: Array<any>,
@@ -14,7 +14,7 @@ type Resources = {
 };
 
 export const TwitterFeedCard = ({ resources }: { resources: Resources }) => {
-  const classes = useDiagnosisStyles();
+  const classes = useDiagnosisCardStyles();
 
   return (
     <Card className={classes.infoCard}>

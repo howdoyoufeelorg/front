@@ -109,6 +109,7 @@ function* instructionsLoadSilently({ data }) {
     yield all([
       put({ type: 'INSTRUCTIONS_RECEIVED', result: data.instructions }),
       put({ type: 'RESOURCES_RECEIVED', result: data.resources }),
+      put({ type: 'DIAGNOSIS_RECEIVED', result: data.severity }),
     ]);
     yield put({ type: 'DATA_READY' });
     yield put({ type: 'AJAX_SUCCESS' });

@@ -1,6 +1,8 @@
 //@flow
 export type GeoEntity = 'zipcode' | 'area' | 'state';
 
+export type DiagnosisSeverity = 'low' | 'medium' | 'high';
+
 export const GEO_ENTITY = {
   zipcode: 'zipcode',
   area: 'area',

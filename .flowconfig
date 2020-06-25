@@ -8,6 +8,7 @@
 
 .*/node_modules/redux-persist/
 .*/node_modules/config-chain/
+.*/node_modules/@mapbox/
 
 [include]
 .*/src/*
