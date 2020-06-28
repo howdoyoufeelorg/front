@@ -222,6 +222,7 @@ export const api = {
         },
       },
       surveyId: 28,
+      severity: 'low',
     });
   },
 };

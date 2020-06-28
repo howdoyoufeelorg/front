@@ -39,7 +39,9 @@ const instructionsStyles = makeStyles((theme) => ({
     padding: [[0, 20]],
   },
   instructionsPage: {
-    padding: 0,
+    paddingTop: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
     display: 'flex',
     flexDirection: 'column',
   },
@@ -62,6 +64,10 @@ export function MobileInstructions(props: { onClose: () => void }) {
   const zipInstructions = filterInstructions(instructions, 'zipcode');
   const areaInstructions = filterInstructions(instructions, 'area');
 
+  if (!severity) {
+    return null;
+  }
+
   return (
     <div className={clsx(classes.content, classes.backgroundWhite, classes.instructionsPage)}>
       <div className={classes.header}>
@@ -69,7 +75,7 @@ export function MobileInstructions(props: { onClose: () => void }) {
       </div>
       <div className={classes.instructionsSection}>
         <div className={classes.instructionsCards}>
-          <ScoreCard severity={severity}/>
+          <ScoreCard severity={severity} />
           <InstructionsCard instructions={zipInstructions} geoEntity={GEO_ENTITY.zipcode} />
           <InstructionsCard instructions={areaInstructions} geoEntity={GEO_ENTITY.area} />
           <TwitterFeedCard resources={resources} />

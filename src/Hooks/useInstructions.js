@@ -1,5 +1,5 @@
 //@flow
-import type {DiagnosisSeverity, Instruction} from '../models/Instruction';
+import type { DiagnosisSeverity, Instruction } from '../models/Instruction';
 import { useSelector } from 'react-redux';
 import { action } from '../sagas';
 import { useEffect } from 'react';
@@ -8,7 +8,7 @@ export type UseInstructionsProps = {
   instructions: Array<Instruction>,
   ajaxInProgress: boolean,
   resources: any,
-  severity: DiagnosisSeverity,
+  severity: ?DiagnosisSeverity,
 };
 
 export const useInstructions = (): UseInstructionsProps => {

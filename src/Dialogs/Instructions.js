@@ -1,3 +1,4 @@
+//@flow
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
@@ -60,7 +61,10 @@ const hasResources = (resources) => {
   return has;
 };
 
-export const filterInstructions = (instructions: Array<Instruction>, geoEntity: GeoEntity) => {
+export const filterInstructions = (
+  instructions: Array<Instruction>,
+  geoEntity: GeoEntity,
+): Array<Instruction> => {
   return instructions.filter((instruction: Instruction) => {
     return instruction.geoentity === geoEntity;
   });
@@ -74,14 +78,14 @@ export function Instructions() {
   );
   const language = useSelector((state) => state.language);
 
-  const { instructions, resources }: UseInstructionsProps = useInstructions();
-
-  if (!instructions || !instructions.length) {
-    return null;
-  }
+  const { instructions, resources, severity }: UseInstructionsProps = useInstructions();
 
   const zipInstructions = filterInstructions(instructions, 'zipcode');
   const areaInstructions = filterInstructions(instructions, 'area');
+
+  if (!severity) {
+    return null;
+  }
 
   return (
     <DialogCard className={classes.container}>
@@ -89,7 +93,7 @@ export function Instructions() {
         <h2 className={clsx(classes.title)}>{dialog_instructions_title[language]}</h2>
       </div>
       <div className={classes.cardsContainer}>
-        <ScoreCard />
+        <ScoreCard severity={severity} />
         <div className={classes.instructionCards}>
           <InstructionsCard instructions={zipInstructions} geoEntity={GEO_ENTITY.zipcode} />
           <InstructionsCard instructions={areaInstructions} geoEntity={GEO_ENTITY.area} />

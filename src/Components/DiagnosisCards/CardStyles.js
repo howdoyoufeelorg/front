@@ -30,15 +30,28 @@ export const diagnosisCardStyles = (theme: any) => ({
   severityTitle: {
     fontSize: 28,
     fontWeight: 900,
+    marginBottom: 26,
+    marginTop: 16,
     color: ({ severity }: { severity: DiagnosisSeverity }) => getTitleColor(severity, theme),
   },
   severityText: {
     fontSize: 18,
     fontWeight: 'bold',
-
+    maxHeight: 235,
+    overflow: 'hidden',
     '& p:first-of-type': {
       fontWeight: 900,
     },
+  },
+  textExpanded: {
+    maxHeight: 'none',
+  },
+  showMoreButton: {
+    color: theme.blue,
+    fontWeight: 900,
+    fontSize: 18,
+    padding: 0,
+    marginTop: 14,
   },
 });
 

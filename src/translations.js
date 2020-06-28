@@ -41,7 +41,7 @@ export const elements = {
   dialog_emergency_content: { en: 'Is this an Emergency?', es: '\u00bfEs esto una emergencia?' },
   dialog_survey_title: { en: 'How Do You Feel Right Now?', es: '¿Cómo te sientes ahora?' },
   dialog_survey_content: { en: 'Survey', es: 'Encuesta' },
-  dialog_instructions_title: { en: 'Diagnosis Page', es: 'Página de diagnóstico' },
+  dialog_instructions_title: { en: 'Analysis', es: 'Análisis' },
   dialog_instructions_content: { en: 'Instructions', es: 'Instrucciones' },
   dialog_call911_title: {
     en: 'Please Stop and Call Emergency Services - 911',
