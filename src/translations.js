@@ -60,16 +60,16 @@ export const elements = {
     es: '¡Tienes que insertar tu código postal!',
   },
   low_severity_title: {
-    en: 'NO NEED TO SEEK TEST!',
-    es: 'NO NECESITA BUSCAR PRUEBA!',
+    en: 'No Need To Seek Test!',
+    es: 'No es necesario buscar prueba!',
   },
   medium_severity_title: {
-    en: 'PLEASE SELF ISOLATE!',
-    es: 'POR FAVOR AISLARSE!',
+    en: 'Please Self-Isolate!',
+    es: 'Por favor, autoaislar!',
   },
   high_severity_title: {
-    en: 'PLEASE SEEK MEDICAL CARE!',
-    es: '¡BUSQUE ATENCIÓN MÉDICA!',
+    en: 'Please Seek Medical Care!',
+    es: 'Por favor busque médico ¡Cuidado!',
   },
 };
 

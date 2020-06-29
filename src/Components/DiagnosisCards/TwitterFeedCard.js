@@ -31,7 +31,7 @@ export const TwitterFeedCard = ({ resources }: { resources: Resources }) => {
       )}
       {resources.state && resources.state.twitterResources.length ? (
         <>
-          LATEST TWITTER POSTS FOR YOUR STATE
+          <span style={{ fontWeight: 900 }}>LATEST TWITTER POSTS FOR YOUR STATE</span>
           <hr />
           {resources.state.twitterResources.map((data, index) => (
             <TwitterResource profile={data.value} key={index} />

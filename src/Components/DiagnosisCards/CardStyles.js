@@ -30,7 +30,7 @@ export const diagnosisCardStyles = (theme: any) => ({
   severityTitle: {
     fontSize: 28,
     fontWeight: 900,
-    marginBottom: 26,
+    marginBottom: 8,
     marginTop: 16,
     color: ({ severity }: { severity: DiagnosisSeverity }) => getTitleColor(severity, theme),
   },

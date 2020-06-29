@@ -22,8 +22,8 @@ const useCommonStyles = makeStyles(styles);
 
 const instructionsStyles = makeStyles((theme) => ({
   header: {
-    padding: [[24, 32]],
-    height: 100,
+    padding: [[17, 32, 0, 32]],
+    height: 126,
     border: `solid 1px ${theme.backgroundBlue}`,
     background: `linear-gradient(179deg, #70adf4 1%, #1a6ef5 156%)`,
     color: theme.white,
@@ -35,7 +35,7 @@ const instructionsStyles = makeStyles((theme) => ({
   },
   instructionsCards: {
     position: 'relative',
-    top: -24,
+    top: -47,
     padding: [[0, 20]],
   },
   instructionsPage: {
@@ -47,6 +47,10 @@ const instructionsStyles = makeStyles((theme) => ({
   },
   firstCard: {
     marginTop: 0,
+  },
+  diagnosisTitle: {
+    fontSize: 38,
+    fontWeight: 900,
   },
 }));
 
@@ -71,7 +75,9 @@ export function MobileInstructions(props: { onClose: () => void }) {
   return (
     <div className={clsx(classes.content, classes.backgroundWhite, classes.instructionsPage)}>
       <div className={classes.header}>
-        <h2 className={clsx(classes.title)}>{dialog_instructions_title[language]}</h2>
+        <h2 className={clsx(classes.title, classes.diagnosisTitle)}>
+          {dialog_instructions_title[language]}
+        </h2>
       </div>
       <div className={classes.instructionsSection}>
         <div className={classes.instructionsCards}>
