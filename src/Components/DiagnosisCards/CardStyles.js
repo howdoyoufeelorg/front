@@ -36,22 +36,12 @@ export const diagnosisCardStyles = (theme: any) => ({
   },
   severityText: {
     fontSize: 18,
-    fontWeight: 'bold',
-    maxHeight: 235,
-    overflow: 'hidden',
     '& p:first-of-type': {
       fontWeight: 900,
     },
-  },
-  textExpanded: {
-    maxHeight: 'none',
-  },
-  showMoreButton: {
-    color: theme.blue,
-    fontWeight: 900,
-    fontSize: 18,
-    padding: 0,
-    marginTop: 14,
+    '& p:last-of-type': {
+      marginBottom: 0,
+    },
   },
 });
 

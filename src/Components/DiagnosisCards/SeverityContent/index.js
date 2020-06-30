@@ -6,8 +6,7 @@ import { MediumSeverity } from './MediumSeverity';
 import { HighSeverity } from './HighSeverity';
 import { useDiagnosisCardStyles } from '../CardStyles';
 import { useSelector } from 'react-redux';
-import clsx from 'clsx';
-import Button from '@material-ui/core/Button';
+import { ExpandingText } from '../../ExpandingText';
 
 const COMPONENT_MAPPING: { [DiagnosisSeverity]: React.ComponentType<{| language: string |}> } = {
   low: LowSeverity,
@@ -28,23 +27,17 @@ export const SeverityContent = ({
   severity: DiagnosisSeverity,
   language: string,
 }) => {
-  const [isExpanded, setIsExpanded] = React.useState<boolean>(false);
-
   const classes = useDiagnosisCardStyles({ severity });
   const SeverityComponent = COMPONENT_MAPPING[severity];
   const severityTitle = useSeverityTitle(severity, language);
 
-  const textClasses = clsx(classes.severityText, isExpanded ? classes.textExpanded : null);
-
   return (
     <div className={classes.severityContent}>
       <h2 className={classes.severityTitle}>{severityTitle}</h2>
-      <div className={textClasses}>
+
+      <ExpandingText className={classes.severityText}>
         <SeverityComponent language={language} />
-      </div>
-      <Button className={classes.showMoreButton} onClick={() => setIsExpanded(!isExpanded)}>
-        {isExpanded ? 'Read less' : 'Read more'}
-      </Button>
+      </ExpandingText>
     </div>
   );
 };
