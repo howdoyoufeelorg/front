@@ -25,13 +25,18 @@ export const elements = {
   race_input_label: { en: 'What is your Race?', es: '¿Cuál es su raza?' },
   race_input_placeholder: { en: 'Your race', es: 'Tu raza' },
   app_title: { en: 'How Do You Feel', es: '\u00bfC\u00f3mo te sientes?' },
-  getting_started_title: { en: 'Getting Started', es: 'Empezando' },
+  getting_started_title: { en: 'Lets get Started', es: 'Empecemos' },
   dialog_disclaimer_title: { en: 'Disclaimer', es: 'Descargo de responsabilidad' },
-  dialog_disclaimer_content: {
+  dialog_disclaimer_intro: {
     en:
-      'This Service is offered for public benefit and research purposes. Your information will always remain completely anonymous unless you choose to de-anonymize it at some point in the future. HowDoYouFeel.org ( the “Service” ) is not intended to treat or definitively diagnosis any disease or health condition. Instead, this Service aims to provide relevant guidance based on presumed accurate information provided by you, and in accordance with the most up-to-date guidelines for active syndrome response given geographic location and reported symptoms. You should not ignore professional medical advice in favor of information received from HowDoYouFeel.org. If you believe you or somebody you know is having an emergency, please call a medical professional or dial local Emergency Services ( US – 911 ) immediately. HowDoYouFeel.org Service does not constitute the practice of medicine or professional medical advice, diagnosis or treatment. By using the Service and clicking Get Started, you agree to do so solely at your own risk, and are acknowledging that you have reviewed and agree to our terms of use and privacy policy.',
+      'Welcome to your resource to check your health symptoms and find out if you need to go seek medical assistance, or if you are in the clear!',
     es:
-      'This Service is offered for public benefit and research purposes. Your information will always remain completely anonymous unless you choose to de-anonymize it at some point in the future. HowDoYouFeel.org ( the “Service” ) is not intended to treat or definitively diagnosis any disease or health condition. Instead, this Service aims to provide relevant guidance based on presumed accurate information provided by you, and in accordance with the most up-to-date guidelines for active syndrome response given geographic location and reported symptoms. You should not ignore professional medical advice in favor of information received from HowDoYouFeel.org. If you believe you or somebody you know is having an emergency, please call a medical professional or dial local Emergency Services ( US – 911 ) immediately. HowDoYouFeel.org Service does not constitute the practice of medicine or professional medical advice, diagnosis or treatment. By using the Service and clicking Get Started, you agree to do so solely at your own risk, and are acknowledging that you have reviewed and agree to our terms of use and privacy policy.',
+      '¡Bienvenido a su recurso para verificar sus síntomas de salud y averiguar si necesita ir a buscar asistencia médica, o si está libre!',
+  },
+
+  intro_terms_title: {
+    en: 'Terms & Conditions',
+    es: 'Términos y condiciones',
   },
   dialog_location_title: { en: 'Where are you located?', es: '¿Dónde están ubicados?' },
   dialog_location_content: { en: 'Where are you located?', es: '¿Dónde están ubicados?' },

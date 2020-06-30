@@ -7,7 +7,7 @@ import BlueButton, { NextButton } from '../../Components/BlueButton';
 import Card from '@material-ui/core/Card';
 import AppBar from '@material-ui/core/AppBar';
 import { ComponentLanguageMapping } from '../../Components/DisclaimerContent';
-import Image from '../../assets/images/Medical_Illustration.png';
+import Image from '../../assets/images/Get_Started_Image.png';
 import clsx from 'clsx';
 import { ProgressBar } from '../../Components/ProgressBar';
 

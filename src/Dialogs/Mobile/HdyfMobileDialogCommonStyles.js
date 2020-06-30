@@ -30,6 +30,9 @@ export const styles = (theme) => ({
   imageContainer: {
     textAlign: 'center',
     marginBottom: 20,
+    '& img': {
+      height: 150,
+    },
   },
   infoCard: {
     width: '100%',

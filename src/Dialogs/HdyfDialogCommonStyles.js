@@ -42,7 +42,7 @@ export const styles = (theme) => ({
   imageContainer: {
     textAlign: 'center',
     '& img': {
-      height: 150,
+      height: 180,
     },
   },
 });
