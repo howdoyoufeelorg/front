@@ -10,6 +10,7 @@ import Card from '@material-ui/core/Card';
 import { ComponentLanguageMapping } from '../Components/DisclaimerContent';
 import Image from '../assets/images/Get_Started_Image.png';
 import clsx from 'clsx';
+import { diagnosisCardStyles } from '../Components/DiagnosisCards/CardStyles';
 
 const useCommonStyles = makeStyles(styles);
 const useStyles = makeStyles((theme) => ({
@@ -48,6 +49,25 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 15,
     lineHeight: 1.4,
     fontWeight: 'normal',
+  },
+  getStartedButton: {
+    animation: `$pulse 2s infinite`,
+    transform: 'scale(1)',
+    boxShadow: '0 0 0 0 rgba(86, 133, 247, 1)',
+  },
+  '@keyframes pulse': {
+    '0%': {
+      transform: 'scale(0.98)',
+      boxShadow: '0 0 0 0 rgba(86, 133, 247, 0.7)',
+    },
+    '70%': {
+      transform: 'scale(1)',
+      boxShadow: '0 0 0 10px rgba(86, 133, 247, 0)',
+    },
+    '100%': {
+      transform: 'scale(0.98)',
+      boxShadow: '0 0 0 0 rgba(86, 133, 247, 0)',
+    },
   },
 }));
 
@@ -88,7 +108,12 @@ export function Disclaimer(props: { onNext: () => void, progressCompleted: numbe
           </Card>
         </DialogCardContent>
         <DialogCardActions style={{ marginBottom: 96 }}>
-          <NextButton variant="default" onClick={() => onNext()} size="extraLarge">
+          <NextButton
+            variant="default"
+            onClick={() => onNext()}
+            size="extraLarge"
+            className={disclaimerClasses.getStartedButton}
+          >
             {button_start[language]}
           </NextButton>
         </DialogCardActions>
