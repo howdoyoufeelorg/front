@@ -2,15 +2,13 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { LanguageSelector } from '../Components/LanguageSelector';
 import { styles } from './HdyfDialogCommonStyles';
-import BlueButton, { NextButton } from '../Components/BlueButton';
+import { NextButton } from '../Components/BlueButton';
 import { DialogCard, DialogCardContent, DialogCardHeader, DialogCardActions } from './DialogCard';
 import Card from '@material-ui/core/Card';
 import { ComponentLanguageMapping } from '../Components/DisclaimerContent';
 import Image from '../assets/images/Get_Started_Image.png';
 import clsx from 'clsx';
-import { diagnosisCardStyles } from '../Components/DiagnosisCards/CardStyles';
 
 const useCommonStyles = makeStyles(styles);
 const useStyles = makeStyles((theme) => ({
