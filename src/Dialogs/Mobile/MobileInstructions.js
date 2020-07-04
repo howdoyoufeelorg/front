@@ -85,9 +85,9 @@ export function MobileInstructions(props: { onClose: () => void }) {
           <h3 style={{ textAlign: 'center', marginBottom: 18, fontSize: 28, marginTop: 18 }}>
             Local Updates
           </h3>
+          <TwitterFeedCard resources={resources} />
           <InstructionsCard instructions={zipInstructions} geoEntity={GEO_ENTITY.zipcode} />
           <InstructionsCard instructions={areaInstructions} geoEntity={GEO_ENTITY.area} />
-          <TwitterFeedCard resources={resources} />
         </div>
       </div>
       <AppBar className={classes.commandBar} position="fixed" variant="elevation">
