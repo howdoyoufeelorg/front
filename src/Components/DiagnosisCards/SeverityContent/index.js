@@ -28,8 +28,9 @@ export const SeverityContent = ({
   severity: DiagnosisSeverity,
   language: string,
 }) => {
-  const classes = useDiagnosisCardStyles({ severity });
   const { isMobile } = useIsMobile();
+  const classes = useDiagnosisCardStyles({ severity, isMobile });
+
   const SeverityComponent = COMPONENT_MAPPING[severity];
   const severityTitle = useSeverityTitle(severity, language);
 
@@ -44,7 +45,9 @@ export const SeverityContent = ({
           <SeverityComponent language={language} />
         </ExpandingText>
       ) : (
-        <SeverityComponent language={language} />
+        <div className={classes.severityText}>
+          <SeverityComponent language={language} />
+        </div>
       )}
     </div>
   );

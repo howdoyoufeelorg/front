@@ -82,6 +82,9 @@ export function MobileInstructions(props: { onClose: () => void }) {
       <div className={classes.instructionsSection}>
         <div className={classes.instructionsCards}>
           <ScoreCard severity={severity} />
+          <h3 style={{ textAlign: 'center', marginBottom: 18, fontSize: 28, marginTop: 18 }}>
+            Local Updates
+          </h3>
           <InstructionsCard instructions={zipInstructions} geoEntity={GEO_ENTITY.zipcode} />
           <InstructionsCard instructions={areaInstructions} geoEntity={GEO_ENTITY.area} />
           <TwitterFeedCard resources={resources} />

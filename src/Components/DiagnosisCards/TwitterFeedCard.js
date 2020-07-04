@@ -30,8 +30,8 @@ export const TwitterFeedCard = ({ resources }: { resources: Resources }) => {
   return (
     <Card className={classes.infoCard}>
       <>
-        <div style={{ textAlign: 'center', fontWeight: 900 }}>
-          LATEST TWITTER POSTS FOR YOUR AREA
+          <div className={classes.sectionTitle}>
+          Latest Twitter Posts for Your Area
         </div>
         <hr />
         {resourcesToUse.map((data, index) => (

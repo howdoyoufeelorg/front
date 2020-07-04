@@ -30,13 +30,15 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 10,
   },
   header: {
-    paddingTop: 24,
     height: 120,
     border: `solid 1px ${theme.backgroundBlue}`,
     background: `linear-gradient(179deg, #70adf4 1%, #1a6ef5 156%)`,
     color: theme.white,
     fontSize: '1rem',
     textAlign: 'center',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   cardsContainer: {
     padding: 20,
@@ -46,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: 'repeat(3, 1fr)',
     gridColumnGap: 20,
   },
+  title: {
+    fontSize: 68,
+  }
 }));
 
 const hasResources = (resources) => {
@@ -93,8 +98,12 @@ export function Instructions() {
       <div className={classes.header}>
         <h2 className={clsx(classes.title)}>{dialog_instructions_title[language]}</h2>
       </div>
+
       <div className={classes.cardsContainer}>
         <ScoreCard severity={severity} />
+        <h3 style={{ textAlign: 'center', marginBottom: 24, fontSize: 42, marginTop: 24 }}>
+          Local Updates
+        </h3>
         <div className={classes.instructionCards}>
           <InstructionsCard instructions={zipInstructions} geoEntity={GEO_ENTITY.zipcode} />
           <InstructionsCard instructions={areaInstructions} geoEntity={GEO_ENTITY.area} />

@@ -30,7 +30,8 @@ export const InstructionsCard = ({
 
   return (
     <Card className={clsx(diagnosisClasses.infoCard, className)}>
-      <div className={classes.title}>Instructions for your area</div>
+      <div className={diagnosisClasses.sectionTitle}>Instructions for your area</div>
+      <hr />
       {instructions && instructions.length ? (
         instructions.map((instruction: Instruction, index) => (
           <InstructionRow instruction={instruction} key={index} />
