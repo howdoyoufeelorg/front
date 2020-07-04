@@ -7,6 +7,7 @@ import { HighSeverity } from './HighSeverity';
 import { useDiagnosisCardStyles } from '../CardStyles';
 import { useSelector } from 'react-redux';
 import { ExpandingText } from '../../ExpandingText';
+import { useIsMobile } from '../../../Hooks/useIsMobile';
 
 const COMPONENT_MAPPING: { [DiagnosisSeverity]: React.ComponentType<{| language: string |}> } = {
   low: LowSeverity,
@@ -28,16 +29,23 @@ export const SeverityContent = ({
   language: string,
 }) => {
   const classes = useDiagnosisCardStyles({ severity });
+  const { isMobile } = useIsMobile();
   const SeverityComponent = COMPONENT_MAPPING[severity];
   const severityTitle = useSeverityTitle(severity, language);
+
+  console.log('isMobile', isMobile);
 
   return (
     <div className={classes.severityContent}>
       <h2 className={classes.severityTitle}>{severityTitle}</h2>
 
-      <ExpandingText className={classes.severityText}>
+      {isMobile ? (
+        <ExpandingText className={classes.severityText}>
+          <SeverityComponent language={language} />
+        </ExpandingText>
+      ) : (
         <SeverityComponent language={language} />
-      </ExpandingText>
+      )}
     </div>
   );
 };

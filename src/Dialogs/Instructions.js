@@ -23,7 +23,8 @@ import { TwitterFeedCard } from '../Components/DiagnosisCards/TwitterFeedCard';
 const useStyles = makeStyles((theme) => ({
   container: {
     width: `calc(100vw - 96px)`,
-    height: `calc(100vh - 64px)`,
+    maxHeight: `calc(100vh - 64px)`,
+    overflow: 'scroll',
     margin: [[24, 'auto']],
     boxShadow: '0 3px 60px 0 rgba(0, 0, 0, 0.16)',
     borderRadius: 10,

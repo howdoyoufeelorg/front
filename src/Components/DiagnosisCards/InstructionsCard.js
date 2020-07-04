@@ -28,16 +28,16 @@ export const InstructionsCard = ({
   const diagnosisClasses = useDiagnosisCardStyles();
   const classes = useStyles();
 
-  if (!instructions || !instructions.length) {
-    return null;
-  }
-
   return (
     <Card className={clsx(diagnosisClasses.infoCard, className)}>
       <div className={classes.title}>Instructions for your area</div>
-      {instructions.map((instruction: Instruction, index) => (
-        <InstructionRow instruction={instruction} key={index} />
-      ))}
+      {instructions && instructions.length ? (
+        instructions.map((instruction: Instruction, index) => (
+          <InstructionRow instruction={instruction} key={index} />
+        ))
+      ) : (
+        <div style={{ textAlign: 'center', marginTop: 20 }}>No Instructions available for you!</div>
+      )}
     </Card>
   );
 };

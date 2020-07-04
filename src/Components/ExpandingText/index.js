@@ -8,18 +8,9 @@ const styles = (theme: any) => ({
   textContent: {
     fontSize: 18,
     fontWeight: 'bold',
-    maxHeight: 235,
+    maxHeight: 240,
     overflow: 'hidden',
     position: 'relative',
-    '&:before': {
-      content: '""',
-      position: 'absolute',
-      width: '100%',
-      bottom: 0,
-      left: 0,
-      height: 100,
-      background: 'linear-gradient(transparent, white)',
-    },
   },
   textExpanded: {
     maxHeight: 'none',
