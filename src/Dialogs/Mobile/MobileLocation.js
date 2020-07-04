@@ -10,7 +10,7 @@ import { FlagDropDown } from '../../Components/FlagDropDown';
 import { TextField } from '../../Components/FormFields/TextField';
 import { InputLabel } from '@material-ui/core';
 import { genderChoices, raceChoices } from '../../translations';
-import Image from '../../assets/images/Medical_Illustration.png';
+import Image from '../../assets/images/Where_Are _You_From_Located.png';
 import clsx from 'clsx';
 import { ProgressBar } from '../../Components/ProgressBar';
 import { Select } from '../../Components/FormFields/Select';
@@ -53,7 +53,7 @@ export function MobileLocation(props: {
       <div className={classes.imageContainer}>
         <img src={Image} alt="Illustration" />
       </div>
-      <h2 className={clsx(classes.title, classes.titleSmall)} style={{ marginTop: 52 }}>
+      <h2 className={clsx(classes.title, classes.titleSmall)} style={{ marginTop: 20 }}>
         {dialog_location_title[language]}
       </h2>
       <div className={classes.formField}>
