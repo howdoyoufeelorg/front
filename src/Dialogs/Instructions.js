@@ -23,34 +23,34 @@ import { TwitterFeedCard } from '../Components/DiagnosisCards/TwitterFeedCard';
 const useStyles = makeStyles((theme) => ({
   container: {
     width: `calc(100vw - 96px)`,
-    maxHeight: `calc(100vh - 64px)`,
-    overflow: 'scroll',
     margin: [[24, 'auto']],
     boxShadow: '0 3px 60px 0 rgba(0, 0, 0, 0.16)',
     borderRadius: 10,
   },
   header: {
-    height: 120,
     border: `solid 1px ${theme.backgroundBlue}`,
     background: `linear-gradient(179deg, #70adf4 1%, #1a6ef5 156%)`,
     color: theme.white,
     fontSize: '1rem',
     textAlign: 'center',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 52,
+    paddingBottom: 60,
   },
   cardsContainer: {
-    padding: 20,
+    padding: [[20, 112]],
+    position: 'relative',
+    top: -50,
   },
   instructionCards: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
+    gridTemplateColumns: 'repeat(1, 1fr)',
     gridColumnGap: 20,
   },
   title: {
     fontSize: 68,
-  }
+    margin: 0,
+    lineHeight: 1,
+  },
 }));
 
 const hasResources = (resources) => {
@@ -101,13 +101,21 @@ export function Instructions() {
 
       <div className={classes.cardsContainer}>
         <ScoreCard severity={severity} />
-        <h3 style={{ textAlign: 'center', marginBottom: 24, fontSize: 42, marginTop: 24 }}>
+        <h3
+          style={{
+            textAlign: 'center',
+            marginBottom: 24,
+            fontSize: 42,
+            marginTop: 40,
+            fontWeight: 900,
+          }}
+        >
           Local Updates
         </h3>
         <div className={classes.instructionCards}>
+          <TwitterFeedCard resources={resources} />
           <InstructionsCard instructions={zipInstructions} geoEntity={GEO_ENTITY.zipcode} />
           <InstructionsCard instructions={areaInstructions} geoEntity={GEO_ENTITY.area} />
-          <TwitterFeedCard resources={resources} />
         </div>
       </div>
     </DialogCard>

@@ -31,8 +31,8 @@ export const ScoreCard = ({
     <Card className={clsx(classes.infoCard, className)}>
       <div className={classes.imageContainer}>
         <img src={Image} alt="Logo" />
-        <SeverityContent severity={severity} language={language} />
       </div>
+      <SeverityContent severity={severity} language={language} />
     </Card>
   );
 };

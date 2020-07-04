@@ -32,7 +32,10 @@ export const diagnosisCardStyles = (theme: any) => ({
       width: 157,
     },
   },
-  severityContent: {},
+  severityContent: {
+    textAlign: 'center',
+    marginBottom: 36,
+  },
   severityTitle: {
     fontSize: ({ isMobile }: Props) => (isMobile ? 28 : 42),
     fontWeight: 900,
