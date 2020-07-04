@@ -75,6 +75,7 @@ export const flagDropdownStyles = (theme: any) => {
         display: 'block',
         textAlign: 'left',
         padding: 0,
+        marginBottom: 12,
       },
       '& .flag-select__option > span': {
         width: 'auto !important',
