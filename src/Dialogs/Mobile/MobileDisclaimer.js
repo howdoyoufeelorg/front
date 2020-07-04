@@ -3,7 +3,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { styles } from './HdyfMobileDialogCommonStyles';
 import { useSelector } from 'react-redux';
-import BlueButton, { NextButton } from '../../Components/BlueButton';
+import { NextButton } from '../../Components/BlueButton';
 import Card from '@material-ui/core/Card';
 import AppBar from '@material-ui/core/AppBar';
 import { ComponentLanguageMapping } from '../../Components/DisclaimerContent';
@@ -16,7 +16,12 @@ const useStyles = makeStyles(styles);
 export function MobileDisclaimer(props: { onNext: Function, progressCompleted: number }) {
   const classes = useStyles();
   const { onNext, progressCompleted } = props;
-  const { getting_started_title, button_start } = useSelector((state) => state.elements);
+  const {
+    getting_started_title,
+    button_start,
+    dialog_disclaimer_intro,
+    intro_terms_title,
+  } = useSelector((state) => state.elements);
 
   const language = useSelector((state) => state.language);
 
@@ -25,12 +30,14 @@ export function MobileDisclaimer(props: { onNext: Function, progressCompleted: n
   return (
     <div className={classes.content}>
       <Card className={classes.infoCard}>
-        <h2 className={clsx(classes.title, classes.titleLarge)}>
-          {getting_started_title[language]}
-        </h2>
-        <div className={classes.imageContainer}>
+        <div className={classes.imageContainer} style={{ marginTop: 16 }}>
           <img src={Image} alt="Logo" />
         </div>
+        <h2 className={clsx(classes.title, classes.titleLarge)} style={{marginBottom: 20}}>
+          {getting_started_title[language]}
+        </h2>
+        <div className={classes.intro}>{dialog_disclaimer_intro[language]}</div>
+        <div className={classes.termsTitle}>{intro_terms_title[language]}</div>
         <LanguageDisclaimer />
       </Card>
       <AppBar className={classes.commandBar} position="fixed" variant="elevation">

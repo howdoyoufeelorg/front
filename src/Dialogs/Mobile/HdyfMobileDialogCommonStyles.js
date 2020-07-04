@@ -81,4 +81,16 @@ export const styles = (theme) => ({
   strecher: {
     height: 84,
   },
+  intro: {
+    fontWeight: 'bold',
+    marginBottom: 36,
+    fontSize: 18,
+    lineHeight: 1.2,
+    textAlign: 'center',
+  },
+  termsTitle: {
+    fontWeight: 900,
+    textTransform: 'uppercase',
+    textAlign: 'center',
+  },
 });
