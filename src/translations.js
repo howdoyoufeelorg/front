@@ -25,7 +25,7 @@ export const elements = {
   race_input_label: { en: 'What is your Race?', es: '¿Cuál es su raza?' },
   race_input_placeholder: { en: 'Your race', es: 'Tu raza' },
   app_title: { en: 'How Do You Feel', es: '\u00bfC\u00f3mo te sientes?' },
-  getting_started_title: { en: 'Lets get Started', es: 'Empecemos' },
+  getting_started_title: { en: 'Lets get Started!', es: 'Empecemos' },
   dialog_disclaimer_title: { en: 'Disclaimer', es: 'Descargo de responsabilidad' },
   dialog_disclaimer_intro: {
     en:

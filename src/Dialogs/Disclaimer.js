@@ -13,10 +13,10 @@ import clsx from 'clsx';
 const useCommonStyles = makeStyles(styles);
 const useStyles = makeStyles((theme) => ({
   card: {
-    padding: [[20, 75, 75, 75]],
+    padding: [[44, 75, 75, 75]],
     borderRadius: 12,
     boxShadow: `0 3px 60px 0 rgba(0, 0, 0, 0.16)`,
-    maxWidth: 670,
+    maxWidth: 750,
     width: '80%',
     marginTop: 32,
     fontSize: '1rem',
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     textAlign: 'center',
     maxWidth: 506,
-    marginBottom: 32,
+    margin: '0 auto 48px auto',
     lineHeight: 1.2,
   },
   termsTitle: {
@@ -103,18 +103,18 @@ export function Disclaimer(props: { onNext: () => void, progressCompleted: numbe
             <div className={disclaimerClasses.termsContent}>
               <LanguageDisclaimer />
             </div>
+            <div style={{ textAlign: 'center', marginTop: 40 }}>
+              <NextButton
+                variant="default"
+                onClick={() => onNext()}
+                size="extraLarge"
+                className={disclaimerClasses.getStartedButton}
+              >
+                {button_start[language]}
+              </NextButton>
+            </div>
           </Card>
         </DialogCardContent>
-        <DialogCardActions style={{ marginBottom: 96 }}>
-          <NextButton
-            variant="default"
-            onClick={() => onNext()}
-            size="extraLarge"
-            className={disclaimerClasses.getStartedButton}
-          >
-            {button_start[language]}
-          </NextButton>
-        </DialogCardActions>
       </DialogCard>
     </React.Fragment>
   );
