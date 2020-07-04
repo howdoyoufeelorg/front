@@ -34,12 +34,12 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1rem',
     textAlign: 'center',
     paddingTop: 52,
-    paddingBottom: 60,
+    paddingBottom: 75,
   },
   cardsContainer: {
     padding: [[20, 112]],
     position: 'relative',
-    top: -50,
+    top: -55,
   },
   instructionCards: {
     display: 'grid',

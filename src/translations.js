@@ -29,9 +29,9 @@ export const elements = {
   dialog_disclaimer_title: { en: 'Disclaimer', es: 'Descargo de responsabilidad' },
   dialog_disclaimer_intro: {
     en:
-      'Welcome to your resource to check your health symptoms and find out if you need to go seek medical assistance, or if you are in the clear!',
+      'Welcome to your daily health screening tool! Check-in daily to track your health and symptoms over time! It’s free, anonymous and open-source!',
     es:
-      '¡Bienvenido a su recurso para verificar sus síntomas de salud y averiguar si necesita ir a buscar asistencia médica, o si está libre!',
+      '¡Bienvenido a su herramienta de detección de salud diaria! ¡Regístrese diariamente para controlar su salud y síntomas a lo largo del tiempo! ¡Es gratis, anónimo y de código abierto!',
   },
 
   intro_terms_title: {
