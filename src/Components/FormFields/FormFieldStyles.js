@@ -10,7 +10,10 @@ const styles = (theme) => {
         return getWidth(props.width);
       },
       '& input, .MuiSelect-root': {
-        fontSize: ({ isMobile }) => (isMobile ? 18 : 24),
+        fontSize: ({ isMobile }) => {
+          console.log('isMobile', isMobile);
+          return isMobile ? 18 : 24
+        },
         fontWeight: 600,
         height: ({ isMobile }) => (isMobile ? 45 : 60),
         lineHeight: ({ isMobile }) => (isMobile ? '41px' : '56px'),

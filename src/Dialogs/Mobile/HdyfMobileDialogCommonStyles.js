@@ -6,7 +6,7 @@ export const styles = (theme) => ({
     fontSize: 18,
   },
   content: {
-    padding: [[32, 22, 70, 22]],
+    padding: [[32, 22, 140, 22]],
     minHeight: `calc(100vh - ${theme.appBarHeightMobile + theme.actionBarHeightMobile}px)`,
     overflow: 'scroll',
   },
