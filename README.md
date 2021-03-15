@@ -7,6 +7,8 @@ but it can be developed and used on it's own. Based on React, Redux, Saga, and R
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Front-end Demo: http://hdyf-front-dot-m-app-3.uc.r.appspot.com/
+
 ## Available Scripts
 
 In the project directory, you can run:
